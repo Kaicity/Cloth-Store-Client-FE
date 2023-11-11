@@ -1,0 +1,70 @@
+.navbar{
+    background-color: #e31837 !important;
+}
+.navbar li a {
+    color:white !important
+    
+}
+.navbar li{
+    font-size: 20px;
+    
+}
+
+.navbar li a:hover {
+    background-color: #fff;
+    background-color: rgba(0, 0, 0, 0.1);
+    
+}
+
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    display: none;
+    background-color: rgba(228, 19, 54, 0.911);
+    border: 1px solid #ddd;
+    z-index: 1;
+    width: 400px;
+    flex-direction: row;
+    top: 34px;
+    
+}
+.dropdown-menu a {
+    font-weight: normal;
+    color: black;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.dropdown-menu a:hover {
+    font-weight: bold;
+    color:#e31837; /* Đổi màu chữ thành màu đỏ khi hover */
+    display: block;
+}
+.dropdown:hover .dropdown-menu {
+    display: flex;
+    flex-wrap: wrap; /* Cho phép các mục menu xuống dòng nếu không vừa vào kích thước */
+    justify-content: flex-start; /* Các mục menu bắt đầu từ bên trái */
+    align-content: flex-start; /* Các mục menu bắt đầu từ bên trên */
+}
+
+/* Ẩn dropdown menu khi không hover vào mục dropdown */
+.dropdown:not(:hover) .dropdown-menu {
+    display: none;
+}
+
+/* Thiết lập kích thước và khoảng cách giữa các mục menu con */
+.dropdown-menu li {
+    width: 100%;
+    padding: 15px px;
+    text-align: left;
+}
+
+
+
+
+
+
+

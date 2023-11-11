@@ -1,0 +1,144 @@
+.product-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap; /* Cho phép các sản phẩm xuống dòng khi không đủ không gian */
+    list-style: none; /* Loại bỏ dấu chấm đầu dòng */
+    padding: 0;
+  }
+  
+  .product-item {
+    width: 24rem;
+    height: 34rem;
+    margin: 10px; /* Khoảng cách giữa các sản phẩm */
+    border: 1px solid whitesmoke; /* Đường viền cho sản phẩm */
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    color: brown;
+  }
+
+  .food-inf{
+    justify-content: center;
+    text-align: center;
+  }
+
+ /* Định dạng nút mặc định */
+.order-food{
+  padding: 0; /* Xóa padding */
+  background-color: #e31837;
+  color: #fff;
+  border: none; /* Xóa viền */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 200px;
+  height: 50px;
+}
+
+.food-inf .food-name{
+  color: black;
+  font-weight: bold;
+}
+
+.food-inf .food-cost{
+  color: #ce2026;
+  font-weight: bold;
+}
+
+/* Khi hover vào nút */
+.order-food:hover {
+  transform: scale(1.1);
+  background-color: #dfbd50;
+}
+
+/* Khi nhấn nút */
+.order-food:active {
+  transform: scale(0.9);
+  background-color: #004fa1;
+}
+
+.tittle-text{
+  text-align: center;
+}
+.tittle-text h1{
+  color: #e31837;
+  font-weight: bold;
+  font-size: 35px;
+}
+
+.carousel{
+  margin: auto;
+}
+
+
+/* Gio hang */
+/* Định dạng giỏ hàng */
+.cart-container {
+  position: relative;
+}
+.cart-container .btn{
+  display: flex;
+  text-decoration: none;
+  justify-content: space-around;
+  margin-left: 80%;
+  margin-bottom: 10px;
+  padding: 0; /* Xóa padding */
+  background-color: #fac437;
+  color: #000;
+  border: none; /* Xóa viền */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 200px;
+  height: 65px;
+ 
+}
+
+.cart-container .btn :hover{
+  transform: scale(1.1);
+}
+
+.content-card{
+  margin-top: 5px;
+}
+
+.content-card p{
+  font-size: 20px;
+}
+
+.cart {
+  display: none;
+  position: absolute;
+  width: 50%;
+  height: 300px;
+  bottom: 100px;
+  right: 180px;
+  background: #fac437;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Hiển thị giỏ hàng khi đã được kích hoạt */
+.cart.show {
+  display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

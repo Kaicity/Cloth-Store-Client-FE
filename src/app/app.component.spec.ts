@@ -17,13 +17,13 @@ describe('AppComponent', () => {
   it(`should have as title 'FoodOrder'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('FoodOrder');
+    expect(app.title).toEqual('FoodStoreFE');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('FoodOrder app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('FoodStoreFE app is running!');
   });
 });

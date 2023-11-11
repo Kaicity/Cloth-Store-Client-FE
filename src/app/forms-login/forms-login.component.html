@@ -1,0 +1,36 @@
+<br>
+<h2 style=" color: #e31837; font-weight: bold; text-align: center; font-size: 25px; margin-top: 30px;">HÃY ĐĂNG NHẬP</h2>
+<div class="card my-5">
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+        <div class="form-group">
+          <label for="name">Tên đăng nhập</label>
+          <input type="text" [(ngModel)]="customer.phonenumber" 
+            class="form-control" 
+            id="username" 
+            name="username" 
+            placeholder="Email / Số điện thoại"
+            required #name="ngModel">
+        </div>
+        <div [hidden]="!name.pristine" class="alert alert-danger">Tên đăng nhập không được để trống</div>
+        
+        <div class="form-group">
+          <label for="password">Mật khẩu</label>
+          <input type="password" [(ngModel)]="customer.password" 
+            class="form-control" 
+            id="password" 
+            name="password" 
+            placeholder="Mật khẩu"
+            required #email="ngModel">
+          </div>
+          <div [hidden]="!email.pristine" class="alert alert-danger">Mật khẩu không được để trống</div>
+        
+        <button type="submit" [disabled]="!userForm.form.valid" 
+          class="btn btn-info">Đăng nhập</button>
+          <p></p>
+        <div class="trigger-login">
+          <span>Bạn chưa có tài khoản ? </span><a href="#" routerLink="/form-signin">Đăng ký</a>
+        </div>
+      </form>
+    </div>
+  </div>

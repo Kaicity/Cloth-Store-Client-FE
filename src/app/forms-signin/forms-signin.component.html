@@ -1,0 +1,103 @@
+<br>
+<h2 style=" color: #e31837; font-weight: bold; text-align: center; font-size: 25px; margin-top: 30px;">ĐĂNG KÝ TÀI KHOẢN</h2>
+<div class="card my-5">
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+        <div class="form-group">
+          <input type="text" [(ngModel)]="customer.fullName" 
+            class="form-control" 
+            id="fullname" 
+            name="fullname" 
+            placeholder="Họ và tên"
+            required #name="ngModel">
+        </div>
+        <div [hidden]="!name.pristine" class="alert alert-danger">Họ và tên không được để trống</div>
+
+        <div class="form-group">
+          <input type="text" [(ngModel)]="customer.email" 
+            class="form-control" 
+            id="email" 
+            name="email" 
+            placeholder="Email"
+            required #email="ngModel">
+        </div>
+        <div [hidden]="!email.pristine" class="alert alert-danger">Điền đầy đủ email đã đăng ký</div>
+
+        <div class="form-group">
+          <input type="text" [(ngModel)]="customer.address" 
+            class="form-control" 
+            id="address" 
+            name="address" 
+            placeholder="Địa chỉ"
+            required #address="ngModel">
+        </div>
+        <div [hidden]="!address.pristine" class="alert alert-danger">Điền đầy đủ địa chỉ</div>
+
+        <div class="form-group">
+          <input type="text" [(ngModel)]="customer.phonenumber" 
+            class="form-control" 
+            id="phonenumber" 
+            name="phonenumber" 
+            placeholder="Số điện thoại"
+            required #phone="ngModel">
+        </div>
+        <div [hidden]="!phone.pristine" class="alert alert-danger">Điền đầy đủ số điện thoại</div>
+
+          <div class="form-group">
+            <input type="password" [(ngModel)]="customer.password" 
+              class="form-control" 
+              id="password" 
+              name="password" 
+              placeholder="Mật khẩu"
+              required #password="ngModel">
+            </div>
+            <div [hidden]="!password.pristine" class="alert alert-danger">Vui lòng nhập mật khẩu</div>
+        
+      
+
+        <div class="form-group">
+          <input type="date" [(ngModel)]="customer.birthday" 
+            class="form-control" 
+            id="birthday" 
+            name="birthday" 
+            placeholder="Ngày sinh"
+            required #birthday="ngModel">
+          </div>
+          <div [hidden]="!birthday.pristine" class="alert alert-danger">Vui lòng chọn ngày sinh</div>
+      
+
+        <div class="form-group">
+          <select class="form-control" id="sex" name="sex" [(ngModel)]="customer.sex" required #sex = "ngModel">
+            <option value="">Chọn giới tính</option>
+            <option value="male">Nam</option>
+            <option value="female">Nữ</option>
+          </select>
+        </div>
+          <div [hidden]="!sex.pristine" class="alert alert-danger"> Vui lòng chọn giới tính</div>
+
+
+        <div class="form-group">
+          <select class="form-control" id="city" name="city" [(ngModel)]="customer.city" required #city = "ngModel">
+            <option value="">Chọn một Tỉnh/Thành phố *</option>
+            <option value="hcm">Hồ Chí Minh</option>
+            <option value="hn">Hà Nội</option>
+            <option value="dn">Đà Nẵng</option>
+            <!-- Thêm các tùy chọn khác ở đây -->
+          </select>
+          </div>
+          <div [hidden]="!city.pristine" class="alert alert-danger">Vui lòng chọn tỉnh thành phố</div>
+
+        <div class="content-signin">
+          <input type="checkbox"><h6>Tôi đã đồng ý với điều khoản và dịch vụ</h6>
+        </div>
+        <button type="submit" [disabled]="!userForm.form.valid" 
+          class="btn btn-info">Đăng nhập</button>
+        <p></p>
+        <div class="trigger-login">
+          <span>Bạn đã có tài khoản? </span><a href="#" routerLink="/form-login">Đăng nhập</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  
