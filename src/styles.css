@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('http://fonts.googleapis.com/css?/family=Open+Sans&display=swap');
+:root {
+    --primary-color: #e31837; /* Màu chính */
+    --secondary-color: #f4d2d6; /* Màu phụ */
+    --background-color: #ce2026; /* Màu button */
+    --text-color: #333; /* Màu chữ */
+}
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    font-family:  Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

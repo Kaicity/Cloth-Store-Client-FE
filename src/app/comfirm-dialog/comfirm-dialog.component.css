@@ -1,0 +1,38 @@
+.dialog {
+  max-width: 900px; /* Điều chỉnh độ rộng tối đa */
+  width: 100%; /* Điều chỉnh độ rộng tỷ lệ */
+  margin-bottom: 10px;
+}
+
+.custom-dialog-title {
+  font-size: 24px;
+  color: #000;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+.custom-dialog-content {
+  font-size: 16px;
+  margin-bottom: 50px;
+  margin-left: 12px;
+}
+
+.custom-dialog-actions {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.custom-confirm-button {
+  background-color: crimson;
+  color: #fff;
+  margin-right: 5px;
+  border-radius: 5px;
+}
+
+.custom-cancel-button {
+  background-color: #fff;
+  color: #000;
+  margin-right: 5px;
+  border-radius: 5px;
+}

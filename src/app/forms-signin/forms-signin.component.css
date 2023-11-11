@@ -1,0 +1,39 @@
+.container h2{
+    text-align: center;
+}
+ /* Định dạng nút mặc định */
+ .btn{
+  padding: 0; /* Xóa padding */
+  background-color: #e31837;
+  color: #fff;
+  border: none; /* Xóa viền */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 200px;
+  height: 50px;
+}
+
+.card{
+width: 40%;
+margin: auto;
+}
+
+
+.content-signin{
+  display: flex;
+  justify-content: space-between;
+  margin-right: 50%;
+  
+}
+
+.content-signin h6{
+  font-size: 13px;
+  margin-top: 12px;
+  margin-right: 100px;
+  color: blue;
+}
+
+.trigger-login{
+  margin-right: 50%;
+}
