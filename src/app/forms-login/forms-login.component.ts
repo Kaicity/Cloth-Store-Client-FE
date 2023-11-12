@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Customer } from '../../BM-API/Dtos/Customer';
+import { CustomerDto } from '../../BM-API/Dtos/CustomerDto';
 
 @Component({
   selector: 'app-forms-login',
@@ -8,10 +8,10 @@ import { Customer } from '../../BM-API/Dtos/Customer';
 })
 export class FormsLoginComponent {
 
-  customer!: Customer;
+  customer!: CustomerDto;
 
   constructor(){
-    this.customer = new Customer();
+    this.customer = new CustomerDto();
   }
 
   onSubmit(): void{

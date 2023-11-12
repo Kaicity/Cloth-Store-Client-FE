@@ -1,4 +1,4 @@
-export class Customer{
+export class CustomerDto {
     id!: number;
     fullName!: String;
     email!: String;
@@ -9,5 +9,5 @@ export class Customer{
     password!: String;
     sex!: String;
     city!: String;
-    
+
 }
