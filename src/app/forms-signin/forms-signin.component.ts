@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Customer } from '../../BM-API/Dtos/Customer';
+import { CustomerDto } from '../../BM-API/Dtos/CustomerDto';
 
 @Component({
   selector: 'app-forms-signin',
@@ -7,12 +7,12 @@ import { Customer } from '../../BM-API/Dtos/Customer';
   styleUrls: ['./forms-signin.component.css']
 })
 export class FormsSigninComponent {
-  customer!: Customer
+  customer!: CustomerDto
   constructor(){
-    this.customer = new Customer;
+    this.customer = new CustomerDto;
   }
 
   onSubmit(): void{
-    console.log("Customer registration successfully !")
+    console.log("CustomerDto registration successfully !")
   }
 }
