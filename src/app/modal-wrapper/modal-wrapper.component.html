@@ -1,0 +1,15 @@
+<!-- modal.component.html -->
+<mat-dialog-content>
+  <mat-form-field class="example-full-width" style="width: 13vw">
+    <mat-label>Nhập mã xác nhận</mat-label>
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+      <div class="form-group">
+        <input matInput placeholder="######" id="code" name="code">
+      </div>
+    </form>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()" style="margin-left: 5vw">Hủy</button>
+  <button mat-button (click)="onSaveClick()" [disabled]="!userForm.valid">Xác nhận</button>
+</mat-dialog-actions>

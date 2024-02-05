@@ -1,0 +1,280 @@
+.container{
+    display: flex;
+    justify-content: space-evenly;
+    position: relative;
+
+}
+.food-option .dropdown{
+   margin-top: 6px;
+}
+
+.dropdown .btn{
+    width: 25vw;
+    height: 5vh;
+    text-align: right;
+    background-color:  #fff ;
+    color: #000000;
+    font-weight: bold;
+}
+
+.dropdown-menu{
+    width: 500px;
+    max-width: 100%;
+}
+
+.content-product{
+    width: auto;
+    height: 38rem;
+    border: 1px solid darkgray;
+    border-radius: 0.5rem;
+    flex-direction: column;
+    overflow: hidden;
+    color: #000;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+.payment {
+  padding: 0; /* Xóa padding */
+  background-color: darkgrey;
+  color: #fff;
+  border: none; /* Xóa viền */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 10vw;
+  height: 5vh;
+  margin-left:0;
+  margin-top: 12%;
+}
+
+.payment:hover {
+  background-color: #dfbd50;
+}
+
+.payment :active {
+  transform: scale(0.9);
+  background-color: #fff;
+  color: #000;
+}
+
+
+
+.product-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* Cho phép các sản phẩm xuống dòng khi không đủ không gian */
+  list-style: none;
+  /* Loại bỏ dấu chấm đầu dòng */
+  padding: 0;
+}
+
+.product-item {
+  width: 24rem;
+  height: 36rem;
+  margin: 10px;
+  /* Khoảng cách giữa các sản phẩm */
+  border: 1px solid darkgray;
+  /* Đường viền cho sản phẩm */
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: brown;
+  justify-content: center;
+  align-items: center;
+  transition: width 0.3s ease;
+}
+
+
+.product-image:hover img {
+  transform: scale(0.9);
+  /* Thu nhỏ kích thước ảnh khi hover */
+  transition: transform 0.3s ease;
+  /* Thêm hiệu ứng transition */
+}
+
+.product-inf {
+  justify-content: center;
+  text-align: center;
+}
+
+/* Định dạng nút mặc định */
+.order-food {
+  padding: 0;
+  border: none;
+  outline: none;
+  background-color: darkgray;
+  color: #000000;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 10vw;
+  height: 5vh;
+  font-size: 16px;
+}
+
+
+.order-food-card{
+  padding: 0;
+  border: none;
+  outline: none;
+  background-color: darkgray;
+  color: #000000;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 25vw;
+  height: 50px;
+}
+
+.order-food-card:hover {
+  background-color: #2a9dcc;
+}
+
+.product-inf .food-name {
+  color: #000000;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.product-inf .food-cost {
+  color: #df0000;
+  font-weight: bold;
+}
+
+/* Khi hover vào nút */
+.order-food:hover {
+  transform: scale(1.1);
+  background-color: #2a9dcc;
+}
+
+/* Khi nhấn nút */
+.order-food:active {
+  transform: scale(0.9);
+  background-color: #2a9dcc;
+}
+
+.tittle-text {
+  text-align: center;
+}
+
+.tittle-text h1 {
+  color: #000;
+  font-size: 30px;
+}
+
+.carousel {
+  margin: auto;
+}
+
+
+
+  /* Gio hang */
+/* Định dạng giỏ hàng */
+.cart-container {
+  position: relative;
+  margin-left: 45%;
+  margin-top: 0%;
+}
+
+.cart-item{
+  cursor: pointer;
+  display: flex;
+  justify-content: space-evenly;
+  margin-left: 90%;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+  width: 70px;
+  height: auto;
+
+}
+
+.cart-container .btn :hover {
+  transform: scale(1.1);
+}
+
+.content-card {
+  margin-top: 5px;
+}
+
+.content-card p {
+  font-size: 16px;
+}
+
+
+
+.cart {
+  display: none;
+  position: relative;
+  width: auto;
+  height: auto;
+  top: 120%;
+  right: 38%;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Hiển thị giỏ hàng khi đã được kích hoạt */
+.cart.show {
+  display: block;
+}
+
+.title-non-cart {
+  align-items: center;
+  text-align: center;
+  justify-items: center;
+}
+
+.num img:hover{
+  transform: scale(0.8);
+  /* Thu nhỏ kích thước ảnh khi hover */
+  transition: transform 0.3s ease;
+}
+.num a {
+  cursor: pointer;
+}
+
+
+
+
+.visually-hidden {
+  border: 0;
+  clip: rect(0,0,0,0);
+  width: 2px;
+  height: 2px;
+  margin: -2px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+user agent stylesheet
+caption {
+  display: table-caption;
+  text-align: -webkit-center;
+}
+
+
+td, th {
+  font-weight: normal;
+}
+td {
+  display: table-cell;
+  vertical-align: inherit;
+}
+
+.container-money{
+  display: flex;
+  justify-content: space-between;
+}
+.content-money{
+  margin-top: 3vh;
+  margin-left: 1vw;
+}
+
+
+

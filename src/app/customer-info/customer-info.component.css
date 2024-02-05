@@ -1,0 +1,44 @@
+
+
+ /* Định dạng nút mặc định */
+ .btn{
+    padding: 0; /* Xóa padding */
+    background-color: darkgrey;
+    color: #fff;
+    border: none; /* Xóa viền */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 40%;
+    height: 50px;
+  }
+
+.card{
+  width: 40%;
+  margin: auto;
+}
+.trigger-login{
+  margin-right: 50%;
+}
+
+.btn-notLogin{
+    padding: 0; /* Xóa padding */
+    background-color: darkgrey;
+    color: #fff;
+    border: none; /* Xóa viền */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 40%;
+    height: 50px;
+}
+
+
+ .notification .content {
+   display: flex;
+ }
+
+ .content h4{
+   margin-left: 2%;
+   color: red;
+ }

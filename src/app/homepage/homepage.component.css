@@ -1,34 +1,51 @@
+.carousel-indicators {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 15;
+}
 
 .carousel-indicators span {
-    font-size: 30px; 
+    background-color: #bbb;
+    /* Màu nền của indicator chưa được chọn */
+    border: 1px solid #555;
+    /* Viền của indicator chưa được chọn */
+    border-radius: 50%;
+    /* Bo tròn các góc để tạo hình tròn */
+    width: 20px;
+    /* Kích thước chiều rộng của indicator */
+    height: 20px;
+    /* Kích thước chiều cao của indicator */
+    margin-right: 5px;
+    /* Khoảng cách giữa các indicator */
     cursor: pointer;
-    background-color: black; 
-    color: #fff; 
-    border: 2px solid #fff; 
-    border-radius: 50%; 
-    transition: transform 0.2s;
-  }
+    transition: background-color 0.6s ease;
+}
 
-  .carousel-indicators span:hover {
-    transform: scale(1.2); /* Phóng to khi hover */
-  }
+.carousel-indicators span:active {
+    background-color: #333;
+    /* Màu nền của indicator được chọn */
+}
 
-  .btn{
+.btn {
     width: 16%;
     height: 50px;
     font-size: 22px;
     font-weight: bold;
     position: absolute;
-    top: 50%; /* Đặt nút ở giữa theo chiều dọc */
-    left: 50%; /* Đặt nút ở giữa theo chiều ngang */
-    transform: translate(-50%, -50%); /* Dịch chuyển nút để căn giữa */
+    top: 50%;
+    /* Đặt nút ở giữa theo chiều dọc */
+    left: 50%;
+    /* Đặt nút ở giữa theo chiều ngang */
+    transform: translate(-50%, -50%);
+    /* Dịch chuyển nút để căn giữa */
     color: black;
 
-    
-    
-  }
-  /*Template reviewer */
-  @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+}
+
+/*Template reviewer */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 * {
     padding: 0;
@@ -39,14 +56,14 @@
 
 body {
     margin-top: 30px;
-    background-color:#eee;
+    background-color: #eee;
 }
 
 .container {
     min-height: 40vh;
     padding: 20px 0;
     display: flex;
-    margin-left:  0px;
+    margin-left: 0px;
 }
 
 p {
@@ -75,7 +92,6 @@ p {
 }
 
 .card:hover {
-    color: #fff;
     transform: scale(1.025);
     box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 10px
 }
@@ -86,8 +102,8 @@ p {
     width: 100%;
     position: absolute;
     z-index: -1;
-    background: #e31837;
-    animation: popBackground 0.3s ease-in
+    animation: popBackground 0.3s ease-in;
+    color: #000000;
 }
 
 @keyframes popBackground {
@@ -133,8 +149,8 @@ p {
     justify-content: center;
     width: 50px;
     height: 70px;
-    background-color: #e31837;
-    color: white;
+    background-color: whitesmoke;
+    color: #000000;
     position: absolute;
     bottom: 0px;
     transition: all ease
@@ -155,7 +171,7 @@ p {
 }
 
 .card:hover .text-muted {
-    color: #fff !important
+    color: #000000;
 }
 
 .card .content {
@@ -171,7 +187,6 @@ p {
     padding: 5px 10px;
     font-size: 12px;
     border: none
-    
 }
 
 .card:hover .content .btn {
@@ -199,37 +214,39 @@ p {
 }
 
 
-.content h1{
-  font-size: 25px;
-  font-weight: bold;
+.content h3 {
+    font-size: 25px;
+
 }
 
-.content p{
-  font-size: 16px;
+.content p {
+    font-size: 16px;
 }
 
-.content{
-  margin-top:40%;
+.content {
+    margin-top: 10%;
 }
 
 
-.container-service{
-    background: url("/assets/template-service.png");
+.container-service {
+    background: url("/assets/layoutHomePage.png");
     background-size: contain;
     padding: 70px 20px;
     height: 100vh;
-    
+
 }
-.show-service{
-    display: flex;
-    justify-content: space-between;
-}
-.media-content{
+
+.show-service {
     display: flex;
     justify-content: space-between;
 }
 
-.media-object{
+.media-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.media-object {
     max-width: 309px;
     width: 100%;
 }
@@ -237,19 +254,21 @@ p {
 .media-heading {
     font-size: 21px;
     line-height: 42px;
-    font-family: 'MergeBlack',sans-serif;
+    font-family: 'MergeBlack', sans-serif;
     color: #42210b;
     margin-bottom: 20px;
     text-transform: uppercase;
 }
-.media-heading h4{
+
+.media-heading h4 {
     height: 700;
 }
 
-.btn-see{
-    background-color: #e31837;
-    color: #fff;
-    border: none; /* Xóa viền */
+.btn-see {
+    background-color: whitesmoke;
+    color: #000000;
+    border: none;
+    /* Xóa viền */
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -257,38 +276,43 @@ p {
     height: 50px;
     display: inline-block;
 }
-.content-service{
+
+.content-service {
     text-align: center;
 }
-.content-service h1{
-    color: #e31837;
+
+.content-service h1 {
+    color: #000000;
     font-size: 40px;
     font-weight: bold;
 }
 
-.content-service p{
+.content-service p {
     font-size: 20px;
     font-weight: bold;
 }
-.pic{
+
+.pic {
     max-width: 100;
-    background: url("/assets/template-seachshop.jpg");
+    background-color: #fff;
     background-size: cover;
     padding: 70px 20px;
     height: 100vh;
 }
-.container-select{
+
+.container-select {
     max-width: 100;
     display: flex;
     height: 15vh;
-    background-color: #ed7d22;
+    background-color: #fff;
 }
-.container-select .form-control{
+
+.container-select .form-control {
     width: 45%;
     margin: auto;
 }
 
-.pic .btn_od{
+.pic .btn_od {
     width: 15%;
     height: 5vh;
     font-size: 22px;
@@ -301,25 +325,28 @@ p {
     color: black;
 }
 
-.item-content h4{
+.item-content h4 {
     font-weight: bold;
     color: #941d2f;
 }
 
 
-.pulse-button{
-    animation: pulse 1s infinite; /* Sử dụng animation với tên "pulse" và lặp vô hạn */
-  }
-  
-  @keyframes pulse {
+.pulse-button {
+    animation: pulse 1s infinite;
+    /* Sử dụng animation với tên "pulse" và lặp vô hạn */
+}
+
+@keyframes pulse {
     0% {
-      transform: scale(1);
+        transform: scale(1);
     }
+
     50% {
-      transform: scale(1.1); /* Tăng kích thước nút tại mức 50% của animation */
+        transform: scale(1.1);
+        /* Tăng kích thước nút tại mức 50% của animation */
     }
+
     100% {
-      transform: scale(1);
+        transform: scale(1);
     }
-  }
-  
+}

@@ -1,76 +1,96 @@
+<app-spinner [show]="isLoading"></app-spinner>
 <header>
     <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
         <div class="container-fluid">
-            <a href="#logo" class="logo" routerLink="/homepage" style="color: #fff; font-weight: bold; font-size: 22px;">
+            <a href="#logo" class="logo" routerLink="/homepage"
+                style="color: #fff; font-weight: bold; font-size: 22px;">
                 <!-- <img src="assets\logo.png" style="height: 1; width: 10;"> -->
-                TMA Solution
+                TMA Clothes Shopping
             </a>
-           <button class = "navbar-toggler" type="button" data-toggle ="collapse" data-target="#navbarReponsive">
-                <span class ="navbar-toggler-icon"></span>
-           </button>
-           <div class="navbar navbar-collapse" id="navbarReponnsive">
-            <ul class="navbar-nav ml-auto" style="cursor: pointer;">
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/homepage">
-                        Trang chủ
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/about-us">
-                        Về chúng tôi
-                    </a>
-                </li>
-                <li class="nav-item dropdown" routerLink="/food">
-                    <a class="nav-link dropdown-toggle" href="#" id="menuDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Thực đơn
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="menuDropdownButton">
-                        <a class="dropdown-item" href="#">Combo món</a>
-                        <a class="dropdown-item" href="#">Gà giòn hạnh phúc</a>
-                        <a class="dropdown-item" href="#">Bugger</a>
-                        <a class="dropdown-item" href="#">Thức ăn phụ</a>
-                        <a class="dropdown-item" href="#">Bánh ngọt</a>
-                        <a class="dropdown-item" href="#">Thức uống</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarReponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar navbar-collapse" id="navbarReponnsive">
+                <ul class="navbar-nav ml-auto" style="cursor: pointer;">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/homepage">
+                            Trang Chủ
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/about-us">
+                            Giới Thiệu
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown" routerLink="/product">
+                        <a class="nav-link dropdown-toggle" href="#" id="menuDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Sản Phẩm
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="menuDropdownButton">
+                            <a class="dropdown-item" href="#">Sản Phẩm Khuyến Mãi</a>
+                            <a class="dropdown-item" href="#">Sản Phẩm Mới</a>
+                            <a class="dropdown-item" href="#">Sản Phẩm Bán Chạy</a>
+                            <a class="dropdown-item" href="#">Áo Thun Thời Trang</a>
+                            <a class="dropdown-item" href="#">Áo Khoác</a>
+                            <a class="dropdown-item" href="#">Giày - Vớ, Phụ Kiện Khác</a>
+                            <a class="dropdown-item" href="#">Thẻ Quà Tặng</a>
+                        </div>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link">
+                            Liên Hệ
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/store-service">
+                            Thành Viên
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">
+                            Tuyển Dụng
+                        </a>
+                    </li>
+                </ul>
+                <div>
+                    <!-- <select class="form-control" id="language" name="language"
+                        style="width: 90px; margin-right: 10px; background-color: transparent; color: #fff;">
+                        <option value="apple" style=" background-color: rgba(31, 26, 26, 0.911) ">
+                            <label for="">VN</label>
+                        </option>
+                        <option value="banana" style=" background-color: rgba(31, 26, 26, 0.911)">
+                            <label for="">US</label>
+                        </option>
+                    </select> -->
+                    <div class="change-language" style="display: flex">
+                        <a style="cursor: pointer;"><img src="assets/USflag.png"></a>
+                        <a style="margin-left: 5px; cursor: pointer;"><img src="assets/VNflag.png"></a>
                     </div>
-                </li>
+                </div>
 
 
-                <li class="nav-item">
-                    <a class="nav-link">
-                       Khuyến mãi
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/store-service">
-                        Dịch vụ
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link">
-                        Tuyển dụng
-                    </a>
-                </li>
-            </ul>
-           </div>
+                <div class="" style="margin-left: 5px;">
+                    <button type="button" class="btn btn-warning" (click)="btnToPageLogin()" [hidden]="!isCheckHasAccount">Đăng nhập
 
-           <div>
-            <select class="form-control" id="fruits" name="fruits" style="width: 80px; margin-right: 10px; background-color: transparent; color: #fff;">
-                <option value="apple" style="color: black;">VN</option>
-                <option value="banana" style="color: black;">US</option>
-            </select>
-           </div>
+                    </button>
+                    |
+                    <button type="button" class="btn btn-outline-light" routerLink="/form-signin" [hidden]="!isCheckHasAccount">Đăng ký
+                    </button>
+                </div>
 
+            </div>
 
+            <a class="btn btn-light" (click)="btnLogout()" [hidden]="isCheckHasAccount">Đăng xuất</a>
 
-           <div>
-                <button type="button" class="btn btn-warning" routerLink="/form-login">Đăng nhập
-                    
-                </button>
-                |
-                <button type="button" class="btn btn-outline-light" routerLink="/form-signin">Đăng ký
-                </button>
-           </div>
+            <div class="account-title">
+                Xin chào,
+                <label style="color: #fff; font-weight: bold; font-size:large ;">{{titleName}}</label>
+            </div>
 
         </div>
+
     </nav>
 </header>

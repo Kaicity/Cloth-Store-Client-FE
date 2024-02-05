@@ -1,0 +1,229 @@
+
+<div class="container-payment">
+  <app-spinner [show]="isLoading"></app-spinner>
+
+  <h2 style=" color: #000000; text-align: center; font-size: 30px; margin-top: 5vh;">THÔNG TIN ĐƠN
+    HÀNG</h2>
+
+  <div class="content-shipping">
+    <h4 style="font-weight: bold; margin-top: 5vh; margin-left: 5vw;">Thông tin nhận hàng</h4>
+  </div>
+
+  <br>
+
+  <div class="user-info-form">
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+      <div class="form-group">
+        <label for="fullname">Họ tên khách hàng:</label>
+        <input type="text" [(ngModel)]="customer.fullName" class="form-control" id="fullname" name="fullname"
+               placeholder="Họ tên" required #name="ngModel">
+      </div>
+      <div [hidden]="!name.invalid" class="alert alert-danger">Điền đầy đủ họ tên của bạn</div>
+
+      <div class="form-group">
+        <label for="phone">Số điện thoại:</label>
+
+        <!--      <input type="number" [(ngModel)]="customer.phone" class="form-control" id="phone" name="phone"-->
+        <!--             placeholder="Số điện thoại liên hệ" required #p="ngModel">-->
+
+        <div class="input-group mb-3">
+          <div class="dropdown">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+              Chọn vùng
+            </button>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a *ngFor="let f of valueFlag" class="dropdown-item">
+                <img src="assets/{{f.valueOf()}}">
+              </a>
+            </div>
+          </div>
+
+          <input type="text" class="form-control" [ngModel]="customer.phone"
+                 aria-label="Text input with dropdown button"
+                 id="phone" name="phone" placeholder="+" required #p="ngModel">
+        </div>
+      </div>
+      <div [hidden]="!p.invalid" class="alert alert-danger">Điền đầy đủ số điện thoại của bạn</div>
+
+      <div class="form-group">
+        <label for="email">E-mail:</label>
+        <input type="email" [(ngModel)]="customer.email" class="form-control" id="email" name="email"
+               placeholder="alexander@gmail.com" required #mail="ngModel">
+      </div>
+      <div [hidden]="!mail.invalid" class="alert alert-danger">Điền đầy đủ E-mail của bạn</div>
+
+
+      <div class="form-group">
+        <label for="address">Địa chỉ hiện tại của bạn:</label>
+        <textarea class="form-control" placeholder="Địa chỉ" [(ngModel)]="customer.address" id="address" name="address"
+                  required #addr="ngModel"></textarea>
+      </div>
+      <div [hidden]="!addr.invalid" class="alert alert-danger">Điền đầy đủ địa chỉ của bạn</div>
+
+    </form>
+  </div>
+
+
+  <!-------------------------------------------------------------------->
+  <!--Sidebar card cho danh sach gio hang cuoi cung duoc xac nhan-->
+  <!-- sidebar.component.html -->
+  <div class="sidebar">
+    <div class="content-sidebar">
+      <h4>Đơn hàng:
+        <span>{{howProduct}}</span>
+        sản phẩm
+      </h4>
+    </div>
+
+    <hr>
+    <div class="card-table">
+      <table class="product-table">
+        <caption class="visually-hidden">Chi tiết đơn hàng</caption>
+        <thead class="product-table__header">
+        <tr>
+          <th>
+            <span class="visually-hidden">Ảnh sản phẩm</span>
+          </th>
+          <th>
+            <span class="visually-hidden">Mô tả</span>
+          </th>
+          <th>
+            <span class="visually-hidden">Sổ lượng</span>
+          </th>
+          <th>
+            <span class="visually-hidden">Đơn giá</span>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr *ngFor="let item of oldCardProduct" class="product">
+          <td class="product__image">
+            <div class="product-thumbnail">
+              <div class="product-thumbnail__wrapper" data-tg-static="">
+                <img src="{{item.product!.image}}" alt="" class="product-thumbnail__image"
+                     style="width: 50px; height: 50px;">
+              </div>
+              <span class="product-thumbnail__quantity">1</span>
+            </div>
+          </td>
+
+          <th class="product__description">
+            <span class="product__description__name">
+              {{item.product!.name}}
+            </span>
+
+            <span class="product__description__property">
+              S / Trắng Đỏ
+            </span>
+
+            <span class="product__description__property">
+             Số lượng: {{item.quantity}}
+            </span>
+
+          </th>
+          <td class="product__price">
+
+            {{item.amount | currency: 'VND':'symbol':'1.0-0'}}
+
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+      <hr>
+
+      <div class="field">
+        <div class="field__input-btn-wrapper">
+          <div class="field__input-wrapper">
+            <label for="reductionCode" class="field__label">Nhập mã giảm giá</label>
+            <input name="reductionCode" id="reductionCode" type="text" class="field__input" placeholder="########">
+          </div>
+          <div class="btn-coupon" style="margin-top: 3vh;">
+            <button mat-raised-button color="primary" style="height: 5vh; width: 12vw">Áp dụng</button>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="money-table" style="margin: 20px;">
+          <table class="total-line-table">
+            <caption class="visually-hidden">Tổng giá trị</caption>
+            <thead>
+            <tr>
+              <td><span class="visually-hidden">Mô tả</span></td>
+              <td><span class="visually-hidden">Giá tiền</span></td>
+            </tr>
+            </thead>
+
+            <tbody class="total-line-table__tbody">
+            <tr class="total-line total-line--subtotal">
+              <th class="total-line__name">
+                Tạm tính
+              </th>
+              <td class="total-line__price">
+                {{calculatorDemo |  currency: 'VND':'symbol':'1.0-0'}}</td>
+            </tr>
+
+            <tr class="total-line total-line--shipping-fee">
+              <th class="total-line__name">
+                Phí vận chuyển
+              </th>
+              <td class="total-line__price" data-bind="getTextShippingPrice()">---</td>
+            </tr>
+
+            </tbody>
+            <tfoot class="total-line-table__footer">
+            <tr class="total-line payment-due">
+              <th class="total-line__name">
+                <span class="payment-due__label-total">
+                  Tổng cộng
+                </span>
+              </th>
+              <td class="total-line__price">
+                <span class="payment-due__price" data-bind="getTextTotalPrice()">
+                  {{calcuToTal |  currency: 'VND':'symbol':'1.0-0'}}</span>
+              </td>
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="content-shipping">
+      <h4 style="font-weight: bold; margin-top: 2vh; margin-left: 1vw;">Phương thức thanh toán </h4>
+    </div>
+
+    <div class="dropdown">
+      <button [matMenuTriggerFor]="menu" class="btn dropdown-toggle" type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false" style="margin-left: 1vw;
+      margin-top: 2vh; width: 12vw; height: 6vh">
+        Chọn hình thức thanh toán
+      </button>
+      <ul class="dropdown-menu">
+        <mat-menu #menu="matMenu">
+          <mat-radio-button value="1"> Thanh toán khi giao hàng (COD)</mat-radio-button>
+        </mat-menu>
+      </ul>
+    </div>
+
+    <div class="actions-toolbar" id="shipping-method-buttons-container">
+      <div class="primary" (click)="btnAcceptOrder()">
+        <button type="button" class="btn" [disabled]="!userForm.form.valid"
+                style="width: 35vw; height: 6vh; background-color: #4758b8; color: #fff">
+          Xác nhận đơn hàng
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+

@@ -5,8 +5,12 @@ import { FormsSigninComponent } from './forms-signin/forms-signin.component';
 import { FormsLoginComponent } from './forms-login/forms-login.component';
 import { ForusComponent } from './forus/forus.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { FoodDetailComponent } from './food-detail/food-detail.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { StoreServiceComponent } from './store-service/store-service.component';
+import { CustomerInfoComponent } from './customer-info/customer-info.component';
+import { ShippingComponent } from './shipping/shipping.component';
+import { SucessStatusComponent } from './sucess-status/sucess-status.component';
+
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -14,10 +18,13 @@ const routes: Routes = [
   {path: 'form-login', component: FormsLoginComponent},
   {path: 'about-us', component: ForusComponent},
   {path: 'homepage', component: HomepageComponent},
-  {path: 'food', component: HomeComponent},
-  {path: 'food/:id', component: FoodDetailComponent},
+  {path: 'product', component: HomeComponent},
+  {path: 'product/:id', component: ProductDetailComponent},
   {path: 'store-service', component: StoreServiceComponent},
-  {path: '', redirectTo: 'food', pathMatch: 'full' },
+  {path : 'customer-info', component: CustomerInfoComponent},
+  {path: 'shipping', component: ShippingComponent},
+  {path: 'success-order', component: SucessStatusComponent},
+  {path: '', redirectTo: 'product', pathMatch: 'full' },
 ];
 
 @NgModule({

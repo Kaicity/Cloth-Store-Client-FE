@@ -4,7 +4,7 @@
  /* Định dạng nút mặc định */
  .btn{
   padding: 0; /* Xóa padding */
-  background-color: #e31837;
+  background-color: darkgrey;
   color: #fff;
   border: none; /* Xóa viền */
   border-radius: 5px;
