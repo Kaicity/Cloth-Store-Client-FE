@@ -1,44 +1,49 @@
 .container{
-    display: flex;
-    justify-content: space-evenly;
-    position: relative;
-
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+}
+.food-option{
+  max-width: 100%;
+  width: 100vw;
+  margin-left: 4vw;
 }
 .food-option .dropdown{
-   margin-top: 6px;
+  margin-top: 2vh;
 }
 
 .dropdown .btn{
-    width: 25vw;
-    height: 5vh;
-    text-align: right;
-    background-color:  #fff ;
-    color: #000000;
-    font-weight: bold;
+  width: 25vw;
+  height: 5vh;
+  text-align: right;
+  background-color:  #fff ;
+  color: #000000;
+  font-weight: bold;
 }
 
 .dropdown-menu{
-    width: 500px;
-    max-width: 100%;
+  width: 200vw;
+  max-width: 100%;
+}
+
+.food-text span {
+  font-size: 20px;
+  color: #DF0000;;
+  line-height: 18px;
+  font-family: inherit;
+  font-weight: 700;
 }
 
 .content-product{
-    width: auto;
-    height: 38rem;
-    border: 1px solid darkgray;
-    border-radius: 0.5rem;
-    flex-direction: column;
-    overflow: hidden;
-    color: #000;
-    text-align: center;
-    font-weight: bold;
+  width: 100vw;
+  height: auto;
+  text-align: center;
 }
-
 
 .payment {
   padding: 0; /* Xóa padding */
   background-color: darkgrey;
-  color: #fff;
+  color: #000000;
   border: none; /* Xóa viền */
   border-radius: 5px;
   cursor: pointer;
@@ -50,7 +55,7 @@
 }
 
 .payment:hover {
-  background-color: #dfbd50;
+  background-color: #2a9dcc;
 }
 
 .payment :active {
@@ -59,16 +64,13 @@
   color: #000;
 }
 
-
-
 .product-list {
+  margin-top: 2vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  /* Cho phép các sản phẩm xuống dòng khi không đủ không gian */
   list-style: none;
-  /* Loại bỏ dấu chấm đầu dòng */
   padding: 0;
 }
 
@@ -88,7 +90,6 @@
   align-items: center;
   transition: width 0.3s ease;
 }
-
 
 .product-image:hover img {
   transform: scale(0.9);
@@ -116,7 +117,6 @@
   font-size: 16px;
 }
 
-
 .order-food-card{
   padding: 0;
   border: none;
@@ -136,7 +136,7 @@
 .product-inf .food-name {
   color: #000000;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 18px;
 }
 
 .product-inf .food-cost {
@@ -169,17 +169,15 @@
   margin: auto;
 }
 
-
-
-  /* Gio hang */
+/* Gio hang */
 /* Định dạng giỏ hàng */
 .cart-container {
   position: relative;
   margin-left: 45%;
   margin-top: 0%;
 }
-
 .cart-item{
+  max-width: 100%;
   cursor: pointer;
   display: flex;
   justify-content: space-evenly;
@@ -188,7 +186,6 @@
   transition: all 0.3s ease;
   width: 70px;
   height: auto;
-
 }
 
 .cart-container .btn :hover {
@@ -203,31 +200,33 @@
   font-size: 16px;
 }
 
-
-
 .cart {
   display: none;
-  position: relative;
-  width: auto;
-  height: auto;
+  position: absolute;
+  width: 70vw;
+  height: 500px; /* Set a maximum height for the container */
+  overflow: auto;
   top: 120%;
-  right: 38%;
+  right: 26%;
   background: #fff;
   border: 1px solid #ccc;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 2px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 2;
 }
-
 /* Hiển thị giỏ hàng khi đã được kích hoạt */
 .cart.show {
   display: block;
 }
 
-.title-non-cart {
+.title-non-cart{
   align-items: center;
   text-align: center;
   justify-items: center;
+}
+.title-non-cart p{
+  text-align: center;
 }
 
 .num img:hover{
@@ -238,8 +237,6 @@
 .num a {
   cursor: pointer;
 }
-
-
 
 
 .visually-hidden {
@@ -272,9 +269,57 @@ td {
   justify-content: space-between;
 }
 .content-money{
-  margin-top: 3vh;
+  margin-top: 2vh;
   margin-left: 1vw;
 }
 
+/*SHARE*/
+.social-share {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 200px;
+  height: 50px;
+}
 
+.social-share a {
+  margin: 0 10px;
+}
 
+.social-share img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+.clearcart{
+  font-size: 16px;
+  cursor: pointer;
+  color: #000000;
+}
+.clearcart :hover{
+  text-decoration: underline;
+  transform: scale(0.9);
+}
+
+/*DES*/
+.des-content{
+  text-align: center;
+}
+.des-content h5{
+  font-weight: bold;
+}
+section {
+  max-width: 90vw;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.product-description h1, h2, p {
+  text-align: left;
+}
+.product-description {
+  margin-top: 20px;
+  text-align: justify;
+}

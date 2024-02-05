@@ -26,7 +26,7 @@ export class ProductDetailComponent implements OnInit {
   productDtos: ProductFullModel[] = []; // Tạo danh sách chứa các sản phẩm
 
   //Danh sach food get APi
-  seach: BaseSearchModel<ProductFullModel> = new BaseSearchModel<ProductFullModel>();
+  search: BaseSearchModel<ProductFullModel> = new BaseSearchModel<ProductFullModel>();
 
 
   productDetail!: ProductFullModel; // sản phẩm cho người dùng coi
@@ -188,28 +188,46 @@ export class ProductDetailComponent implements OnInit {
         )
       }
     }
-    this.seach = res.result;
+    // this.seach = res.result;
+    //
+    //
+    // //this.search.recordOfPage = 8;
+    // this.seach.recordOfPage = 4;
+    // for (let i = 0; i < this.seach.recordOfPage; i++) {
+    //   // Your code here
+    //   this.productDtos.push(this.seach.result[i]);
+    // }
 
+    // Lấy danh sách đối tượng từ API
+    this.search = res.result;
+    console.log("cai gi v 3 ");
+    console.log(res.result);
+    //set hình ảnh của sản phẩm là củ option đầu tiên
+    for(let productChose of this.search.result)
+      if (productChose.colors !== null && productChose.colors.length > 0) productChose.image = productChose.colors[0].image;
 
     //this.search.recordOfPage = 8;
-    this.seach.recordOfPage = 4;
-    for (let i = 0; i < this.seach.recordOfPage; i++) {
+    //Giá trị khi hiển thị mặc định là 8 sản phẩm
+    this.search.recordOfPage = 4;
+    for (let i = 0; i < this.search.recordOfPage; i++) {
+      console.log(this.search.result[i].image);
       // Your code here
-      this.productDtos.push(this.seach.result[i]);
+      console.log(this.search.result[i]);
+      this.productDtos.push(this.search.result[i]);
     }
   }
 
   public updateDataOfPageWhenChoseNext(event: any) {
 
-    this.seach.recordOfPage = +event.pageSize;
+    this.search.recordOfPage = +event.pageSize;
     this.currentPage = +event.pageIndex + 1;
     if (this.currentPage > 0) {
       this.productDtos.splice(0, this.productDtos.length);
-      var end: number = this.currentPage * this.seach.recordOfPage;
-      var start: number = end - this.seach.recordOfPage;
+      var end: number = this.currentPage * this.search.recordOfPage;
+      var start: number = end - this.search.recordOfPage;
       for (let i = start; i < end; i++) {
         // Your code here
-        if (i < this.seach.result.length) this.productDtos.push(this.seach.result[i]);
+        if (i < this.search.result.length) this.productDtos.push(this.search.result[i]);
       }
     }
 
@@ -227,7 +245,9 @@ export class ProductDetailComponent implements OnInit {
     let detail: ExportingBillTransactionModel = new ExportingBillTransactionModel(this.detailBill);
 
     console.log("ready :");
+    detail.id="12512616";
     console.log(detail);
+    console.log(this.detailBill);
 
     if (this.cardItem.length != 0) {
       this.cardItem.forEach(param => {
@@ -328,7 +348,9 @@ export class ProductDetailComponent implements OnInit {
 
   public selectProductForProductDetail(item: ProductFullModel): void {
     this.productDetail = item;
+    this.detailBill.product!.image = this.productDetail.image;
     console.log("caigi");
+    console.log(this.productDetail);
 
 
     this.router.events.subscribe((event: Event) => {

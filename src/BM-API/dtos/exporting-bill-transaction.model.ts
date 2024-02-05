@@ -16,10 +16,10 @@ export class ExportingBillTransactionModel {
         const detail = data == null ? this : data;
         this.id = detail.id;
         this.bill = detail.bill;
-        this.product = detail.product;
+        this.product = new ProductModel(detail.product!);
         this.quantity = detail.quantity;
         this.amount = detail.amount;
-        this.color = detail.color;
-        this.size = detail.size;
+        this.color = new ColorsModel(detail.color);
+        this.size = new SizesModel(detail.size);
     }
 }

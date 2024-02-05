@@ -1,5 +1,5 @@
 <br>
-<app-alert [isShowAlert] = "showAlert"></app-alert>
+<app-alert [isShowAlert]="showAlert"></app-alert>
 <div class="cart-container">
   <a (click)="toogleCard()" class="cart-item">
     <img src="assets\shopping-cart.png" class="icon-card">
@@ -36,13 +36,13 @@
         <td>
           <img [src]=[[item.product?.image]] style="width: 6vw; height: auto">
         </td>
-        <td>{{item.product!.code}}</td>
-        <td>{{item.product!.name}}</td>
-        <td>{{item.size.optionProduct!.name}}</td>
-        <td>{{item.color.optionProduct!.name}}</td>
-        <td>{{item.quantity}}</td>
-        <td>{{item.product!.price |  currency: 'VND':'symbol':'1.0-0'}}</td>
-        <td>{{item.amount | currency: 'VND':'symbol':'1.0-0'}}</td>
+        <td>{{ item.product!.code }}</td>
+        <td>{{ item.product!.name }}</td>
+        <td>{{ item.size.optionProduct!.name }}</td>
+        <td>{{ item.color.optionProduct!.name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.product!.price |  currency: 'VND':'symbol':'1.0-0' }}</td>
+        <td>{{ item.amount | currency: 'VND':'symbol':'1.0-0' }}</td>
       </tr>
       <!-- Dòng sản phẩm trong giỏ hàng -->
       </tbody>
@@ -60,7 +60,7 @@
     <div class="container-money" [hidden]="isCheckHasItem">
       <div class="content-money">
         <p style="font-size: 20px;">Tổng cộng:
-          <span style="color:  #df0000;">{{totalCard() | currency: 'VND':'symbol':'1.0-0'}}</span>
+          <span style="color:  #df0000;">{{ totalCard() | currency: 'VND':'symbol':'1.0-0' }}</span>
         </p>
       </div>
       <div class="payment-btn">
@@ -77,36 +77,61 @@
 <br>
 <div class="container" *ngIf="productDetail">
   <div class="content-product">
-    <img [src]=[[detailBill.product?.image]] alt="product images" style="width: auto; height: 40vh;">
-    <p></p>
     <div class="food-inf">
-      <span class="food-name" style="font-weight: bold; font-size: 15px;">{{productDetail.name}}</span>
+      <img [src]=[[productDetail.image]] alt="product images"
+           style="width: 100vw; height: auto; max-width: 100%; max-height: 100%">
       <p></p><br>
-      <p></p>
-      <div class="food-text">
-        <p class="food-cost"
-           style="font-weight: bold; color: #DF0000;">{{productDetail.price |  currency: 'VND':'symbol':'1.0-0'}}</p>
-      </div>
-      <br>
-      <div class="action-bar">
-        <a href="/t-shirt-hybid-water" class="action-child btn-circle btn-views btn_view btn right-to m-0">
-          <img width="20" height="20" class="icon-option"
-               src="//bizweb.dktcdn.net/100/472/913/themes/888429/assets/icon-options.png?1688797805762"
-               alt="icon-option">
-          <span class="action-name" style="color: #000000;">Tùy chọn</span>
+      <h6>Chia sẻ</h6>
+      <div class="social-share">
+        <a href="https://www.facebook.com/" target="_blank" class="facebook">
+          <img src="assets/google.png" alt="Facebook">
         </a>
-
-        <a href="/t-shirt-hybid-water" data-handle="t-shirt-hybid-water"
-           class="action-child xem_nhanh btn-circle btn-views btn_view btn right-to quick-view">
-          <img width="20" height="20" class="icon-option" src="assets/eyes.png" alt="icon-option">
-          <span class="action-name" style="color: #000000;">Xem nhanh</span>
+        <a href="https://twitter.com/" target="_blank" class="twitter">
+          <img src="https://img.icons8.com/color/48/zalo.png" alt="Twitter">
+        </a>
+        <a href="https://www.linkedin.com/" target="_blank" class="linkedin">
+          <img src="assets/facebook.png" alt="LinkedIn">
         </a>
       </div>
-
     </div>
   </div>
 
   <div class="food-option">
+    <div class="d-flex justify-content-between">
+      <h3 class="food-name">{{ productDetail.name }}</h3>
+    </div>
+
+    <div class="group-status">
+      <span class="first_status mr-2">
+								Thương hiệu:
+		  <span class="status_name">
+							<a href="/collections/all?q=vendor.filter_key:(%22HYBID%C2%AE%22)&amp;page=1&amp;view=grid"
+                 target="_blank" class="text-primary" title="HYBID®">
+					ThreeT®</a></span>
+	   </span>
+      <span class="first_status product_sku">Mã sản phẩm:
+        <span class="status_name product-sku" itemprop="sku"
+              content="Đang cập nhật">{{ productDetail.code }}</span>
+      </span>
+    </div>
+
+    <p></p>
+    <div class="food-text">
+        <span class="food-cost">{{ productDetail.price | currency: 'VND' | slice:1 }}
+          <span class="symbol"
+                style="font-size: 1.2rem; line-height: 1rem; letter-spacing: 0.1rem; text-decoration: underline">đ</span></span>
+    </div>
+    <br>
+
+    <div class="product-coupon__wrapper my-3">
+      <strong class="d-block mb-2">Mã giảm giá</strong>
+      <div class="btn-group" role="group" aria-label="Basic outlined example">
+        <button type="button" class="btn btn-outline-danger">PORNHUB</button>
+        <button type="button" class="btn btn-outline-danger">TUAN7GA</button>
+        <button type="button" class="btn btn-outline-danger">THONGNGUYEN</button>
+        <button type="button" class="btn btn-outline-danger">KDG08F</button>
+      </div>
+    </div>
     <!--    SIZE-->
     <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button"
@@ -117,7 +142,8 @@
         <ng-container *ngFor="let s of productDetail.sizes; let i = index">
           <label class="dropdown-item">
             <mat-radio-button name="size" [checked]="i === 0" (change)="onChangeSizeOption(i)">
-              {{ s.optionProduct!.name + "(+ " + (s.addition | currency: 'VND':'symbol':'1.0-0') + ")" }}</mat-radio-button>
+              {{ s.optionProduct!.name + "(+ " + (s.addition | currency: 'VND':'symbol':'1.0-0') + ")" }}
+            </mat-radio-button>
           </label>
         </ng-container>
       </div>
@@ -133,18 +159,17 @@
         <ng-container *ngFor="let c of productDetail.colors; let i = index">
           <label class="dropdown-item">
             <mat-radio-button name="color" [checked]="i === 0" (change)="onChangeColorOption(i)">
-              {{c.optionProduct.name + "(+ " + (c.addition | currency: 'VND':'symbol':'1.0-0') + ")"}}</mat-radio-button>
+              {{ c.optionProduct.name + "(+ " + (c.addition | currency: 'VND':'symbol':'1.0-0') + ")" }}
+            </mat-radio-button>
           </label>
         </ng-container>
       </div>
     </div>
-
-
     <br>
     <br>
-    <div class="input-group">
+    <div class="input-group" style="width: 25vw">
       <input type="number" disabled="isInputDisable" class="form-control" [value]="inputNumberValue" #qty>
-      <div class="input-group-append">
+      <div class="input-append">
         <button class="btn btn-outline-secondary" type="button" id="btnMinus"
                 (click)="decreaseQuality()">-
         </button>
@@ -152,9 +177,7 @@
                 (click)="increaseQuality()">+
         </button>
       </div>
-
     </div>
-
     <br>
     <button class="order-food-card" style="font-weight: bold; font-size: 16px;"
             (click)="addProductToCardItem()">
@@ -165,9 +188,6 @@
 </div>
 <br>
 <br>
-
-<mat-progress-bar mode="buffer"></mat-progress-bar>
-
 
 <!-- DANH SACH SAN PHAM BAN DAU-->
 <br>
@@ -182,10 +202,10 @@
     <a class="product-image"> <img [src]=[product.image] alt="product images"
                                    style="width: auto; height: 40vh; cursor: pointer;"></a>
     <div class="product-inf">
-      <span><a class="food-name" href="#">{{product.name}}</a></span>
+      <span><a class="food-name" href="#">{{ product.name }}</a></span>
       <p></p>
       <div class="food-text">
-        <p class="food-cost">{{product.price  |  currency: 'VND':'symbol':'1.0-0'}}</p>
+        <p class="food-cost">{{ product.price  |  currency: 'VND':'symbol':'1.0-0' }}</p>
         <br>
         <button class="order-food" id="btn-order" [routerLink]="['/product', product.id]"
                 (click)="selectProductForProductDetail(product)" [routerLink]="['/product', product.id]">CHỌN SẢN PHẨM
@@ -195,6 +215,6 @@
   </li>
 </ul>
 
-<mat-paginator [length]="seach.result.length" [pageSize]="seach.recordOfPage" [pageSizeOptions]="itemInPageList"
+<mat-paginator [length]="search.result.length" [pageSize]="search.recordOfPage" [pageSizeOptions]="itemInPageList"
                (page)="updateDataOfPageWhenChoseNext($event)" aria-label="Select page"
                style="margin-right: 7vw"></mat-paginator>
