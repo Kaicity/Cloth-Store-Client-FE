@@ -1,3 +1,4 @@
+
 .container-payment{
   width: 100%;
   height: 100vh;
@@ -41,45 +42,41 @@ textarea {
 }
 
 
-
-
-
 .content-sidebar{
   margin-left: 1vw;
 }
 
-
-/* sidebar.component.css */
 /* sidebar.component.css */
 
 .sidebar {
-    height: 80%;
-    width: 36vw;
-    position: absolute;
-    top: 22vh;
-    right: 20vw;
-    background-color: #fff;
-    padding-top: 20px;
-    border-left: 1px solid darkgrey;
-  }
+  height: 80%;
+  width: 36vw;
+  position: absolute;
+  top: 23vh;
+  right: 20vw;
+  background-color: #fff;
+  padding-top: 20px;
+  border-left: 1px solid darkgrey;
+}
 
-  .sidebar a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 18px;
-    color: #333;
-    display: block;
-  }
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 12px;
+  color: #333;
+  display: block;
+}
 
-  .sidebar a:hover {
-    color: #000000;
-  }
-
+.sidebar a:hover {
+  color: #000000;
+}
 
 
 /* card table product*/
-
-
+.card-table{
+  max-height: 500px;
+  overflow: auto;
+}
 
 .card-table table {
   border-collapse: collapse;
@@ -94,8 +91,7 @@ textarea {
   border-collapse: separate;
   box-sizing: border-box;
   text-indent: initial;
-  border-spacing: 2px;
-
+  border-spacing: 3px;
 }
 
 
@@ -140,11 +136,11 @@ td {
 }
 
 .product-thumbnail {
-    width: 50px;
-    height: 50px;
-    border-radius: 8px;
-    background: #fff;
-    position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  background: #fff;
+  position: relative;
 }
 
 .product-thumbnail__wrapper {
@@ -177,7 +173,6 @@ td:first-child, th:first-child {
   padding-left: 0;
   text-align: left;
 }
-
 
 .product-table tbody th, .stock-table tbody th {
   padding-left: 1em;
@@ -216,7 +211,6 @@ th {
 .product__description__name, .product__description__property {
   display: block;
 }
-
 
 
 .field {
