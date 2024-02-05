@@ -1,61 +1,43 @@
-
-  <br>
-  <br>
-  <div class="tittle-text">
-    <h1>THỰC ĐƠN HẰNG NGÀY</h1>
-  </div>
-<ul class="product-list">
-    <li class="product-item" *ngFor="let food of foods">
-        <img src={{food.imageURL}} alt="food images">
-        <p></p>
-        <div class="food-inf">
-            <h4 class="food-name">{{food.name}}</h4>
-            <p></p><br>
-            <p></p>
-            <div class="food-text">
-                <h4 class="food-cost">{{food.price}},000 đ</h4>
-                <button class="order-food" id = "btn-order" style="font-weight: bold;" [routerLink]="['/food', food.id]">Đặt Hàng</button>
-            </div>
-        </div>
-    </li>
- </ul>
-
-
-
-<div class="cart-container">
-  <button id="show-cart-button" class = "btn btn-warning" (click)="toogleCard()">
-    <div class="content-card">
-      <img src="assets\shopping-cart.png" class="icon-card">
-      <p>0đ</p>
-    </div>
-  </button>
-  <div class="cart" id="cart" [ngClass]="{'show': isCardVisible}">
-      <!-- Nội dung giỏ hàng sẽ được thêm ở đây -->
-      <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Sản phẩm</th>
-                <th scope="col">Số lượng</th>
-                <th scope="col">Giá</th>
-                <th scope="col">Tổng cộng</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Dòng sản phẩm trong giỏ hàng -->
-            <tr>
-                <td>Sản phẩm 1</td>
-                <td>2</td>
-                <td>$10</td>
-                <td>$20</td>
-            </tr>
-            <!-- Dòng sản phẩm trong giỏ hàng -->
-            <tr>
-                <td>Sản phẩm 2</td>
-                <td>1</td>
-                <td>$15</td>
-                <td>$15</td>
-            </tr>
-        </tbody>
-    </table>
-  </div>
+<app-spinner [show]="isLoading"></app-spinner>
+<br>
+<div class="tittle-text">
+  <h1>SẢN PHẨM NỔI BẬT</h1>
 </div>
+<br>
+
+<ul class="product-list">
+  <li class="product-item" *ngFor="let product of this.productDtos">
+    <a class="product-image" [routerLink]="['/product', product.id]" (click)="getProductToDetail(product)"> <img
+        [src]=[product.image] alt="product images" style="width: auto; height: 40vh; cursor: pointer;"></a>
+    <div class="product-inf">
+      <span><a class="food-name" href="#">{{product.name}}</a></span>
+      <p></p>
+      <div class="food-text">
+        <p class="food-cost">{{product.price |  currency: 'VND':'symbol':'1.0-0'}}</p>
+        <br>
+        <!-- <button class="order-food" id="btn-order" [routerLink]="['/product', product.id]"
+          (click)="getProductToDetail(product)">Thêm Vào Giỏ Hàng</button> -->
+        <div class="action-bar">
+          <a href="/t-shirt-hybid-water" class="action-child btn-circle btn-views btn_view btn right-to m-0">
+            <img width="20" height="20" class="icon-option"
+              src="//bizweb.dktcdn.net/100/472/913/themes/888429/assets/icon-options.png?1688797805762"
+              alt="icon-option">
+            <span class="action-name" style="color: #000000;">Tùy chọn</span>
+          </a>
+
+          <a href="/t-shirt-hybid-water" data-handle="t-shirt-hybid-water"
+            class="action-child xem_nhanh btn-circle btn-views btn_view btn right-to quick-view">
+            <img width="20" height="20" class="icon-option" src="assets/eyes.png" alt="icon-option">
+            <span class="action-name" style="color: #000000;">Xem nhanh</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
+<!-- Length is size of array product -->
+<!-- PageSize is value product number when it displayed -->
+<!-- PageSizeOption is all values of pagesize customer [4,8,12] when user choose page change  -->
+<mat-paginator [length]="search.result.length" [pageSize]="search.recordOfPage" [pageSizeOptions]="itemInPageList"
+  (page)="updateDataOfPageWhenChoseNext($event)" aria-label="Select page" style="margin-right: 7vw"></mat-paginator>
+<br>

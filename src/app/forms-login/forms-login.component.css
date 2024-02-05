@@ -2,7 +2,7 @@
  /* Định dạng nút mặc định */
  .btn{
     padding: 0; /* Xóa padding */
-    background-color: #e31837;
+    background-color: darkgrey;
     color: #fff;
     border: none; /* Xóa viền */
     border-radius: 5px;
@@ -11,7 +11,7 @@
     width: 200px;
     height: 50px;
   }
-  
+
 .card{
   width: 40%;
   margin: auto;
@@ -19,3 +19,13 @@
 .trigger-login{
   margin-right: 50%;
 }
+
+.notification .content {
+  display: flex;
+}
+
+.content h5{
+  margin-left: 2%;
+  color: red;
+}
+

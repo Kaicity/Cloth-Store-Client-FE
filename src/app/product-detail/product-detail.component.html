@@ -1,0 +1,200 @@
+<br>
+<app-alert [isShowAlert] = "showAlert"></app-alert>
+<div class="cart-container">
+  <a (click)="toogleCard()" class="cart-item">
+    <img src="assets\shopping-cart.png" class="icon-card">
+    <img src="assets\checkItemCard.png" class="check-has-item" [hidden]="isCheckHasItem"
+         style="width: 15px; height: 15px">
+  </a>
+  <div class="cart" id="cart" [ngClass]="{'show': isCardVisible}">
+    <!-- Nội dung giỏ hàng sẽ được thêm ở đây -->
+    <table class="table">
+      <thead style="font-size: 16px; font-weight: bold;">
+      <tr>
+        <th></th>
+        <th scope="col">Mô Tả</th>
+        <th scope="col">Code</th>
+        <th scope="col">Tên Sản Phẩm</th>
+        <th scope="col">kích cở</th>
+        <th scope="col">màu sắc</th>
+        <th scope="col">Số Lượng</th>
+        <th scope="col">Đơn giá</th>
+        <th scope="col">Tổng cộng</th>
+      </tr>
+      </thead>
+      <tbody style="font-size: 16px;">
+
+      <tr *ngFor="let item of cardItem">
+        <td>
+          <div class="num">
+            <a class="numberdef"
+               (click)="decQty(item)">
+              <img src="assets/cancel.png" alt="icon">
+            </a>
+          </div>
+        </td>
+        <td>
+          <img [src]=[[item.product?.image]] style="width: 6vw; height: auto">
+        </td>
+        <td>{{item.product!.code}}</td>
+        <td>{{item.product!.name}}</td>
+        <td>{{item.size.optionProduct!.name}}</td>
+        <td>{{item.color.optionProduct!.name}}</td>
+        <td>{{item.quantity}}</td>
+        <td>{{item.product!.price |  currency: 'VND':'symbol':'1.0-0'}}</td>
+        <td>{{item.amount | currency: 'VND':'symbol':'1.0-0'}}</td>
+      </tr>
+      <!-- Dòng sản phẩm trong giỏ hàng -->
+      </tbody>
+    </table>
+
+    <div class="title-non-cart" [hidden]="!isCheckHasItem">
+      <img src="//bizweb.dktcdn.net/100/472/913/themes/888429/assets/cart_empty_background.png?1688797805762"
+           class="img-fluid" width="248" height="102">
+      <div class="text-title">
+        <p>“Hổng” có gì trong giỏ hết“</p>
+        <p>Về trang cửa hàng để chọn mua sản phẩm bạn nhé!!</p>
+      </div>
+    </div>
+
+    <div class="container-money" [hidden]="isCheckHasItem">
+      <div class="content-money">
+        <p style="font-size: 20px;">Tổng cộng:
+          <span style="color:  #df0000;">{{totalCard() | currency: 'VND':'symbol':'1.0-0'}}</span>
+        </p>
+      </div>
+      <div class="payment-btn">
+        <button class="payment" style="font-weight: bold; font-size: 18px;"
+                (click)="setDataExportingbillTransaction()">ĐẶT HÀNG NGAY
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<br>
+<div class="container" *ngIf="productDetail">
+  <div class="content-product">
+    <img [src]=[[detailBill.product?.image]] alt="product images" style="width: auto; height: 40vh;">
+    <p></p>
+    <div class="food-inf">
+      <span class="food-name" style="font-weight: bold; font-size: 15px;">{{productDetail.name}}</span>
+      <p></p><br>
+      <p></p>
+      <div class="food-text">
+        <p class="food-cost"
+           style="font-weight: bold; color: #DF0000;">{{productDetail.price |  currency: 'VND':'symbol':'1.0-0'}}</p>
+      </div>
+      <br>
+      <div class="action-bar">
+        <a href="/t-shirt-hybid-water" class="action-child btn-circle btn-views btn_view btn right-to m-0">
+          <img width="20" height="20" class="icon-option"
+               src="//bizweb.dktcdn.net/100/472/913/themes/888429/assets/icon-options.png?1688797805762"
+               alt="icon-option">
+          <span class="action-name" style="color: #000000;">Tùy chọn</span>
+        </a>
+
+        <a href="/t-shirt-hybid-water" data-handle="t-shirt-hybid-water"
+           class="action-child xem_nhanh btn-circle btn-views btn_view btn right-to quick-view">
+          <img width="20" height="20" class="icon-option" src="assets/eyes.png" alt="icon-option">
+          <span class="action-name" style="color: #000000;">Xem nhanh</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="food-option">
+    <!--    SIZE-->
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Size
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <ng-container *ngFor="let s of productDetail.sizes; let i = index">
+          <label class="dropdown-item">
+            <mat-radio-button name="size" [checked]="i === 0" (change)="onChangeSizeOption(i)">
+              {{ s.optionProduct!.name + "(+ " + (s.addition | currency: 'VND':'symbol':'1.0-0') + ")" }}</mat-radio-button>
+          </label>
+        </ng-container>
+      </div>
+    </div>
+
+    <!--    Color-->
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Colors
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <ng-container *ngFor="let c of productDetail.colors; let i = index">
+          <label class="dropdown-item">
+            <mat-radio-button name="color" [checked]="i === 0" (change)="onChangeColorOption(i)">
+              {{c.optionProduct.name + "(+ " + (c.addition | currency: 'VND':'symbol':'1.0-0') + ")"}}</mat-radio-button>
+          </label>
+        </ng-container>
+      </div>
+    </div>
+
+
+    <br>
+    <br>
+    <div class="input-group">
+      <input type="number" disabled="isInputDisable" class="form-control" [value]="inputNumberValue" #qty>
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" id="btnMinus"
+                (click)="decreaseQuality()">-
+        </button>
+        <button class="btn btn-outline-secondary" type="button" id="btnPlus"
+                (click)="increaseQuality()">+
+        </button>
+      </div>
+
+    </div>
+
+    <br>
+    <button class="order-food-card" style="font-weight: bold; font-size: 16px;"
+            (click)="addProductToCardItem()">
+      <img src="assets/add-to-cart.png">
+      THÊM VÀO GIỎ HÀNG
+    </button>
+  </div>
+</div>
+<br>
+<br>
+
+<mat-progress-bar mode="buffer"></mat-progress-bar>
+
+
+<!-- DANH SACH SAN PHAM BAN DAU-->
+<br>
+<br>
+<div class="tittle-text">
+  <h1>NHỮNG SẢN PHẨM KHÁC</h1>
+
+</div>
+
+<ul class="product-list">
+  <li class="product-item" *ngFor="let product of productDtos">
+    <a class="product-image"> <img [src]=[product.image] alt="product images"
+                                   style="width: auto; height: 40vh; cursor: pointer;"></a>
+    <div class="product-inf">
+      <span><a class="food-name" href="#">{{product.name}}</a></span>
+      <p></p>
+      <div class="food-text">
+        <p class="food-cost">{{product.price  |  currency: 'VND':'symbol':'1.0-0'}}</p>
+        <br>
+        <button class="order-food" id="btn-order" [routerLink]="['/product', product.id]"
+                (click)="selectProductForProductDetail(product)" [routerLink]="['/product', product.id]">CHỌN SẢN PHẨM
+        </button>
+      </div>
+    </div>
+  </li>
+</ul>
+
+<mat-paginator [length]="seach.result.length" [pageSize]="seach.recordOfPage" [pageSizeOptions]="itemInPageList"
+               (page)="updateDataOfPageWhenChoseNext($event)" aria-label="Select page"
+               style="margin-right: 7vw"></mat-paginator>

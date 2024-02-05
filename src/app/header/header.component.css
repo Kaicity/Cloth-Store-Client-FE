@@ -1,19 +1,18 @@
 .navbar{
-    background-color: #e31837 !important;
+    background-color: #2e2e2e !important;
 }
 .navbar li a {
     color:white !important
-    
+
 }
 .navbar li{
     font-size: 20px;
-    
+
 }
 
 .navbar li a:hover {
-    background-color: #fff;
+    text-decoration: underline;
     background-color: rgba(0, 0, 0, 0.1);
-    
 }
 
 
@@ -24,13 +23,13 @@
 
 .dropdown-menu {
     display: none;
-    background-color: rgba(228, 19, 54, 0.911);
+    background-color: rgba(31, 26, 26, 0.911);
     border: 1px solid #ddd;
     z-index: 1;
     width: 400px;
     flex-direction: row;
     top: 34px;
-    
+
 }
 .dropdown-menu a {
     font-weight: normal;
@@ -58,12 +57,15 @@
 /* Thiết lập kích thước và khoảng cách giữa các mục menu con */
 .dropdown-menu li {
     width: 100%;
-    padding: 15px px;
+    padding: 15px;
     text-align: left;
 }
 
-
-
+.account-title {
+    margin-left: 2%;
+    font-size: 22px;
+    color: #fff;
+}
 
 
 

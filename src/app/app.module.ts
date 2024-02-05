@@ -11,10 +11,22 @@ import { FormsLoginComponent } from './forms-login/forms-login.component';
 import { ForusComponent } from './forus/forus.component';
 import { FormsModule } from '@angular/forms';
 import { HomepageComponent } from './homepage/homepage.component';
-import { FoodDetailComponent } from './food-detail/food-detail.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { StoreServiceComponent } from './store-service/store-service.component';
 import { ComfirmDialogComponent } from './comfirm-dialog/comfirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import {HttpClientModule} from "@angular/common/http";
+import { SpinnerComponent } from './spinner/spinner.component';
+import { CustomerInfoComponent } from './customer-info/customer-info.component';
+import { ShippingComponent } from './shipping/shipping.component';
+import { ControlMaterial } from 'src/UI-COMPONENT/ControlMaterial';
+import { SucessStatusComponent } from './sucess-status/sucess-status.component';
+import { ModalWrapperComponent } from './modal-wrapper/modal-wrapper.component';
+import { AlertComponent } from './Share/Component/alert/alert.component';
+
+
+
+
 
 
 @NgModule({
@@ -27,16 +39,24 @@ import { MatDialogModule } from '@angular/material/dialog';
     FormsLoginComponent,
     ForusComponent,
     HomepageComponent,
-    FoodDetailComponent,
+    ProductDetailComponent,
     StoreServiceComponent,
     ComfirmDialogComponent,
+    SpinnerComponent,
+    CustomerInfoComponent,
+    ShippingComponent,
+    SucessStatusComponent,
+    ModalWrapperComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    HttpClientModule,
+    ControlMaterial
   ],
   providers: [],
   bootstrap: [AppComponent]
