@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { CustomerModel } from 'src/BM-API/dtos/customer.model';
-import { ExportingBillModel } from 'src/BM-API/dtos/exporting-bill.model';
-import { ExportingBillFullModel } from 'src/BM-API/dtos/exporting-bill-full.model';
-import { ExportingBillTransactionModel } from 'src/BM-API/dtos/exporting-bill-transaction.model';
-import { SharedService } from 'src/BM-API/Services/Data/ShareService';
-import { ExportingbillService } from 'src/BM-API/Services/agency/ExportingbillService';
-import { AgencyModel } from "../../BM-API/dtos/agency.model";
-import { CateloryModel } from "../../BM-API/dtos/catelory.model";
-import { CompanyModel } from "../../BM-API/dtos/company.model";
-import { CustomerService } from "../../BM-API/Services/warehouse/Customer-service";
+import { CustomerModel } from 'src/bm-api/dtos/customer.model';
+import { ExportingBillModel } from 'src/bm-api/dtos/exporting-bill.model';
+import { ExportingBillFullModel } from 'src/bm-api/dtos/exporting-bill-full.model';
+import { ExportingBillTransactionModel } from 'src/bm-api/dtos/exporting-bill-transaction.model';
+import { SharedService } from 'src/bm-api/Services/Data/ShareService';
+import { ExportingbillService } from 'src/bm-api/Services/agency/ExportingbillService';
+import { AgencyModel } from "../../bm-api/dtos/agency.model";
+import { CateloryModel } from "../../bm-api/dtos/catelory.model";
+import { CompanyModel } from "../../bm-api/dtos/company.model";
+import { CustomerService } from "../../bm-api/Services/warehouse/Customer-service";
 import { NavigationEnd, Router } from "@angular/router";
 
 

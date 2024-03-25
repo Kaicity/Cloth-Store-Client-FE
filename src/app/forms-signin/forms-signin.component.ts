@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { CustomerModel } from '../../BM-API/dtos/customer.model';
-import {CustomerService} from "../../BM-API/Services/warehouse/Customer-service";
+import { CustomerModel } from '../../bm-api/dtos/customer.model';
+import {CustomerService} from "../../bm-api/Services/warehouse/Customer-service";
 import { Router } from '@angular/router';
 import { SpinnerComponent } from '../spinner/spinner.component';
 @Component({

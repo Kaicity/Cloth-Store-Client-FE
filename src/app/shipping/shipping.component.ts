@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CustomerModel } from 'src/BM-API/dtos/customer.model';
-import { CustomerService } from 'src/BM-API/Services/warehouse/Customer-service';
-import { SharedService } from "../../BM-API/Services/Data/ShareService";
-import { ExportingbillService } from "../../BM-API/Services/agency/ExportingbillService";
-import { ExportingBillFullModel } from "../../BM-API/dtos/exporting-bill-full.model";
-import { ExportingBillTransactionModel } from 'src/BM-API/dtos/exporting-bill-transaction.model';
-import { CustomerInfoModel } from 'src/BM-API/dtos/customer-info.model';
+import { CustomerModel } from 'src/bm-api/dtos/customer.model';
+import { CustomerService } from 'src/bm-api/Services/warehouse/Customer-service';
+import { SharedService } from "../../bm-api/Services/Data/ShareService";
+import { ExportingbillService } from "../../bm-api/Services/agency/ExportingbillService";
+import { ExportingBillFullModel } from "../../bm-api/dtos/exporting-bill-full.model";
+import { ExportingBillTransactionModel } from 'src/bm-api/dtos/exporting-bill-transaction.model';
+import { CustomerInfoModel } from 'src/bm-api/dtos/customer-info.model';
 import {MatDialog} from "@angular/material/dialog";
 import {ModalWrapperComponent} from "../modal-wrapper/modal-wrapper.component";
 

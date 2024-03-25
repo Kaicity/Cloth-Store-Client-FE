@@ -1,229 +1,309 @@
+<app-spinner [show]="isLoading"></app-spinner>
 
-<div class="container-payment">
-  <app-spinner [show]="isLoading"></app-spinner>
-
-  <h2 style=" color: #000000; text-align: center; font-size: 30px; margin-top: 5vh;">THÔNG TIN ĐƠN
-    HÀNG</h2>
-
-  <div class="content-shipping">
-    <h4 style="font-weight: bold; margin-top: 5vh; margin-left: 5vw;">Thông tin nhận hàng</h4>
-  </div>
-
-  <br>
-
-  <div class="user-info-form">
-    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
-      <div class="form-group">
-        <label for="fullname">Họ tên khách hàng:</label>
-        <input type="text" [(ngModel)]="customer.fullName" class="form-control" id="fullname" name="fullname"
-               placeholder="Họ tên" required #name="ngModel">
-      </div>
-      <div [hidden]="!name.invalid" class="alert alert-danger">Điền đầy đủ họ tên của bạn</div>
-
-      <div class="form-group">
-        <label for="phone">Số điện thoại:</label>
-
-        <!--      <input type="number" [(ngModel)]="customer.phone" class="form-control" id="phone" name="phone"-->
-        <!--             placeholder="Số điện thoại liên hệ" required #p="ngModel">-->
-
-        <div class="input-group mb-3">
-          <div class="dropdown">
-            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-              Chọn vùng
-            </button>
-
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a *ngFor="let f of valueFlag" class="dropdown-item">
-                <img src="assets/{{f.valueOf()}}">
-              </a>
-            </div>
-          </div>
-
-          <input type="text" class="form-control" [ngModel]="customer.phone"
-                 aria-label="Text input with dropdown button"
-                 id="phone" name="phone" placeholder="+" required #p="ngModel">
-        </div>
-      </div>
-      <div [hidden]="!p.invalid" class="alert alert-danger">Điền đầy đủ số điện thoại của bạn</div>
-
-      <div class="form-group">
-        <label for="email">E-mail:</label>
-        <input type="email" [(ngModel)]="customer.email" class="form-control" id="email" name="email"
-               placeholder="alexander@gmail.com" required #mail="ngModel">
-      </div>
-      <div [hidden]="!mail.invalid" class="alert alert-danger">Điền đầy đủ E-mail của bạn</div>
-
-
-      <div class="form-group">
-        <label for="address">Địa chỉ hiện tại của bạn:</label>
-        <textarea class="form-control" placeholder="Địa chỉ" [(ngModel)]="customer.address" id="address" name="address"
-                  required #addr="ngModel"></textarea>
-      </div>
-      <div [hidden]="!addr.invalid" class="alert alert-danger">Điền đầy đủ địa chỉ của bạn</div>
-
-    </form>
-  </div>
-
-
-  <!-------------------------------------------------------------------->
-  <!--Sidebar card cho danh sach gio hang cuoi cung duoc xac nhan-->
-  <!-- sidebar.component.html -->
-  <div class="sidebar">
-    <div class="content-sidebar">
-      <h4>Đơn hàng:
-        <span>{{howProduct}}</span>
-        sản phẩm
-      </h4>
+<!-- component -->
+<div class="min-w-screen min-h-screen bg-gray-50 py-5">
+  <div class="px-5">
+    <div class="mb-2">
+      <a href="#" class="focus:outline-none hover:underline text-gray-500 text-sm"><i
+        class="mdi mdi-arrow-left text-gray-400" [routerLink]="'cart'"></i>Quay lại</a>
     </div>
-
-    <hr>
-    <div class="card-table">
-      <table class="product-table">
-        <caption class="visually-hidden">Chi tiết đơn hàng</caption>
-        <thead class="product-table__header">
-        <tr>
-          <th>
-            <span class="visually-hidden">Ảnh sản phẩm</span>
-          </th>
-          <th>
-            <span class="visually-hidden">Mô tả</span>
-          </th>
-          <th>
-            <span class="visually-hidden">Sổ lượng</span>
-          </th>
-          <th>
-            <span class="visually-hidden">Đơn giá</span>
-          </th>
-        </tr>
-        </thead>
-        <tbody>
-
-        <tr *ngFor="let item of oldCardProduct" class="product">
-          <td class="product__image">
-            <div class="product-thumbnail">
-              <div class="product-thumbnail__wrapper" data-tg-static="">
-                <img src="{{item.product!.image}}" alt="" class="product-thumbnail__image"
-                     style="width: 50px; height: 50px;">
+    <div class="mb-2">
+      <h1 class="text-3xl md:text-5xl font-bold text-gray-600">Thanh toán</h1>
+    </div>
+    <div class="mb-5 text-gray-400">
+      <a href="#" class="focus:outline-none hover:underline text-gray-500">Trang chủ</a> / <a href="#"
+                                                                                              class="focus:outline-none hover:underline text-gray-500">Giỏ
+      hàng</a> / <a href="#" class="focus:outline-none hover:underline text-gray-500">Thông tin khách hàng</a> / <span
+      class="text-blue-500">Thanh toán</span>
+    </div>
+  </div>
+  <div class="w-full bg-white border-t border-b border-gray-200 px-5 py-10 text-gray-800">
+    <div class="w-full">
+      <div class="-mx-3 md:flex items-start">
+        <div class="px-3 md:w-7/12 lg:pr-10">
+          <div class="w-full mx-auto text-gray-800 font-light mb-6 border-b border-gray-200 pb-6">
+            <h4>Đơn hàng:
+              <span>{{ howProduct }}</span>
+              sản phẩm
+            </h4>
+            <br>
+            <!--Item cart-->
+            <div class="w-full flex items-center" *ngFor="let item of oldCardProduct">
+              <div class="overflow-hidden rounded-lg w-16 h-16 bg-gray-50 border border-gray-200">
+                <img src="{{item.product!.image}}" alt="">
               </div>
-              <span class="product-thumbnail__quantity">1</span>
-            </div>
-          </td>
+              <div class="flex-grow pl-3">
+                <h6 class="font-semibold uppercase text-gray-600">{{ item.product?.name }}</h6>
+                <p class="text-gray-400">x {{ item.quantity }} <span><a class="text-blue-500" [routerLink]="'/cart'">Chi tiết</a></span>
+                </p>
+              </div>
 
-          <th class="product__description">
-            <span class="product__description__name">
-              {{item.product!.name}}
-            </span>
-
-            <span class="product__description__property">
-              S / Trắng Đỏ
-            </span>
-
-            <span class="product__description__property">
-             Số lượng: {{item.quantity}}
-            </span>
-
-          </th>
-          <td class="product__price">
-
-            {{item.amount | currency: 'VND':'symbol':'1.0-0'}}
-
-          </td>
-        </tr>
-        </tbody>
-      </table>
-
-      <hr>
-
-      <div class="field">
-        <div class="field__input-btn-wrapper">
-          <div class="field__input-wrapper">
-            <label for="reductionCode" class="field__label">Nhập mã giảm giá</label>
-            <input name="reductionCode" id="reductionCode" type="text" class="field__input" placeholder="########">
-          </div>
-          <div class="btn-coupon" style="margin-top: 3vh;">
-            <button mat-raised-button color="primary" style="height: 5vh; width: 12vw">Áp dụng</button>
-          </div>
-        </div>
-
-        <hr>
-
-        <div class="money-table" style="margin: 20px;">
-          <table class="total-line-table">
-            <caption class="visually-hidden">Tổng giá trị</caption>
-            <thead>
-            <tr>
-              <td><span class="visually-hidden">Mô tả</span></td>
-              <td><span class="visually-hidden">Giá tiền</span></td>
-            </tr>
-            </thead>
-
-            <tbody class="total-line-table__tbody">
-            <tr class="total-line total-line--subtotal">
-              <th class="total-line__name">
-                Tạm tính
-              </th>
-              <td class="total-line__price">
-                {{calculatorDemo |  currency: 'VND':'symbol':'1.0-0'}}</td>
-            </tr>
-
-            <tr class="total-line total-line--shipping-fee">
-              <th class="total-line__name">
-                Phí vận chuyển
-              </th>
-              <td class="total-line__price" data-bind="getTextShippingPrice()">---</td>
-            </tr>
-
-            </tbody>
-            <tfoot class="total-line-table__footer">
-            <tr class="total-line payment-due">
-              <th class="total-line__name">
-                <span class="payment-due__label-total">
-                  Tổng cộng
+              <div>
+                <span class="font-semibold text-gray-600 text-xl">{{ item.amount | currency: 'VND' | slice:1 }}
+                  <span class="symbol"
+                        style="font-size: 1rem; line-height: 1rem; letter-spacing: 0.1rem; text-decoration: underline">đ</span>
                 </span>
-              </th>
-              <td class="total-line__price">
-                <span class="payment-due__price" data-bind="getTextTotalPrice()">
-                  {{calcuToTal |  currency: 'VND':'symbol':'1.0-0'}}</span>
-              </td>
-            </tr>
-            </tfoot>
-          </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-6 pb-6 border-b border-gray-200">
+            <div class="-mx-2 flex items-end justify-end">
+              <div class="flex-grow px-2 lg:max-w-xs">
+                <label class="text-gray-600 font-semibold text-sm mb-2 ml-1">Mã giảm giá</label>
+                <div>
+                  <input
+                    class="w-full px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
+                    placeholder="XXXXXX" type="text"/>
+                </div>
+              </div>
+              <div class="px-2">
+                <button
+                  class="block w-full max-w-xs mx-auto border border-transparent bg-gray-400 hover:bg-gray-500 focus:bg-gray-500 text-white rounded-md px-5 py-2 font-semibold">
+                  Áp dụng
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="mb-6 pb-6 border-b border-gray-200 text-gray-800">
+            <div class="w-full flex mb-3 items-center">
+              <div class="flex-grow">
+                <span class="text-gray-600">Tạm tính</span>
+              </div>
+              <div class="pl-3">
+                <span class="font-semibold">{{ calculatorDemo | currency: 'VND' | slice:1 }}
+                  <span class="symbol"
+                        style="font-size: 1rem; line-height: 1rem; letter-spacing: 0.1rem; text-decoration: underline">đ</span>
+                </span>
+              </div>
+            </div>
+            <div class="w-full flex items-center">
+              <div class="flex-grow">
+                <span class="text-gray-600">Phí vận chuyển (FS)</span>
+              </div>
+              <div class="pl-3">
+                <span class="font-semibold">15,000 đ</span>
+              </div>
+            </div>
+          </div>
+          <div class="mb-6 pb-6 border-b border-gray-200 md:border-none text-gray-800 text-xl">
+            <div class="w-full flex items-center">
+              <div class="flex-grow">
+                <span class="text-gray-600">Tổng cộng</span>
+              </div>
+              <div class="pl-3">
+                <span
+                  class="font-semibold">{{ calcuToTal | currency: 'VND' | slice:1 }}
+                  <span class="symbol"
+                        style="font-size: 1rem; line-height: 1rem; letter-spacing: 0.1rem; text-decoration: underline">đ</span>
+              </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Lien he-->
+        <div class="px-3 md:w-5/12">
+          <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+            <div class="w-full mx-auto rounded-lg bg-white border border-gray-200 p-3 text-gray-800 font-light mb-6">
+              <div class="w-full flex mb-3 items-center">
+                <div class="w-32">
+                  <span class="text-gray-600 font-semibold">Liên hệ</span>
+                </div>
+                <div class="flex-grow pl-3">
+                  <span>T FOUR SOME</span>
+                </div>
+              </div>
+
+              <div class="w-full flex items-center">
+                <div class="w-32">
+                  <span class="text-gray-600 font-semibold">Chi nhánh</span>
+                </div>
+                <div class="flex-grow pl-3">
+                  <span>317 Nguyễn Văn luông Phường 12 Quận 6</span>
+                </div>
+              </div>
+
+              <div class="w-full flex items-center">
+                <div class="w-32">
+                  <span class="text-gray-600 font-semibold">Số điện thoại</span>
+                </div>
+                <div class="flex-grow pl-3">
+                  <span>028-098927229</span>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="w-full mx-auto rounded-lg bg-white border border-gray-200 text-gray-800 font-light mb-6">
+              <div class="w-full p-3 border-b border-gray-200">
+                <div class="mb-5">
+                  <h3>Thông tin khách hàng</h3>
+                </div>
+                <div>
+                  <div class="mb-3">
+                    <label class="text-gray-600 font-semibold text-sm mb-2 ml-1">Họ tên khách hàng</label>
+                    <div>
+                      <input [(ngModel)]="customer.fullName" id="fullname" name="fullname"
+                             required #name="ngModel"
+                             class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
+                             placeholder="Nguyen Van A" type="text"/>
+                    </div>
+                    <div [hidden]="!name.invalid" class="alert alert-danger">Điền đầy đủ họ tên của bạn</div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="text-gray-600 font-semibold text-sm mb-2 ml-1">Số điện thoại</label>
+                    <div>
+                      <input [(ngModel)]="customer.phone" id="phone" name="phone" required #p="ngModel"
+                             class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
+                             placeholder="+84" type="text"/>
+                    </div>
+                    <div [hidden]="!p.invalid" class="alert alert-danger">Điền đầy đủ số điện thoại của bạn</div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="text-gray-600 font-semibold text-sm mb-2 ml-1">Email</label>
+                    <div>
+                      <input [(ngModel)]="customer.email" id="email" name="email" required #mail="ngModel"
+                             class="form-control w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
+                             placeholder="@example.com" type="email"/>
+                    </div>
+                    <div [hidden]="!mail.invalid" class="alert alert-danger">Điền đầy đủ email của bạn</div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="text-gray-600 font-semibold text-sm mb-2 ml-1">Địa chỉ</label>
+                    <div>
+                      <textarea rows="4" [(ngModel)]="customer.address" id="address" name="address"
+                                required #addr="ngModel"
+                                class="block w-full border border-gray-200 rounded-md px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+                    </div>
+                    <div [hidden]="!addr.invalid" class="alert alert-danger">Điền đầy đủ địa chỉ của bạn</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="w-full mx-auto rounded-lg bg-white border border-gray-200 text-gray-800 font-light mb-6">
+              <div class="w-full p-3 border-b border-gray-200">
+                <div class="mb-5">
+                  <label for="type1" class="flex items-center cursor-pointer">
+                    <input type="radio" class="form-radio h-5 w-5 text-indigo-500" name="type" id="type1" checked>
+                    <img src="https://leadershipmemphis.org/wp-content/uploads/2020/08/780370.png" class="h-6 ml-3">
+                  </label>
+                </div>
+                <div>
+                  <div class="mb-3">
+                    <label class="text-gray-600 font-semibold text-sm mb-2 ml-1">Name on card</label>
+                    <div>
+                      <input
+                        class="w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
+                        placeholder="John Smith" type="text"/>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="text-gray-600 font-semibold text-sm mb-2 ml-1">Card number</label>
+                    <div>
+                      <input
+                        class="w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
+                        placeholder="0000 0000 0000 0000" type="text"/>
+                    </div>
+                  </div>
+                  <div class="mb-3 -mx-2 flex items-end">
+                    <div class="px-2 w-1/4">
+                      <label class="text-gray-600 font-semibold text-sm mb-2 ml-1">Expiration date</label>
+                      <div>
+                        <select
+                          class="form-select w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer">
+                          <option value="01">01 - January</option>
+                          <option value="02">02 - February</option>
+                          <option value="03">03 - March</option>
+                          <option value="04">04 - April</option>
+                          <option value="05">05 - May</option>
+                          <option value="06">06 - June</option>
+                          <option value="07">07 - July</option>
+                          <option value="08">08 - August</option>
+                          <option value="09">09 - September</option>
+                          <option value="10">10 - October</option>
+                          <option value="11">11 - November</option>
+                          <option value="12">12 - December</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="px-2 w-1/4">
+                      <select
+                        class="form-select w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer">
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028</option>
+                        <option value="2029">2029</option>
+                      </select>
+                    </div>
+                    <div class="px-2 w-1/4">
+                      <label class="text-gray-600 font-semibold text-sm mb-2 ml-1">Security code</label>
+                      <div>
+                        <input
+                          class="w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
+                          placeholder="000" type="text"/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="w-full p-3">
+                <label for="type2" class="flex items-center cursor-pointer">
+                  <input type="radio" [disabled]="true" class="form-radio h-5 w-5 text-indigo-500" name="type" id="type2">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" width="80" class="ml-3"/>
+                  <p class="text-red-600">(Chưa hỗ trợ)</p>
+                </label>
+              </div>
+              <hr>
+              <div class="w-full p-3">
+                <label for="type2" class="flex items-center cursor-pointer">
+                  <input type="radio" class="form-radio h-5 w-5 text-indigo-500" name="type" id="type3">
+                  <h3 class="m-2">Thanh toán bằng tiền mặt</h3>
+                  <img src="https://w7.pngwing.com/pngs/178/28/png-transparent-computer-icons-money-bag-bank-cash-angle-hand-investment-thumbnail.png" width="40" class="ml-3"/>
+                </label>
+              </div>
+
+            </div>
+            <div>
+              <button (click)="btnAcceptOrder()" [disabled]="!userForm.form.valid"
+                      class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-2 font-semibold">
+                <i class="mdi mdi-lock-outline mr-1"></i> ĐẶT HÀNG
+              </button>
+            </div>
+          </form>
         </div>
 
       </div>
     </div>
-
-
-    <div class="content-shipping">
-      <h4 style="font-weight: bold; margin-top: 2vh; margin-left: 1vw;">Phương thức thanh toán </h4>
-    </div>
-
-    <div class="dropdown">
-      <button [matMenuTriggerFor]="menu" class="btn dropdown-toggle" type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false" style="margin-left: 1vw;
-      margin-top: 2vh; width: 12vw; height: 6vh">
-        Chọn hình thức thanh toán
-      </button>
-      <ul class="dropdown-menu">
-        <mat-menu #menu="matMenu">
-          <mat-radio-button value="1"> Thanh toán khi giao hàng (COD)</mat-radio-button>
-        </mat-menu>
-      </ul>
-    </div>
-
-    <div class="actions-toolbar" id="shipping-method-buttons-container">
-      <div class="primary" (click)="btnAcceptOrder()">
-        <button type="button" class="btn" [disabled]="!userForm.form.valid"
-                style="width: 35vw; height: 6vh; background-color: #4758b8; color: #fff">
-          Xác nhận đơn hàng
-        </button>
-      </div>
-    </div>
-
   </div>
-
+  <div class="p-5">
+    <div class="text-center text-gray-400 text-sm">
+      <a href="https://www.buymeacoffee.com/scottwindon" target="_blank"
+         class="focus:outline-none underline text-gray-400"><i class="mdi mdi-beer-outline"></i>Buy me a beer</a> and
+      help support open-resource
+    </div>
+  </div>
 </div>
 
+<!-- BUY ME A BEER AND HELP SUPPORT OPEN-SOURCE RESOURCES -->
+<div class="flex items-end justify-end fixed bottom-0 right-0 mb-4 mr-4 z-10">
+  <div>
+    <a title="Buy me a beer" href="https://www.buymeacoffee.com/scottwindon" target="_blank"
+       class="block w-16 h-16 rounded-full transition-all shadow hover:shadow-lg transform hover:scale-110 hover:rotate-12">
+      <img class="object-cover object-center w-full h-full rounded-full"
+           src="https://i.pinimg.com/originals/60/fd/e8/60fde811b6be57094e0abc69d9c2622a.jpg"/>
+    </a>
+  </div>
+</div>

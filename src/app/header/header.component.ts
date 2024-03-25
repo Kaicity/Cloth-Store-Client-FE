@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { CustomerModel } from "../../BM-API/dtos/customer.model";
+import { CustomerModel } from "../../bm-api/dtos/customer.model";
 import { Router } from "@angular/router";
-import {SharedService} from "../../BM-API/Services/Data/ShareService";
+import {SharedService} from "../../bm-api/Services/Data/ShareService";
+import {ExportingBillTransactionModel} from "../../bm-api/dtos/exporting-bill-transaction.model";
 
 interface OptionLanguages {
   value: string;
@@ -18,8 +19,12 @@ export class HeaderComponent implements OnInit {
   customerAccountTitle!: CustomerModel
   isLoading: boolean = false;
   titleName!: string;
-  optionLanguages: OptionLanguages[] = [{value: 'VN', viewValue: 'Tiếng Việt'}, {value: 'US', viewValue : 'ENglish'}];
+  optionLanguages: OptionLanguages[] = [{value: 'VN', viewValue: 'Tiếng Việt'}, {value: 'US', viewValue: 'ENglish'}];
   isCheckHasAccount: boolean = true;
+  isShowMenuUser: boolean = true;
+  isShowMenuMobile: boolean = true;
+
+  cartItem: ExportingBillTransactionModel[] = [];
 
   constructor(private router: Router, private shareService: SharedService) {
     this.customerAccountTitle = new CustomerModel();
@@ -32,6 +37,13 @@ export class HeaderComponent implements OnInit {
       console.log("Test account " + parseCustomer.id);
       this.titleName = parseCustomer.fullName
       this.isCheckHasAccount = false;
+    }
+
+    //Load card item đã được lưu trữ localstore
+    const getCardItemSaving = localStorage.getItem('card');
+    if (getCardItemSaving) {
+      this.cartItem = [];
+      this.cartItem = JSON.parse(getCardItemSaving);
     }
   }
 
@@ -48,11 +60,27 @@ export class HeaderComponent implements OnInit {
   }
 
   btnToPageLogin() {
+    this.isShowMenuMobile = true;
     if (localStorage.getItem('customer') == null) {
       this.router.navigate(['./form-login']);
-    }
-    else {
+    } else {
       return;
     }
+  }
+
+  openMenuUser() {
+    if(!this.isShowMenuUser){
+      this.isShowMenuUser = true;
+      return;
+    }
+    this.isShowMenuUser = false;
+  }
+
+  btnShowMenuMobile() {
+    this.isShowMenuMobile = false;
+  }
+
+  btnCloseMenuMobile() {
+    this.isShowMenuMobile = true;
   }
 }
