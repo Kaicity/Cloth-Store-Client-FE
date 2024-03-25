@@ -1,220 +1,253 @@
-<br>
 <app-alert [isShowAlert]="showAlert"></app-alert>
-<div class="cart-container">
-  <a (click)="toogleCard()" class="cart-item">
-    <img src="assets\shopping-cart.png" class="icon-card">
-    <img src="assets\checkItemCard.png" class="check-has-item" [hidden]="isCheckHasItem"
-         style="width: 15px; height: 15px">
-  </a>
-  <div class="cart" id="cart" [ngClass]="{'show': isCardVisible}">
-    <!-- Nội dung giỏ hàng sẽ được thêm ở đây -->
-    <table class="table">
-      <thead style="font-size: 16px; font-weight: bold;">
-      <tr>
-        <th></th>
-        <th scope="col">Mô Tả</th>
-        <th scope="col">Code</th>
-        <th scope="col">Tên Sản Phẩm</th>
-        <th scope="col">kích cở</th>
-        <th scope="col">màu sắc</th>
-        <th scope="col">Số Lượng</th>
-        <th scope="col">Đơn giá</th>
-        <th scope="col">Tổng cộng</th>
-      </tr>
-      </thead>
-      <tbody style="font-size: 16px;">
 
-      <tr *ngFor="let item of cardItem">
-        <td>
-          <div class="num">
-            <a class="numberdef"
-               (click)="decQty(item)">
-              <img src="assets/cancel.png" alt="icon">
-            </a>
+<div class="bg-white">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32">
+      <h2 class="text-2xl font-bold text-gray-900">Sản phẩm độc đáo</h2>
+
+      <div class="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0">
+        <div class="group relative">
+          <div class="relative h-90 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
+            <img src="assets/food_10.jpg" class="h-full w-full object-cover object-center">
           </div>
-        </td>
-        <td>
-          <img [src]=[[item.product?.image]] style="width: 6vw; height: auto">
-        </td>
-        <td>{{ item.product!.code }}</td>
-        <td>{{ item.product!.name }}</td>
-        <td>{{ item.size.optionProduct!.name }}</td>
-        <td>{{ item.color.optionProduct!.name }}</td>
-        <td>{{ item.quantity }}</td>
-        <td>{{ item.product!.price |  currency: 'VND':'symbol':'1.0-0' }}</td>
-        <td>{{ item.amount | currency: 'VND':'symbol':'1.0-0' }}</td>
-      </tr>
-      <!-- Dòng sản phẩm trong giỏ hàng -->
-      </tbody>
-    </table>
-
-    <div class="title-non-cart" [hidden]="!isCheckHasItem">
-      <img src="//bizweb.dktcdn.net/100/472/913/themes/888429/assets/cart_empty_background.png?1688797805762"
-           class="img-fluid" width="248" height="102">
-      <div class="text-title">
-        <p>“Hổng” có gì trong giỏ hết“</p>
-        <p>Về trang cửa hàng để chọn mua sản phẩm bạn nhé!!</p>
-      </div>
-    </div>
-
-    <div class="container-money" [hidden]="isCheckHasItem">
-      <div class="content-money">
-        <p style="font-size: 20px;">Tổng cộng:
-          <span style="color:  #df0000;">{{ totalCard() | currency: 'VND':'symbol':'1.0-0' }}</span>
-        </p>
-      </div>
-      <div class="payment-btn">
-        <button class="payment" style="font-weight: bold; font-size: 18px;"
-                (click)="setDataExportingbillTransaction()">ĐẶT HÀNG NGAY
-        </button>
+          <h3 class="mt-6 text-sm text-gray-500">
+            <a href="#">
+              <span class="absolute inset-0"></span>
+              Desk and Office
+            </a>
+          </h3>
+          <p class="text-base font-semibold text-gray-900">Work from home accessories</p>
+        </div>
+        <div class="group relative">
+          <div class="relative h-90 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
+            <img src="assets/food_12.jpg" alt="Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant." class="h-full w-full object-cover object-center">
+          </div>
+          <h3 class="mt-6 text-sm text-gray-500">
+            <a href="#">
+              <span class="absolute inset-0"></span>
+              Self-Improvement
+            </a>
+          </h3>
+          <p class="text-base font-semibold text-gray-900">Journals and note-taking</p>
+        </div>
+        <div class="group relative">
+          <div class="relative h-90 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
+            <img src="assets/food_14.jpg" alt="Collection of four insulated travel bottles on wooden shelf." class="h-full w-full object-cover object-center">
+          </div>
+          <h3 class="mt-6 text-sm text-gray-500">
+            <a href="#">
+              <span class="absolute inset-0"></span>
+              Travel
+            </a>
+          </h3>
+          <p class="text-base font-semibold text-gray-900">Daily commute essentials</p>
+        </div>
       </div>
     </div>
   </div>
-
 </div>
 
 
-<br>
-<div class="container" *ngIf="productDetail">
-  <div class="content-product">
-    <div class="food-inf">
-      <img [src]=[[productDetail.image]] alt="product images"
-           style="width: 100vw; height: auto; max-width: 100%; max-height: 100%">
-      <p></p><br>
-      <h6>Chia sẻ</h6>
-      <div class="social-share">
-        <a href="https://www.facebook.com/" target="_blank" class="facebook">
-          <img src="assets/google.png" alt="Facebook">
-        </a>
-        <a href="https://twitter.com/" target="_blank" class="twitter">
-          <img src="https://img.icons8.com/color/48/zalo.png" alt="Twitter">
-        </a>
-        <a href="https://www.linkedin.com/" target="_blank" class="linkedin">
-          <img src="assets/facebook.png" alt="LinkedIn">
-        </a>
+
+
+<div class="relative z-10" role="dialog" aria-modal="true" [hidden]="isShowModalProductDetail">
+  <div class="fixed inset-0 hidden bg-gray-500 bg-opacity-75 transition-opacity md:block"></div>
+
+  <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+    <div class="flex min-h-full items-stretch justify-center text-center md:items-center md:px-2 lg:px-4">
+      <div class="flex w-full transform text-left text-base transition md:my-8 md:max-w-2xl md:px-4 lg:max-w-4xl">
+        <div
+          class="relative flex w-full items-center overflow-hidden bg-white px-4 pb-8 pt-14 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
+          <button type="button"
+                  class="absolute right-4 top-4 text-gray-400 hover:text-gray-500 sm:right-6 sm:top-8 md:right-6 md:top-6 lg:right-8 lg:top-8"
+                  (click)="closeModalProductDetail()">
+            <span class="sr-only">Close</span>
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                 aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+
+          <div class="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8">
+            <div class="aspect-h-3 aspect-w-2 overflow-hidden rounded-lg bg-gray-100 sm:col-span-4 lg:col-span-5">
+              <img [src]=[[productDetail.image]] alt="Two each of gray, white, and black shirts arranged on table."
+                   class="object-cover object-center">
+            </div>
+            <div class="sm:col-span-8 lg:col-span-7">
+              <h2 class="text-2xl font-bold text-gray-900 sm:pr-12">{{ productDetail.name }}</h2>
+
+              <h2 class="text-1xl text-gray-900 sm:pr-12">Mã sản phẩm: {{ productDetail.code }}</h2>
+
+              <section aria-labelledby="information-heading" class="mt-2">
+                <h3 id="information-heading" class="sr-only">Product information</h3>
+
+                <p class="text-2xl text-gray-900">{{ productDetail.price | currency: 'VND' | slice:1 }}
+                  <span class="symbol"
+                        style="font-size: 1rem; line-height: 1rem; letter-spacing: 0.1rem; text-decoration: underline">đ</span>
+                </p>
+
+                <!-- Reviews -->
+                <div class="mt-6">
+                  <h4 class="sr-only">Reviews</h4>
+                  <div class="flex items-center">
+                    <div class="flex items-center">
+                      <!-- Active: "text-gray-900", Default: "text-gray-200" -->
+                      <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"
+                           aria-hidden="true">
+                        <path fill-rule="evenodd"
+                              d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                              clip-rule="evenodd"/>
+                      </svg>
+                      <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"
+                           aria-hidden="true">
+                        <path fill-rule="evenodd"
+                              d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                              clip-rule="evenodd"/>
+                      </svg>
+                      <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"
+                           aria-hidden="true">
+                        <path fill-rule="evenodd"
+                              d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                              clip-rule="evenodd"/>
+                      </svg>
+                      <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"
+                           aria-hidden="true">
+                        <path fill-rule="evenodd"
+                              d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                              clip-rule="evenodd"/>
+                      </svg>
+                      <svg class="text-gray-200 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"
+                           aria-hidden="true">
+                        <path fill-rule="evenodd"
+                              d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                              clip-rule="evenodd"/>
+                      </svg>
+                    </div>
+                    <p class="sr-only">3.9 out of 5 stars</p>
+                    <a href="#" class="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">117 reviews</a>
+                  </div>
+                </div>
+              </section>
+
+
+              <section aria-labelledby="options-heading" class="mt-10">
+                <h3 id="options-heading" class="sr-only">Product options</h3>
+
+                <form>
+                  <!-- Colors -->
+                  <div>
+                    <h4 class="text-sm font-medium text-gray-900">Color</h4>
+
+                    <fieldset class="mt-4">
+                      <legend class="sr-only">Choose a color</legend>
+                      <span class="grid grid-cols-4 gap-4">
+                        <!--
+                          Active and Checked: "ring ring-offset-1"
+                          Not Active and Checked: "ring-2"
+                        -->
+                        <label
+                          class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 cursor-pointer bg-gray-100 text-gray-900 shadow-sm"
+                          *ngFor="let s of productDetail.colors; let i = index">
+                          <input type="radio" name="size-choice" value="XXS" class="sr-only"
+                                 aria-labelledby="size-choice-0-label" [checked]="i === 0" (change)="onChangeColorOption(i)">
+                          <span id="color-choice-0-label">{{ s.optionProduct!.name }}</span>
+                          <!--
+                            Active: "border", Not Active: "border-2"
+                            Checked: "border-indigo-500", Not Checked: "border-transparent"
+                          -->
+                          <span class="pointer-events-none absolute -inset-px rounded-md" aria-hidden="true"></span>
+                        </label>
+                      </span>
+                    </fieldset>
+                  </div>
+
+                  <!-- Sizes -->
+                  <div class="mt-10">
+                    <div class="flex items-center justify-between">
+                      <h4 class="text-sm font-medium text-gray-900">Size</h4>
+                      <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">Size guide</a>
+                    </div>
+
+                    <fieldset class="mt-4">
+                      <legend class="sr-only">Choose a size</legend>
+                      <div class="grid grid-cols-4 gap-4">
+                        <!-- Active: "ring-2 ring-indigo-500" -->
+                        <label
+                          class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 cursor-pointer bg-gray-100 text-gray-900 shadow-sm"
+                          *ngFor="let s of productDetail.sizes; let i = index">
+                          <input type="radio" name="size-choice" value="XXS" class="sr-only"
+                                 aria-labelledby="size-choice-0-label" [checked]="i === 0"
+                                 (change)="onChangeSizeOption(i)">
+                          <span id="size-choice-0-label">{{ s.optionProduct!.name }}</span>
+                          <!--
+                            Active: "border", Not Active: "border-2"
+                            Checked: "border-indigo-500", Not Checked: "border-transparent"
+                          -->
+                          <span class="pointer-events-none absolute -inset-px rounded-md" aria-hidden="true"></span>
+                        </label>
+
+                        <label
+                          class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 cursor-not-allowed bg-gray-50 text-gray-200">
+                          <input type="radio" name="size-choice" value="XXXL" disabled class="sr-only"
+                                 aria-labelledby="size-choice-7-label">
+                          <span id="size-choice-7-label">XXXL</span>
+                          <span aria-hidden="true"
+                                class="pointer-events-none absolute -inset-px rounded-md border-2 border-gray-200">
+                            <svg class="absolute inset-0 h-full w-full stroke-2 text-gray-200" viewBox="0 0 100 100"
+                                 preserveAspectRatio="none" stroke="currentColor">
+                              <line x1="0" y1="100" x2="100" y2="0" vector-effect="non-scaling-stroke"/>
+                            </svg>
+                          </span>
+                        </label>
+                      </div>
+                    </fieldset>
+                  </div>
+
+                  <button type="submit"
+                          class="mt-6 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                          (click)="addProductToCardItem()">
+                    Thêm vào giỏ hàng
+                  </button>
+                </form>
+              </section>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="food-option">
-    <div class="d-flex justify-content-between">
-      <h3 class="food-name">{{ productDetail.name }}</h3>
-    </div>
 
-    <div class="group-status">
-      <span class="first_status mr-2">
-								Thương hiệu:
-		  <span class="status_name">
-							<a href="/collections/all?q=vendor.filter_key:(%22HYBID%C2%AE%22)&amp;page=1&amp;view=grid"
-                 target="_blank" class="text-primary" title="HYBID®">
-					ThreeT®</a></span>
-	   </span>
-      <span class="first_status product_sku">Mã sản phẩm:
-        <span class="status_name product-sku" itemprop="sku"
-              content="Đang cập nhật">{{ productDetail.code }}</span>
-      </span>
-    </div>
+<div class="bg-white">
+  <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+    <h2 class="text-2xl tracking-tight text-center text-gray-900">NHỮNG SẢN PHẨM KHÁC</h2>
+    <br>
 
-    <p></p>
-    <div class="food-text">
-        <span class="food-cost">{{ productDetail.price | currency: 'VND' | slice:1 }}
+    <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+      <a class="group" *ngFor="let product of this.productDtos">
+        <div
+          class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+          <img [src]=[[product.image]]
+               alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
+               class="h-full w-full object-cover object-center group-hover:opacity-75">
+        </div>
+        <h3 class="mt-4 text-sm text-gray-700">{{ product.name }}</h3>
+        <p class="mt-1 text-lg font-medium text-gray-900">{{ product.price | currency: 'VND' | slice:1 }}
           <span class="symbol"
-                style="font-size: 1.2rem; line-height: 1rem; letter-spacing: 0.1rem; text-decoration: underline">đ</span></span>
+                style="font-size: 1rem; line-height: 1rem; letter-spacing: 0.1rem; text-decoration: underline">đ</span>
+        </p>
+        <div class="mt-6">
+          <a
+            class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+            [routerLink]="['/product', product.id]"
+            (click)="selectProductForProductDetail(product)" [routerLink]="['/product', product.id]">Chọn sản phẩm
+          </a>
+        </div>
+      </a>
+      <br>
     </div>
-    <br>
-
-    <div class="product-coupon__wrapper my-3">
-      <strong class="d-block mb-2">Mã giảm giá</strong>
-      <div class="btn-group" role="group" aria-label="Basic outlined example">
-        <button type="button" class="btn btn-outline-danger">PORNHUB</button>
-        <button type="button" class="btn btn-outline-danger">TUAN7GA</button>
-        <button type="button" class="btn btn-outline-danger">THONGNGUYEN</button>
-        <button type="button" class="btn btn-outline-danger">KDG08F</button>
-      </div>
-    </div>
-    <!--    SIZE-->
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button"
-              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Size
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <ng-container *ngFor="let s of productDetail.sizes; let i = index">
-          <label class="dropdown-item">
-            <mat-radio-button name="size" [checked]="i === 0" (change)="onChangeSizeOption(i)">
-              {{ s.optionProduct!.name + "(+ " + (s.addition | currency: 'VND':'symbol':'1.0-0') + ")" }}
-            </mat-radio-button>
-          </label>
-        </ng-container>
-      </div>
-    </div>
-
-    <!--    Color-->
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Colors
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <ng-container *ngFor="let c of productDetail.colors; let i = index">
-          <label class="dropdown-item">
-            <mat-radio-button name="color" [checked]="i === 0" (change)="onChangeColorOption(i)">
-              {{ c.optionProduct.name + "(+ " + (c.addition | currency: 'VND':'symbol':'1.0-0') + ")" }}
-            </mat-radio-button>
-          </label>
-        </ng-container>
-      </div>
-    </div>
-    <br>
-    <br>
-    <div class="input-group" style="width: 25vw">
-      <input type="number" disabled="isInputDisable" class="form-control" [value]="inputNumberValue" #qty>
-      <div class="input-append">
-        <button class="btn btn-outline-secondary" type="button" id="btnMinus"
-                (click)="decreaseQuality()">-
-        </button>
-        <button class="btn btn-outline-secondary" type="button" id="btnPlus"
-                (click)="increaseQuality()">+
-        </button>
-      </div>
-    </div>
-    <br>
-    <button class="order-food-card" style="font-weight: bold; font-size: 16px;"
-            (click)="addProductToCardItem()">
-      <img src="assets/add-to-cart.png">
-      THÊM VÀO GIỎ HÀNG
-    </button>
+    <mat-paginator [length]="search.result.length" [pageSize]="search.recordOfPage" [pageSizeOptions]="itemInPageList"
+                   (page)="updateDataOfPageWhenChoseNext($event)" aria-label="Select page"></mat-paginator>
   </div>
 </div>
-<br>
-<br>
-
-<!-- DANH SACH SAN PHAM BAN DAU-->
-<br>
-<br>
-<div class="tittle-text">
-  <h1>NHỮNG SẢN PHẨM KHÁC</h1>
-
-</div>
-
-<ul class="product-list">
-  <li class="product-item" *ngFor="let product of productDtos">
-    <a class="product-image"> <img [src]=[product.image] alt="product images"
-                                   style="width: auto; height: 40vh; cursor: pointer;"></a>
-    <div class="product-inf">
-      <span><a class="food-name" href="#">{{ product.name }}</a></span>
-      <p></p>
-      <div class="food-text">
-        <p class="food-cost">{{ product.price  |  currency: 'VND':'symbol':'1.0-0' }}</p>
-        <br>
-        <button class="order-food" id="btn-order" [routerLink]="['/product', product.id]"
-                (click)="selectProductForProductDetail(product)" [routerLink]="['/product', product.id]">CHỌN SẢN PHẨM
-        </button>
-      </div>
-    </div>
-  </li>
-</ul>
-
-<mat-paginator [length]="search.result.length" [pageSize]="search.recordOfPage" [pageSizeOptions]="itemInPageList"
-               (page)="updateDataOfPageWhenChoseNext($event)" aria-label="Select page"
-               style="margin-right: 7vw"></mat-paginator>

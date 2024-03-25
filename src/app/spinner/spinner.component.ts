@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { LoaderService } from 'src/BM-API/Services/Animation/Loader-service';
+import { LoaderService } from 'src/bm-api/Services/Animation/Loader-service';
 
 @Component({
   selector: 'app-spinner',

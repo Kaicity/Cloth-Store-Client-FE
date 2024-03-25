@@ -1,14 +1,12 @@
-import {Component, HostListener, OnInit} from '@angular/core';
-import {ProductFullModel} from '../../BM-API/dtos/product-full.model';
-import {Route, Event, NavigationEnd, Router} from '@angular/router';
-import {BaseSearchModel} from "../../BM-API/dtos/base-search.model";
-import {ProductService} from "../../BM-API/Services/warehouse/Product-service";
-import {ResponseModel} from "../../BM-API/dtos/response.model";
+import {Component, OnInit} from '@angular/core';
+import {ProductFullModel} from '../../bm-api/dtos/product-full.model';
+import {Event, NavigationEnd, Router} from '@angular/router';
+import {BaseSearchModel} from "../../bm-api/dtos/base-search.model";
+import {ProductService} from "../../bm-api/Services/warehouse/Product-service";
+import {ResponseModel} from "../../bm-api/dtos/response.model";
 import {HttpClient} from "@angular/common/http";
-import {ExportingBillTransactionModel} from 'src/BM-API/dtos/exporting-bill-transaction.model';
-import {SharedService} from 'src/BM-API/Services/Data/ShareService';
-import {SizesModel} from "../../BM-API/dtos/sizes.model";
-import {ColorsModel} from "../../BM-API/dtos/colors.model";
+import {ExportingBillTransactionModel} from 'src/bm-api/dtos/exporting-bill-transaction.model';
+import {SharedService} from 'src/bm-api/Services/Data/ShareService';
 
 
 @Component({
@@ -85,14 +83,6 @@ export class HomeComponent implements OnInit {
     this.sharedService.setData(item);
   }
 
-  // addFoodToCardItem(item: ProductModel): void {
-  //   console.log(item);
-  //   let detail: ExportingBillTransactionModel = new ExportingBillTransactionModel();
-  //   detail.product = new ProductModel();
-  //   detail.product = item;
-  //   this.cardItem.push(detail);
-  // }
-
 
   //Giá trị phân trang cho tất cả sản phẩm
   quality: number = 1;
@@ -116,7 +106,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('Hello from ExampleService constructorcccccccccccc');
     this.getAllProduct();
   }
 

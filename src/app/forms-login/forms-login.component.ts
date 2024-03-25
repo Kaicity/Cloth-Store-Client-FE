@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import { CustomerModel } from '../../BM-API/dtos/customer.model';
-import {CustomerService} from "../../BM-API/Services/warehouse/Customer-service";
+import { CustomerModel } from '../../bm-api/dtos/customer.model';
+import {CustomerService} from "../../bm-api/Services/warehouse/Customer-service";
 import {NavigationEnd, Route, Router} from "@angular/router";
-import {SharedService} from "../../BM-API/Services/Data/ShareService";
+import {SharedService} from "../../bm-api/Services/Data/ShareService";
 
 @Component({
   selector: 'app-forms-login',

@@ -19,13 +19,13 @@ import {HttpClientModule} from "@angular/common/http";
 import { SpinnerComponent } from './spinner/spinner.component';
 import { CustomerInfoComponent } from './customer-info/customer-info.component';
 import { ShippingComponent } from './shipping/shipping.component';
-import { ControlMaterial } from 'src/UI-COMPONENT/ControlMaterial';
+import { ControlMaterial } from 'src/ui-component/ControlMaterial';
 import { SucessStatusComponent } from './sucess-status/sucess-status.component';
 import { ModalWrapperComponent } from './modal-wrapper/modal-wrapper.component';
 import { AlertComponent } from './Share/Component/alert/alert.component';
-
-
-
+import { CartComponent } from './cart/cart.component';
+import { PageErrorComponent } from './page-error/page-error.component';
+import { ContactComponent } from './contact/contact.component'
 
 
 
@@ -47,7 +47,10 @@ import { AlertComponent } from './Share/Component/alert/alert.component';
     ShippingComponent,
     SucessStatusComponent,
     ModalWrapperComponent,
-    AlertComponent
+    AlertComponent,
+    CartComponent,
+    PageErrorComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,9 @@ import { StoreServiceComponent } from './store-service/store-service.component';
 import { CustomerInfoComponent } from './customer-info/customer-info.component';
 import { ShippingComponent } from './shipping/shipping.component';
 import { SucessStatusComponent } from './sucess-status/sucess-status.component';
+import {CartComponent} from "./cart/cart.component";
+import {PageErrorComponent} from "./page-error/page-error.component";
+import {ContactComponent} from "./contact/contact.component";
 
 
 const routes: Routes = [
@@ -19,11 +22,14 @@ const routes: Routes = [
   {path: 'about-us', component: ForusComponent},
   {path: 'homepage', component: HomepageComponent},
   {path: 'product', component: HomeComponent},
+  {path : 'cart', component: CartComponent},
   {path: 'product/:id', component: ProductDetailComponent},
   {path: 'store-service', component: StoreServiceComponent},
   {path : 'customer-info', component: CustomerInfoComponent},
   {path: 'shipping', component: ShippingComponent},
   {path: 'success-order', component: SucessStatusComponent},
+  {path: 'page-error', component: PageErrorComponent},
+  {path: 'contact', component: ContactComponent},
   {path: '', redirectTo: 'product', pathMatch: 'full' },
 ];
 

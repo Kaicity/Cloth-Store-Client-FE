@@ -1,15 +1,15 @@
 import {ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core'
-import {ProductFullModel} from '../../BM-API/dtos/product-full.model';
+import {ProductFullModel} from '../../bm-api/dtos/product-full.model';
 import {ActivatedRoute, Event, NavigationEnd, Router} from '@angular/router';
-import {BaseSearchModel} from 'src/BM-API/dtos/base-search.model';
-import {ProductService} from 'src/BM-API/Services/warehouse/Product-service';
-import {ResponseModel} from 'src/BM-API/dtos/response.model';
-import {ExportingBillTransactionModel} from 'src/BM-API/dtos/exporting-bill-transaction.model';
-import {SharedService} from 'src/BM-API/Services/Data/ShareService';
-import {ExportingBillModel} from "../../BM-API/dtos/exporting-bill.model";
-import {SizesModel} from "../../BM-API/dtos/sizes.model";
-import {ColorsModel} from "../../BM-API/dtos/colors.model";
-import {ProductModel} from "../../BM-API/dtos/product.model";
+import {BaseSearchModel} from 'src/bm-api/dtos/base-search.model';
+import {ProductService} from 'src/bm-api/Services/warehouse/Product-service';
+import {ResponseModel} from 'src/bm-api/dtos/response.model';
+import {ExportingBillTransactionModel} from 'src/bm-api/dtos/exporting-bill-transaction.model';
+import {SharedService} from 'src/bm-api/Services/Data/ShareService';
+import {ExportingBillModel} from "../../bm-api/dtos/exporting-bill.model";
+import {SizesModel} from "../../bm-api/dtos/sizes.model";
+import {ColorsModel} from "../../bm-api/dtos/colors.model";
+import {ProductModel} from "../../bm-api/dtos/product.model";
 
 
 @Component({
@@ -22,15 +22,14 @@ export class ProductDetailComponent implements OnInit {
 
   isCardVisible = false;
   cardItem: ExportingBillTransactionModel[] = [];
-  cardItemSaving: ExportingBillTransactionModel[] = [];
+
   productDtos: ProductFullModel[] = []; // Tạo danh sách chứa các sản phẩm
 
-  //Danh sach food get APi
+  //Danh sach san pham get APi
   search: BaseSearchModel<ProductFullModel> = new BaseSearchModel<ProductFullModel>();
 
-
   productDetail!: ProductFullModel; // sản phẩm cho người dùng coi
-//  productChose!: ProductModel; // sản phẩm mà người dùng chọn để thêm vào vỏ hàng
+
   detailBill = new ExportingBillTransactionModel();
   isCardVibsible: Boolean = false;
   isCheckHasItem: Boolean = true;
@@ -42,8 +41,9 @@ export class ProductDetailComponent implements OnInit {
   showAlert: boolean = false;
   img = "";
 
-  @ViewChild('scrollTarget') scrollTarget!: ElementRef
+  isShowModalProductDetail: boolean = false;
 
+  @ViewChild('scrollTarget') scrollTarget!: ElementRef;
 
   constructor(private productService: ProductService, private router: Router, private route: ActivatedRoute,
               private sharedService: SharedService) {
@@ -79,7 +79,6 @@ export class ProductDetailComponent implements OnInit {
 
     for (let i = 0; i < this.cardItem.length; i++) {
       if (this.cardItem[i].quantity == 0) {
-        console.log("ok");
         this.cardItem.splice(i, 1);
       }
     }
@@ -95,6 +94,7 @@ export class ProductDetailComponent implements OnInit {
     //Khoi tao lay id food param
     this.getProductId(this.route.snapshot.params['id']);
 
+
     //Lay danh sach food
     this.getAllProduct();
     //this.getFoodById();
@@ -106,9 +106,7 @@ export class ProductDetailComponent implements OnInit {
     this.detailBill.product = new ProductModel();
     if (this.detailBill && this.detailBill.product)
       this.detailBill!.product = this.detailBill!.product?.CoppyData(this.productDetail);
-    //this.productChose = new ProductModel(this.productDetail);
-    console.log("va qua rr");
-    console.log(this.productDetail.colors?.[0]?.optionProduct );
+
 
     if (this.productDetail.sizes !== null && this.productDetail.sizes.length > 0) {
       let sizeDto = new SizesModel(this.productDetail.sizes[0]);
@@ -121,13 +119,11 @@ export class ProductDetailComponent implements OnInit {
       this.detailBill!.product!.image = color.image;
     }
 
-
     //Load card item đã được lưu trữ, đồng thời giỏ hàng sẽ tồn tại sản phẩm
     const getCardItemSaving = localStorage.getItem('card');
     if (getCardItemSaving) {
       this.cardItem = [];
       this.cardItem = JSON.parse(getCardItemSaving);
-      console.log(this.cardItem);
     }
   }
 
@@ -200,8 +196,7 @@ export class ProductDetailComponent implements OnInit {
 
     // Lấy danh sách đối tượng từ API
     this.search = res.result;
-    console.log("cai gi v 3 ");
-    console.log(res.result);
+
     //set hình ảnh của sản phẩm là củ option đầu tiên
     for(let productChose of this.search.result)
       if (productChose.colors !== null && productChose.colors.length > 0) productChose.image = productChose.colors[0].image;
@@ -240,21 +235,11 @@ export class ProductDetailComponent implements OnInit {
 
 
   public addProductToCardItem(): void {
-    //console.log(item);
     let checkItemExist = false;
     let detail: ExportingBillTransactionModel = new ExportingBillTransactionModel(this.detailBill);
 
-    console.log("ready :");
-    detail.id="12512616";
-    console.log(detail);
-    console.log(this.detailBill);
-
     if (this.cardItem.length != 0) {
       this.cardItem.forEach(param => {
-        console.log("ready :");
-        // console.log(param.product?.id + "-----" + detail.product!.id);
-        // console.log(param.product?.sizes![0].optionProductDto!.name + "-----" + this.productChose.sizes![0].optionProductDto!.name);
-        // console.log(param.product?.colors![0].optionProductDto!.name + "-----" + this.productChose.colors![0].optionProductDto!.name)
         if (param.product?.id === detail.product!.id && param.size.optionProduct!.name === this.detailBill.size.optionProduct!.name && param
           .color.optionProduct.name === this.detailBill.color.optionProduct.name) {// cùng id cùng id option cùng id option detail
 
@@ -278,7 +263,7 @@ export class ProductDetailComponent implements OnInit {
     if (detail.product?.price != null) {
       detail.amount = detail.quantity * detail.product.price;
     }
-    console.log("ready :");
+
     this.cardItem.push(detail);
 
     //Lưu giỏ hàng vào localstore toàn cục
@@ -286,7 +271,12 @@ export class ProductDetailComponent implements OnInit {
     //Amount to card display
     this.totalCard();
 
+    this.sharedService.setDataExportingbillTransaction(this.cardItem);
+    this.sharedService.setDataExportingbill(this.createExportingbill());
+
     this.showAlertMessage();
+
+    location.reload();
   }
 
   showAlertMessage() {
@@ -347,11 +337,9 @@ export class ProductDetailComponent implements OnInit {
 
 
   public selectProductForProductDetail(item: ProductFullModel): void {
+    this.isShowModalProductDetail = false;
     this.productDetail = item;
     this.detailBill.product!.image = this.productDetail.image;
-    console.log("caigi");
-    console.log(this.productDetail);
-
 
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
@@ -362,20 +350,7 @@ export class ProductDetailComponent implements OnInit {
 
   public getProductFromMenuProduct(): ProductFullModel {
     let a = this.sharedService.getData();
-    console.log("va qua r");
-    console.log(a);
     return a;
-  }
-
-
-  //UPDATE  chieu cao card khi san pham tang dan
-  updateMinHeight() {
-    const cartElement = document.getElementById('cart');
-    if (cartElement) {
-      const cartItemRows = cartElement.querySelectorAll('tbody tr');
-      const minHeight = 100 + 50 * cartItemRows.length;
-      cartElement.style.minHeight = minHeight + 'px';
-    }
   }
 
 
@@ -383,9 +358,11 @@ export class ProductDetailComponent implements OnInit {
     this.sharedService.setDataExportingbillTransaction(this.cardItem);
     this.sharedService.setDataExportingbill(this.createExportingbill());
 
-    console.log(this.sharedService.getDataExportingbill());
-    console.log(this.sharedService.getDataExportingbillTransaction())
-    this.router.navigate(['./customer-info']);// this ts code in angular is move to another page but I want to pass list object to that page, how can you modify it to solve my project
+    this.router.navigate(['./customer-info']);
+  }
+
+  closeModalProductDetail() {
+    this.isShowModalProductDetail = true;
   }
 
 }

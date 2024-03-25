@@ -1,43 +1,30 @@
 <app-spinner [show]="isLoading"></app-spinner>
-<br>
-<div class="tittle-text">
-  <h1>SẢN PHẨM NỔI BẬT</h1>
-</div>
-<br>
 
-<ul class="product-list">
-  <li class="product-item" *ngFor="let product of this.productDtos">
-    <a class="product-image" [routerLink]="['/product', product.id]" (click)="getProductToDetail(product)"> <img
-        [src]=[product.image] alt="product images" style="width: auto; height: 40vh; cursor: pointer;"></a>
-    <div class="product-inf">
-      <span><a class="food-name" href="#">{{product.name}}</a></span>
-      <p></p>
-      <div class="food-text">
-        <p class="food-cost">{{product.price |  currency: 'VND':'symbol':'1.0-0'}}</p>
-        <br>
-        <!-- <button class="order-food" id="btn-order" [routerLink]="['/product', product.id]"
-          (click)="getProductToDetail(product)">Thêm Vào Giỏ Hàng</button> -->
-        <div class="action-bar">
-          <a href="/t-shirt-hybid-water" class="action-child btn-circle btn-views btn_view btn right-to m-0">
-            <img width="20" height="20" class="icon-option"
-              src="//bizweb.dktcdn.net/100/472/913/themes/888429/assets/icon-options.png?1688797805762"
-              alt="icon-option">
-            <span class="action-name" style="color: #000000;">Tùy chọn</span>
-          </a>
+<div class="bg-white">
+  <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+    <h2 class="text-2xl tracking-tight text-center text-gray-900">TẤT CẢ SẢN PHẨM</h2>
+    <br>
 
-          <a href="/t-shirt-hybid-water" data-handle="t-shirt-hybid-water"
-            class="action-child xem_nhanh btn-circle btn-views btn_view btn right-to quick-view">
-            <img width="20" height="20" class="icon-option" src="assets/eyes.png" alt="icon-option">
-            <span class="action-name" style="color: #000000;">Xem nhanh</span>
-          </a>
+    <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+      <a [routerLink]="['/product', product.id]" (click)="getProductToDetail(product)" class="group"
+         *ngFor="let product of this.productDtos">
+        <div
+          class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+          <img [src]=[product.image]
+               alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
+               class="h-full w-full object-cover object-center group-hover:opacity-75">
         </div>
-      </div>
+        <h3 class="mt-4 text-sm text-gray-700">{{ product.name }}</h3>
+        <p class="mt-1 text-lg font-medium text-gray-900">{{ product.price | currency: 'VND' | slice:1 }}
+          <span class="symbol"
+                style="font-size: 1rem; line-height: 1rem; letter-spacing: 0.1rem; text-decoration: underline">đ</span>
+        </p>
+      </a>
+
+      <!-- More products... -->
+      <br>
     </div>
-  </li>
-</ul>
-<!-- Length is size of array product -->
-<!-- PageSize is value product number when it displayed -->
-<!-- PageSizeOption is all values of pagesize customer [4,8,12] when user choose page change  -->
-<mat-paginator [length]="search.result.length" [pageSize]="search.recordOfPage" [pageSizeOptions]="itemInPageList"
-  (page)="updateDataOfPageWhenChoseNext($event)" aria-label="Select page" style="margin-right: 7vw"></mat-paginator>
-<br>
+    <mat-paginator [length]="search.result.length" [pageSize]="search.recordOfPage" [pageSizeOptions]="itemInPageList"
+                   (page)="updateDataOfPageWhenChoseNext($event)" aria-label="Select page"></mat-paginator>
+  </div>
+</div>
