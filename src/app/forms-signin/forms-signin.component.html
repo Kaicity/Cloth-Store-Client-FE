@@ -10,78 +10,84 @@
   <div class="mt-10 sm:mx-auto sm:w-full lg:max-w-lg">
     <form class="my-8 text-sm" action="#" method="POST" (ngSubmit)="onSubmit()" #userForm="ngForm">
       <div class="form-group">
+        <label>Họ tên</label>
         <input type="text" [(ngModel)]="customer.fullName"
-               class="form-control block w-full rounded-md border-1 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+               class="form-control block w-full rounded-md border border-black py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                id="fullName"
                name="fullName"
-               placeholder="Họ và Tên"
+               placeholder=""
                required #fullName="ngModel">
       </div>
-      <div *ngIf="fullName.valid" class="alert alert-success">Hợp lệ</div>
-      <div *ngIf="!fullName.valid" class="alert alert-danger">Điền đầy đủ họ tên của bạn</div>
+      <div *ngIf="fullName.valid" class="text-green-600">Hợp lệ</div>
+      <div *ngIf="!fullName.valid" class="text-red-600">Điền đầy đủ họ tên của bạn</div>
 
       <div class="form-group">
+        <label>Email</label>
         <input type="text" [(ngModel)]="customer.email"
-               class="form-control block w-full rounded-md border-1 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+               class="form-control block w-full rounded-md border border-black py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                id="email"
                name="email"
-               placeholder="Điền email của bạn (vd:alex@gmail.com)"
+               placeholder=" alex@gmail.com"
                required #email="ngModel">
       </div>
-      <div *ngIf="email.valid" class="alert alert-success">Hợp lệ</div>
-      <div *ngIf="!email.valid" class="alert alert-danger">Điền đầy đủ địa chỉ Email của bạn</div>
+      <div *ngIf="email.valid" class="text-green-600">Hợp lệ</div>
+      <div *ngIf="!email.valid" class="text-red-600">Điền đầy đủ địa chỉ Email của bạn</div>
 
       <div class="form-group">
+        <label>Số điện thoại</label>
         <input type="text" [(ngModel)]="customer.phone"
-               class="form-control block w-full rounded-md border-1 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+               class="form-control block w-full rounded-md border border-black py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                id="phone"
                name="phone"
-               placeholder="Số điện thoại"
+               placeholder=" +84"
                required #phone="ngModel">
       </div>
-      <div *ngIf="phone.valid" class="alert alert-success">Hợp lệ</div>
-      <div *ngIf="!phone.valid" class="alert alert-danger">Điền đầy đủ Số Điện Thoại của bạn</div>
+      <div *ngIf="phone.valid" class="text-green-600">Hợp lệ</div>
+      <div *ngIf="!phone.valid" class="text-red-600">Điền đầy đủ Số Điện Thoại của bạn</div>
 
 
       <div class="form-group">
         <input type="text" [(ngModel)]="customer.address"
-               class="form-control block w-full rounded-md border-1 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+               class="form-control block w-full rounded-md border border-black py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                id="address"
                name="address"
                placeholder="Địa chỉ"
                required #address="ngModel">
       </div>
-      <div *ngIf="address.valid" class="alert alert-success">Hợp lệ</div>
-      <div *ngIf="!address.valid" class="alert alert-danger">Điền đầy đủ địa chỉ hiện tại của bạn</div>
+      <div *ngIf="address.valid" class="text-green-600">Hợp lệ</div>
+      <div *ngIf="!address.valid" class="text-red-600">Điền đầy đủ địa chỉ hiện tại của bạn</div>
 
 
       <div class="form-group">
+        <label>Mật khẩu</label>
         <input type="password" [(ngModel)]="customer.password"
-               class="form-control block w-full rounded-md border-1 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+               class="form-control block w-full rounded-md border border-black py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                id="password"
                name="password"
-               placeholder="Mật khẩu"
+               placeholder=""
                required #password="ngModel">
       </div>
-      <div *ngIf="password.valid" class="alert alert-success">Hợp lệ</div>
-      <div *ngIf="!password.valid" class="alert alert-danger">Tao mật khẩu cho tài khoản của bạn</div>
+      <div *ngIf="password.valid" class="text-green-600">Hợp lệ</div>
+      <div *ngIf="!password.valid" class="text-red-600">Tao mật khẩu cho tài khoản của bạn</div>
 
 
       <div class="form-group">
+        <label>Ngày sinh</label>
         <input type="date" [(ngModel)]="customer.birthday"
-               class="form-control block w-full rounded-md border-1 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+               class="form-control block w-full rounded-md border border-black py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                id="birthday"
                name="birthday"
-               placeholder="Ngày sinh"
+               placeholder=""
                required #birthday="ngModel">
       </div>
-      <div *ngIf="birthday.valid" class="alert alert-success">Hợp lệ</div>
-      <div *ngIf="!birthday.valid" class="alert alert-danger">Vui lòng chọn ngày sinh của bạn</div>
+      <div *ngIf="birthday.valid" class="text-green-600">Hợp lệ</div>
+      <div *ngIf="!birthday.valid" class="text-red-600">Vui lòng chọn ngày sinh của bạn</div>
 
 
       <div class="form-group">
+        <label>Giới tính</label>
         <select
-          class="form-control block w-full rounded-md border-1 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          class="form-control block w-full rounded-md border border-black py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           id="gender" name="gender" [(ngModel)]="customer.gender" required #gender="ngModel">
           <option value="null" disabled selected>Chọn giới tính</option>
           <option [ngValue]="'0'">Nam</option>
@@ -89,8 +95,8 @@
           <option [ngValue]="'2'">Khác</option>
         </select>
       </div>
-      <div *ngIf="gender.valid" class="alert alert-success">Hợp lệ</div>
-      <div *ngIf="!gender.valid" class="alert alert-danger">Vui lòng chọn giới tính của bạn</div>
+      <div *ngIf="gender.valid" class="text-green-600">Hợp lệ</div>
+      <div *ngIf="!gender.valid" class="text-red-600">Vui lòng chọn giới tính của bạn</div>
     </form>
     <div class="-ml-2.5">
       <div class="inline-flex items-center">
@@ -101,7 +107,7 @@
         >
           <input [(ngModel)]="checkBoxAgree"
                  type="checkbox"
-                 class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-pink-500 checked:bg-pink-500 checked:before:bg-pink-500 hover:before:opacity-10"
+                 class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-pink-500 checked:bg-blue-500 checked:before:bg-blue-500 hover:before:opacity-10"
                  id="checkagree"
           />
           <span

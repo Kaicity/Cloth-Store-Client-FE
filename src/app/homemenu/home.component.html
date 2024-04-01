@@ -1,16 +1,14 @@
 <app-spinner [show]="isLoading"></app-spinner>
-
 <div class="bg-white">
   <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-    <h2 class="text-2xl tracking-tight text-center text-gray-900">TẤT CẢ SẢN PHẨM</h2>
+    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl text-center">Tất Cả Sản Phẩm</h2>
     <br>
-
-    <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+    <div class="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
       <a [routerLink]="['/product', product.id]" (click)="getProductToDetail(product)" class="group"
          *ngFor="let product of this.productDtos">
         <div
           class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-          <img [src]=[product.image]
+          <img src="{{'https://firebase-clothstoreclient.s3.ap-southeast-2.amazonaws.com/image+data+client/product/' + product.image}}"
                alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
                class="h-full w-full object-cover object-center group-hover:opacity-75">
         </div>

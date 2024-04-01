@@ -1,7 +1,5 @@
 import {Observable} from "rxjs";
-import {ProductFullModel} from "../../dtos/product-full.model";
 import {warehouseBaseService} from "../Generic/warehouse-base.service";
-import {BaseSearchModel} from "../../dtos/base-search.model";
 import {Injectable} from "@angular/core";
 
 @Injectable({

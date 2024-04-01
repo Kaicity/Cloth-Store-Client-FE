@@ -16,13 +16,11 @@ export class FormsLoginComponent{
   isCheckLogin: boolean = false;
   customerInfo!: CustomerModel;
 
-
   constructor(private customerService: CustomerService, private router: Router, private shareService: SharedService){
     this.customerInfo = new CustomerModel();
   }
 
   onSubmit(): void{
-    console.log("Submit form");
   }
 
   btnLogin(){
@@ -58,8 +56,5 @@ export class FormsLoginComponent{
       }
     )
   }
-
-
-
 
 }

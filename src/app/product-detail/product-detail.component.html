@@ -70,7 +70,7 @@
 
           <div class="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8">
             <div class="aspect-h-3 aspect-w-2 overflow-hidden rounded-lg bg-gray-100 sm:col-span-4 lg:col-span-5">
-              <img [src]=[[productDetail.image]] alt="Two each of gray, white, and black shirts arranged on table."
+              <img src="{{'https://firebase-clothstoreclient.s3.ap-southeast-2.amazonaws.com/image+data+client/product/' + productDetail.image}}" alt="Two each of gray, white, and black shirts arranged on table."
                    class="object-cover object-center">
             </div>
             <div class="sm:col-span-8 lg:col-span-7">
@@ -228,7 +228,7 @@
       <a class="group" *ngFor="let product of this.productDtos">
         <div
           class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-          <img [src]=[[product.image]]
+          <img src="{{'https://firebase-clothstoreclient.s3.ap-southeast-2.amazonaws.com/image+data+client/product/' + product.image}}"
                alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
                class="h-full w-full object-cover object-center group-hover:opacity-75">
         </div>
