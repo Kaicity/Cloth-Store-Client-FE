@@ -276,7 +276,6 @@ export class ProductDetailComponent implements OnInit {
 
     this.showAlertMessage();
 
-    location.reload();
   }
 
   showAlertMessage() {

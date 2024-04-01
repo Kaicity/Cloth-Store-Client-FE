@@ -7,15 +7,13 @@
 }
 
 .carousel-indicators span {
-    background-color: #bbb;
+    background-color: darkgray;
     /* Màu nền của indicator chưa được chọn */
-    border: 1px solid #555;
-    /* Viền của indicator chưa được chọn */
     border-radius: 50%;
     /* Bo tròn các góc để tạo hình tròn */
-    width: 20px;
+    width: 12px;
     /* Kích thước chiều rộng của indicator */
-    height: 20px;
+    height: 12px;
     /* Kích thước chiều cao của indicator */
     margin-right: 5px;
     /* Khoảng cách giữa các indicator */

@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { CustomerModel } from 'src/bm-api/dtos/customer.model';
-import { CustomerService } from 'src/bm-api/Services/warehouse/Customer-service';
-import { SharedService } from "../../bm-api/Services/Data/ShareService";
-import { ExportingbillService } from "../../bm-api/Services/agency/ExportingbillService";
-import { ExportingBillFullModel } from "../../bm-api/dtos/exporting-bill-full.model";
-import { ExportingBillTransactionModel } from 'src/bm-api/dtos/exporting-bill-transaction.model';
-import { CustomerInfoModel } from 'src/bm-api/dtos/customer-info.model';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {CustomerModel} from 'src/bm-api/dtos/customer.model';
+import {CustomerService} from 'src/bm-api/Services/warehouse/Customer-service';
+import {SharedService} from "../../bm-api/Services/Data/ShareService";
+import {ExportingbillService} from "../../bm-api/Services/agency/ExportingbillService";
+import {ExportingBillTransactionModel} from 'src/bm-api/dtos/exporting-bill-transaction.model';
+import {CustomerInfoModel} from 'src/bm-api/dtos/customer-info.model';
 import {MatDialog} from "@angular/material/dialog";
 import {ModalWrapperComponent} from "../modal-wrapper/modal-wrapper.component";
 
@@ -61,9 +60,6 @@ export class ShippingComponent implements OnInit {
     console.log("CustomerModel registration successfully !")
   }
 
-  btnStepBack() {
-    this.router.navigate(['./product'])
-  }
 
   ngOnInit(): void {
     //load card old
@@ -115,15 +111,6 @@ export class ShippingComponent implements OnInit {
     this.calcuToTal = this.calcuToTal + this.calculatorDemo + this.feeDelivery;
   }
 
-
-  selectedValue: string = "assets/"
-  valueFlag : string[] = ['VNflag.png', 'USflag.png', 'CHINAflag.png', 'CANADAflag.png']
-  selectItem(index: number): void {
-    this.valueFlag.forEach(value => {
-      this.selectedValue += value.at(index);
-    })
-    console.log(this.selectedValue);
-  }
 
   //Form input mã xác nhận đơn hàng
   openModal(): void {
