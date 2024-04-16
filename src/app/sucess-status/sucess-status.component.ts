@@ -10,9 +10,8 @@ export class SucessStatusComponent{
   isLoading: boolean = false;
 
   constructor(private router: Router) {}
- 
+
   pageLoadingSucess() {
    this.router.navigate(['./']);
   }
-
 }

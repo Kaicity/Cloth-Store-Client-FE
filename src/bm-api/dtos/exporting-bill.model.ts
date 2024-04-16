@@ -1,5 +1,5 @@
 import {CustomerModel} from "./customer.model";
-import {CustomerInfoModel} from "./customer-info.model";
+import {CustomerNotLoginModel} from "./customer-notLogin.model";
 import {AgencyModel} from "./agency.model";
 
 export class ExportingBillModel {
@@ -11,5 +11,5 @@ export class ExportingBillModel {
     status!: string | null;
     customer!: CustomerModel | null;
     agency!: AgencyModel | null;
-
+    customerNotLogin!: CustomerNotLoginModel | null;
 }

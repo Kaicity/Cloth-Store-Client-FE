@@ -14,7 +14,6 @@ export class SharedService {
   private myExportingbillTransactiondata!: ExportingBillTransactionModel[];
   private myExportingbillData! : ExportingBillModel;
   private myExporttingbillFull!: ExportingBillFullModel;
-  private myShareShowCart!: boolean;
   setData(data: ProductFullModel): void {
     this.myData = data;
   }
@@ -46,6 +45,4 @@ export class SharedService {
   getDataExportingBillFull(): ExportingBillFullModel{
     return this.myExporttingbillFull;
   }
-
-
 }
