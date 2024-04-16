@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { CustomerModel } from 'src/bm-api/dtos/customer.model';
-import { ExportingBillModel } from 'src/bm-api/dtos/exporting-bill.model';
-import { ExportingBillFullModel } from 'src/bm-api/dtos/exporting-bill-full.model';
-import { ExportingBillTransactionModel } from 'src/bm-api/dtos/exporting-bill-transaction.model';
-import { SharedService } from 'src/bm-api/Services/Data/ShareService';
-import { ExportingbillService } from 'src/bm-api/Services/agency/ExportingbillService';
-import { AgencyModel } from "../../bm-api/dtos/agency.model";
-import { CateloryModel } from "../../bm-api/dtos/catelory.model";
-import { CompanyModel } from "../../bm-api/dtos/company.model";
-import { CustomerService } from "../../bm-api/Services/warehouse/Customer-service";
-import { NavigationEnd, Router } from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {CustomerModel} from 'src/bm-api/dtos/customer.model';
+import {ExportingBillModel} from 'src/bm-api/dtos/exporting-bill.model';
+import {ExportingBillFullModel} from 'src/bm-api/dtos/exporting-bill-full.model';
+import {ExportingBillTransactionModel} from 'src/bm-api/dtos/exporting-bill-transaction.model';
+import {SharedService} from 'src/bm-api/Services/Data/ShareService';
+import {AgencyModel} from "../../bm-api/dtos/agency.model";
+import {CateloryModel} from "../../bm-api/dtos/catelory.model";
+import {CompanyModel} from "../../bm-api/dtos/company.model";
+import {CustomerService} from "../../bm-api/Services/warehouse/Customer-service";
+import {NavigationEnd, Router} from "@angular/router";
 
 
 @Component({
@@ -50,7 +49,6 @@ export class CustomerInfoComponent implements OnInit {
   //Tao card va xac nhan card tiep tuc den thong tin khach hang
   public newCard(): ExportingBillTransactionModel[] {
     this.card = this.getDataExportingbillTransactionFromDetail();
-    console.log("Tat ca card cua toi: ", this.card)
     return this.card;
   }
 
@@ -62,7 +60,7 @@ export class CustomerInfoComponent implements OnInit {
     this.exFull.exportingBillTransactions = this.newCard();
 
     this.exFull.exportingBill.agency = new AgencyModel();
-    this.exFull.exportingBill.agency.name = "toi day ne";
+    this.exFull.exportingBill.agency.name = "TMA";
 
     if (localStorage.getItem('customer') != null) {
       const dataCustomer = localStorage.getItem('customer');
@@ -72,34 +70,32 @@ export class CustomerInfoComponent implements OnInit {
     }
 
     this.exFull.exportingBill.agency = new AgencyModel();
-    this.exFull.exportingBill.agency.name = "toi day ne";
+    this.exFull.exportingBill.agency.name = "TMA";
     for (let i = 0; i < this.exFull.exportingBillTransactions!.length; i++) {
       this.exFull.exportingBillTransactions[i].product!.catelory = new CateloryModel();
       this.exFull.exportingBillTransactions[i].product!.company = new CompanyModel();
-      this.exFull.exportingBillTransactions[i].product!.company!.address = "hihi";
-      this.exFull.exportingBillTransactions[i].product!.catelory!.name = "hello toi day";
+      this.exFull.exportingBillTransactions[i].product!.company!.address = "TMA";
+      this.exFull.exportingBillTransactions[i].product!.catelory!.name = "XXX";
 
     }
 
   }
 
   onSubmit(): void {
-    console.log("Submit form");
   }
 
   createBillPayment() {
-
     //Toan bo du lieu bill va bill transaction
     this.getDataExportingbillFull();
-    console.log("Đây là card")
-    console.log(this.card);
-
-    console.log("Trong bill detail có billDto và bill transaction")
-    console.log("Exbill full cấu trúc: ");
-    console.dir(this.exFull);
-
-    console.log("kiểu body .JSON nha !!!!")
-    console.log(JSON.stringify(this.exFull));
+    // console.log("Đây là card")
+    // console.log(this.card);
+    //
+    // console.log("Trong bill detail có billDto và bill transaction")
+    // console.log("Exbill full cấu trúc: ");
+    // console.dir(this.exFull);
+    //
+    // console.log("kiểu body .JSON nha !!!!")
+    // console.log(JSON.stringify(this.exFull));
 
     //Bill full to customer-accept
     this.sharedService.setDataExportingbillFull(this.exFull);
@@ -137,6 +133,7 @@ export class CustomerInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //Tu dong Login neu account Login
     const customerInfo = localStorage.getItem('customer');
     if (customerInfo != null) {
       this.username = JSON.parse(customerInfo).phone;

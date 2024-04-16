@@ -1,5 +1,9 @@
 <app-header></app-header>
 <!--Display single page-->
 <router-outlet></router-outlet>
+<button *ngIf="isShow" (click)="scrollToTop()" class="fixed bottom-5 right-10 bg-white border border-black py-3 px-3 rounded-full hover:scale-110 transition duration-300">
+  <i class="icon-angle-up"><img src="https://firebase-clothstoreclient.s3.ap-southeast-2.amazonaws.com/image+data+client/icon/pgUp.png" alt="icon"></i>
+</button>
+
 <app-footer></app-footer>
 

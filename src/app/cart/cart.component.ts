@@ -83,7 +83,6 @@ export class CartComponent implements OnInit {
       item.amount = item.quantity * item.product.price;
     }
 
-
     for (let i = 0; i < this.cartItem.length; i++) {
       if (this.cartItem[i].quantity == 0) {
         this.cartItem.splice(i, 1);
@@ -94,6 +93,7 @@ export class CartComponent implements OnInit {
     this.totalCart();
     //update localStore save card
     localStorage.setItem('card', JSON.stringify(this.cartItem));
+    location.reload();
   }
 
 }

@@ -2,4 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+.card-actions {
+  background: whitesmoke;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  width: 100%;
+  height: 20%;
+  transform: translate(-50%, -50%);
+}
+
+.group:hover .card-actions {
+  opacity: 1;
+}
+
+.group:hover img {
+  outline: 2px dashed #000;
+}
+
+
+@media (max-width: 767px) {
+  .card-actions {
+    display: none;
+  }
+}
+
 

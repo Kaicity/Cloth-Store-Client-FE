@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { CustomerModel } from "../../bm-api/dtos/customer.model";
-import { Router } from "@angular/router";
+import {NavigationEnd, Router} from "@angular/router";
 import {SharedService} from "../../bm-api/Services/Data/ShareService";
 import {ExportingBillTransactionModel} from "../../bm-api/dtos/exporting-bill-transaction.model";
 
@@ -19,14 +19,18 @@ export class HeaderComponent implements OnInit {
   customerAccountTitle!: CustomerModel
   isLoading: boolean = false;
   titleName!: string;
-  optionLanguages: OptionLanguages[] = [{value: 'VN', viewValue: 'Tiếng Việt'}, {value: 'US', viewValue: 'ENglish'}];
   isCheckHasAccount: boolean = true;
   isShowMenuUser: boolean = true;
   isShowMenuMobile: boolean = true;
 
   cartItem: ExportingBillTransactionModel[] = [];
 
-  constructor(private router: Router, private shareService: SharedService) {
+
+  constructor(private router: Router) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+      }
+    });
     this.customerAccountTitle = new CustomerModel();
   }
 
@@ -34,7 +38,6 @@ export class HeaderComponent implements OnInit {
     const storeCustomer = localStorage.getItem('customer');
     if (storeCustomer) {
       const parseCustomer = JSON.parse(storeCustomer);
-      console.log("Test account " + parseCustomer.id);
       this.titleName = parseCustomer.fullName
       this.isCheckHasAccount = false;
     }

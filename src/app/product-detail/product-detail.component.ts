@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core'
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core'
 import {ProductFullModel} from '../../bm-api/dtos/product-full.model';
 import {ActivatedRoute, Event, NavigationEnd, Router} from '@angular/router';
 import {BaseSearchModel} from 'src/bm-api/dtos/base-search.model';
@@ -10,6 +10,7 @@ import {ExportingBillModel} from "../../bm-api/dtos/exporting-bill.model";
 import {SizesModel} from "../../bm-api/dtos/sizes.model";
 import {ColorsModel} from "../../bm-api/dtos/colors.model";
 import {ProductModel} from "../../bm-api/dtos/product.model";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
@@ -43,10 +44,13 @@ export class ProductDetailComponent implements OnInit {
 
   isShowModalProductDetail: boolean = false;
 
+  selectedOptionColor!: number;
+  selectedOptionSize!: number;
+
   @ViewChild('scrollTarget') scrollTarget!: ElementRef;
 
   constructor(private productService: ProductService, private router: Router, private route: ActivatedRoute,
-              private sharedService: SharedService) {
+              private sharedService: SharedService, private snackBar: MatSnackBar) {
     if (this.isCardVibsible) {
       this.router.events.subscribe((event: Event) => {
         if (event instanceof NavigationEnd) {
@@ -54,6 +58,13 @@ export class ProductDetailComponent implements OnInit {
         }
       })
     }
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000,
+      verticalPosition: 'top',
+    });
   }
 
   inputNumberValue: number = 1;
@@ -68,32 +79,14 @@ export class ProductDetailComponent implements OnInit {
     }
   }
 
-  public decQty(item: ExportingBillTransactionModel) {
-    if (item.quantity > 0) {
-      item.quantity--;
-    }
-    if (item.quantity != null && item.product?.price != null) {
-      item.amount = item.quantity * item.product.price;
-    }
-
-
-    for (let i = 0; i < this.cardItem.length; i++) {
-      if (this.cardItem[i].quantity == 0) {
-        this.cardItem.splice(i, 1);
-      }
-    }
-
-    //Set amount of card
-    this.totalCard();
-    //update localStore save card
-    localStorage.setItem('card', JSON.stringify(this.cardItem));
-  }
-
-
   ngOnInit(): void {
     //Khoi tao lay id food param
     this.getProductId(this.route.snapshot.params['id']);
 
+    //Neu load lai thi tro ve trang san pham ban dau
+    if (this.getProductFromMenuProduct() === undefined) {
+      this.router.navigate(['/']);
+    }
 
     //Lay danh sach food
     this.getAllProduct();
@@ -129,25 +122,21 @@ export class ProductDetailComponent implements OnInit {
 
   public onChangeColorOption(option: number) {
     let index = +option;
-
+    this.selectedOptionColor = index;
     if (this.productDetail.colors !== null && this.productDetail.colors.length > 0) {
       let color = new ColorsModel(this.productDetail.colors[index]);
       this.detailBill!.color = color;
       this.detailBill!.product!.image = color.image;
       this.productDetail.image = color.image;
-      console.log(color.image);
-
     }
   }
 
   public onChangeSizeOption(option: number) {
     let index = +option;
-
-
+    this.selectedOptionSize = index;
     if (this.productDetail.sizes !== null && this.productDetail.sizes.length > 0) {
       let sizesDto = new SizesModel(this.productDetail.sizes[index]);
       this.detailBill!.size = sizesDto;
-
     }
   }
 
@@ -158,16 +147,13 @@ export class ProductDetailComponent implements OnInit {
         this.getAllProductComplete(res);
       }
     )
-    console.log("hello product old");
   }
 
 
   public getProductId(id: any): void {
-    console.log("ahihi");
     this.productService.getProductById(id).subscribe(
       res => {
         this.productDetail = res;
-        console.log(this.productDetail);
       }
     )
   }
@@ -198,16 +184,13 @@ export class ProductDetailComponent implements OnInit {
     this.search = res.result;
 
     //set hình ảnh của sản phẩm là củ option đầu tiên
-    for(let productChose of this.search.result)
+    for (let productChose of this.search.result)
       if (productChose.colors !== null && productChose.colors.length > 0) productChose.image = productChose.colors[0].image;
 
     //this.search.recordOfPage = 8;
     //Giá trị khi hiển thị mặc định là 8 sản phẩm
     this.search.recordOfPage = 4;
     for (let i = 0; i < this.search.recordOfPage; i++) {
-      console.log(this.search.result[i].image);
-      // Your code here
-      console.log(this.search.result[i]);
       this.productDtos.push(this.search.result[i]);
     }
   }
@@ -228,54 +211,59 @@ export class ProductDetailComponent implements OnInit {
 
   }
 
-
   public toogleCard(): void {
     this.isCardVisible = !this.isCardVisible;
   }
 
 
   public addProductToCardItem(): void {
-    let checkItemExist = false;
-    let detail: ExportingBillTransactionModel = new ExportingBillTransactionModel(this.detailBill);
+    //Kiem tra co mau sac va size chua
+    if (this.selectedOptionSize == null || this.selectedOptionColor == null) {
+      this.openSnackBar("Chọn các tùy chọn cho sản phẩm trước khi cho sản phẩm vào giỏ hàng của bạn.", "Đã hiểu");
+    } else {
+      let checkItemExist = false;
+      let detail: ExportingBillTransactionModel = new ExportingBillTransactionModel(this.detailBill);
 
-    if (this.cardItem.length != 0) {
-      this.cardItem.forEach(param => {
-        if (param.product?.id === detail.product!.id && param.size.optionProduct!.name === this.detailBill.size.optionProduct!.name && param
-          .color.optionProduct.name === this.detailBill.color.optionProduct.name) {// cùng id cùng id option cùng id option detail
+      if (this.cardItem.length != 0) {
+        this.cardItem.forEach(param => {
+          if (param.product?.id === detail.product!.id && param.size.optionProduct!.name === this.detailBill.size.optionProduct!.name && param
+            .color.optionProduct.name === this.detailBill.color.optionProduct.name) {// cùng id cùng id option cùng id option detail
 
-          param.quantity++;
-          if (param.product?.price != null) {
-            param.amount = param.quantity * param.product?.price;
-            //Cập nhật giỏ hàng
-            localStorage.setItem('card', JSON.stringify(this.cardItem));
+            param.quantity++;
+            if (param.product?.price != null) {
+              param.amount = param.quantity * param.product?.price;
+              //Cập nhật giỏ hàng
+              localStorage.setItem('card', JSON.stringify(this.cardItem));
+            }
+            checkItemExist = true;
+            return;
           }
-          checkItemExist = true;
-          return;
-        }
-      });
+        });
+      }
+
+      if (checkItemExist) {
+        this.showAlertMessage()
+        return;
+      }
+
+      if (detail.product?.price != null) {
+        detail.amount = detail.quantity * detail.product.price;
+      }
+
+      this.cardItem.push(detail);
+
+      //Lưu giỏ hàng vào localstore toàn cục
+      localStorage.setItem('card', JSON.stringify(this.cardItem));
+      //Amount to card display
+      this.totalCard();
+
+      this.sharedService.setDataExportingbillTransaction(this.cardItem);
+      this.sharedService.setDataExportingbill(this.createExportingbill());
+
+      this.showAlertMessage();
+
+      location.reload();
     }
-
-    if (checkItemExist) {
-      this.showAlertMessage()
-      return;
-    }
-
-    if (detail.product?.price != null) {
-      detail.amount = detail.quantity * detail.product.price;
-    }
-
-    this.cardItem.push(detail);
-
-    //Lưu giỏ hàng vào localstore toàn cục
-    localStorage.setItem('card', JSON.stringify(this.cardItem));
-    //Amount to card display
-    this.totalCard();
-
-    this.sharedService.setDataExportingbillTransaction(this.cardItem);
-    this.sharedService.setDataExportingbill(this.createExportingbill());
-
-    this.showAlertMessage();
-
   }
 
   showAlertMessage() {
@@ -350,18 +338,6 @@ export class ProductDetailComponent implements OnInit {
   public getProductFromMenuProduct(): ProductFullModel {
     let a = this.sharedService.getData();
     return a;
-  }
-
-
-  public setDataExportingbillTransaction() {
-    this.sharedService.setDataExportingbillTransaction(this.cardItem);
-    this.sharedService.setDataExportingbill(this.createExportingbill());
-
-    this.router.navigate(['./customer-info']);
-  }
-
-  closeModalProductDetail() {
-    this.isShowModalProductDetail = true;
   }
 
 }

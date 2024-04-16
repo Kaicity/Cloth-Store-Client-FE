@@ -4,8 +4,6 @@ import {Event, NavigationEnd, Router} from '@angular/router';
 import {BaseSearchModel} from "../../bm-api/dtos/base-search.model";
 import {ProductService} from "../../bm-api/Services/warehouse/Product-service";
 import {ResponseModel} from "../../bm-api/dtos/response.model";
-import {HttpClient} from "@angular/common/http";
-import {ExportingBillTransactionModel} from 'src/bm-api/dtos/exporting-bill-transaction.model';
 import {SharedService} from 'src/bm-api/Services/Data/ShareService';
 
 
@@ -16,21 +14,18 @@ import {SharedService} from 'src/bm-api/Services/Data/ShareService';
 })
 export class HomeComponent implements OnInit {
   productDtos: ProductFullModel[] = []; // Tao danh sach chua cac mon an
-  isCardVisible = false;
-  cardItem: ExportingBillTransactionModel[] = [];
   currentPage: number = 1;
   isLoading: boolean = false;
-  // test sau
 
   public search: BaseSearchModel<ProductFullModel[]> = new BaseSearchModel<ProductFullModel[]>();
 
-  constructor(private http: HttpClient, private router: Router, private foodService: ProductService, private sharedService: SharedService) {
+  constructor(private router: Router, private foodService: ProductService, private sharedService: SharedService) {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         window.scrollTo(0, 0);
       }
     })
-  } // Lay tu foodservice
+  }
 
 
   private getAllProduct() {
@@ -55,9 +50,8 @@ export class HomeComponent implements OnInit {
     }
     // Lấy danh sách đối tượng từ API
     this.search = res.result;
-    console.log(res.result);
     //set hình ảnh của sản phẩm là củ option đầu tiên
-    for(let productChose of this.search.result)
+    for (let productChose of this.search.result)
       if (productChose.colors !== null && productChose.colors.length > 0) productChose.image = productChose.colors[0].image;
 
     //this.search.recordOfPage = 8;
@@ -70,12 +64,11 @@ export class HomeComponent implements OnInit {
 
     setTimeout(() => {
       this.isLoading = false;
-    },1000);
+    }, 1000);
   }
 
   //Lay food trong menu chinh den food detail
   public getProductToDetail(item: ProductFullModel): void {
-    console.log(item);
     this.sharedService.setData(item);
   }
 
@@ -85,8 +78,8 @@ export class HomeComponent implements OnInit {
   itemInPageList: number[] = [4, 8, 12, 16];
 
   //Thay phân trang khi chọn giá trị
-  public updateDataOfPageWhenChoseNext(event: any) {
-
+  async updateDataOfPageWhenChoseNext(event: any) {
+    this.isLoading = true;
     this.search.recordOfPage = +event.pageSize;
     this.currentPage = +event.pageIndex + 1;
     if (this.currentPage > 0) {
@@ -94,15 +87,21 @@ export class HomeComponent implements OnInit {
       var end: number = this.currentPage * this.search.recordOfPage;
       var start: number = end - this.search.recordOfPage;
       for (let i = start; i < end; i++) {
-        // Your code here
         if (i < this.search.result.length) this.productDtos.push(this.search.result[i]);
       }
+      this.actionScrollChange();
     }
+  }
 
+  actionScrollChange() {
+    //Scroll top
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 1000)
+    window.scrollTo(0, 0);
   }
 
   ngOnInit(): void {
     this.getAllProduct();
   }
-
 }

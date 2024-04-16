@@ -15,8 +15,6 @@ export class AgencyBaseService extends GenericService{
   }
 
   protected post(url: string, body?: object, params?: object): Observable<any> {
-    // tự print
-    console.log(BASE_URL+url)
     return this.http.post(BASE_URL+url, body, {
       params: this.getParams(params)
     });
