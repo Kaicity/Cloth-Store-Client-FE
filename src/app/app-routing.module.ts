@@ -13,6 +13,7 @@ import { SucessStatusComponent } from './sucess-status/sucess-status.component';
 import {CartComponent} from "./cart/cart.component";
 import {PageErrorComponent} from "./page-error/page-error.component";
 import {ContactComponent} from "./contact/contact.component";
+import {OrderHistoryComponent} from "./order-history/order-history.component";
 
 
 const routes: Routes = [
@@ -30,6 +31,7 @@ const routes: Routes = [
   {path: 'success-order', component: SucessStatusComponent},
   {path: 'page-error', component: PageErrorComponent},
   {path: 'contact', component: ContactComponent},
+  {path: 'order-history', component: OrderHistoryComponent},
   {path: '', redirectTo: 'product', pathMatch: 'full' },
 ];
 

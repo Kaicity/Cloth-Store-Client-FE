@@ -170,16 +170,8 @@ export class ProductDetailComponent implements OnInit {
         )
       }
     }
-    // this.seach = res.result;
-    //
-    //
-    // //this.search.recordOfPage = 8;
-    // this.seach.recordOfPage = 4;
-    // for (let i = 0; i < this.seach.recordOfPage; i++) {
-    //   // Your code here
-    //   this.productDtos.push(this.seach.result[i]);
-    // }
 
+    
     // Lấy danh sách đối tượng từ API
     this.search = res.result;
 

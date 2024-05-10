@@ -2,17 +2,18 @@
 
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-    <img class="mx-auto h-10 w-auto" src="https://static-00.iconduck.com/assets.00/material-ui-icon-2048x1626-on580ia9.png"
+    <img class="mx-auto h-10 w-auto"
+         src="https://static-00.iconduck.com/assets.00/material-ui-icon-2048x1626-on580ia9.png"
          alt="Your Company">
-    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Đăng ký tài khoản</h2>
+    <h2 class="mt-10 text-center text-3xl font-bold leading-9 tracking-tight text-gray-900">Đăng ký tài khoản</h2>
   </div>
 
   <div class="mt-10 sm:mx-auto sm:w-full lg:max-w-lg">
     <form class="my-8 text-sm" action="#" method="POST" (ngSubmit)="onSubmit()" #userForm="ngForm">
       <div class="form-group">
-        <label>Họ tên</label>
+        <label class="text-sm">Họ tên</label>
         <input type="text" [(ngModel)]="customer.fullName"
-               class="form-control block w-full rounded-md border border-black py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+               class="block w-full border border-gray-100 rounded-md px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                id="fullName"
                name="fullName"
                placeholder=""
@@ -21,10 +22,10 @@
       <div *ngIf="fullName.valid" class="text-green-600">Hợp lệ</div>
       <div *ngIf="!fullName.valid" class="text-red-600">Điền đầy đủ họ tên của bạn</div>
 
-      <div class="form-group">
-        <label>Email</label>
+      <div class="form-group mt-2">
+        <label class="text-sm">Email</label>
         <input type="text" [(ngModel)]="customer.email"
-               class="form-control block w-full rounded-md border border-black py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+               class="block w-full border border-gray-100 rounded-md px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                id="email"
                name="email"
                placeholder=" alex@gmail.com"
@@ -33,10 +34,10 @@
       <div *ngIf="email.valid" class="text-green-600">Hợp lệ</div>
       <div *ngIf="!email.valid" class="text-red-600">Điền đầy đủ địa chỉ Email của bạn</div>
 
-      <div class="form-group">
-        <label>Số điện thoại</label>
+      <div class="form-group mt-2">
+        <label class="text-sm">Số điện thoại</label>
         <input type="text" [(ngModel)]="customer.phone"
-               class="form-control block w-full rounded-md border border-black py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+               class="block w-full border border-gray-100 rounded-md px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                id="phone"
                name="phone"
                placeholder=" +84"
@@ -46,9 +47,9 @@
       <div *ngIf="!phone.valid" class="text-red-600">Điền đầy đủ Số Điện Thoại của bạn</div>
 
 
-      <div class="form-group">
+      <div class="form-group mt-2">
         <input type="text" [(ngModel)]="customer.address"
-               class="form-control block w-full rounded-md border border-black py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+               class="block w-full border border-gray-100 rounded-md px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                id="address"
                name="address"
                placeholder="Địa chỉ"
@@ -58,10 +59,10 @@
       <div *ngIf="!address.valid" class="text-red-600">Điền đầy đủ địa chỉ hiện tại của bạn</div>
 
 
-      <div class="form-group">
-        <label>Mật khẩu</label>
+      <div class="form-group mt-2">
+        <label class="text-sm">Mật khẩu</label>
         <input type="password" [(ngModel)]="customer.password"
-               class="form-control block w-full rounded-md border border-black py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+               class="block w-full border border-gray-100 rounded-md px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                id="password"
                name="password"
                placeholder=""
@@ -71,10 +72,10 @@
       <div *ngIf="!password.valid" class="text-red-600">Tao mật khẩu cho tài khoản của bạn</div>
 
 
-      <div class="form-group">
-        <label>Ngày sinh</label>
+      <div class="form-group mt-2">
+        <label class="text-sm">Ngày sinh</label>
         <input type="date" [(ngModel)]="customer.birthday"
-               class="form-control block w-full rounded-md border border-black py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+               class="block w-full border border-gray-100 rounded-md px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                id="birthday"
                name="birthday"
                placeholder=""
@@ -84,8 +85,8 @@
       <div *ngIf="!birthday.valid" class="text-red-600">Vui lòng chọn ngày sinh của bạn</div>
 
 
-      <div class="form-group">
-        <label>Giới tính</label>
+      <div class="form-group mt-2">
+        <label class="text-sm">Giới tính</label>
         <select
           class="form-control block w-full rounded-md border border-black py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           id="gender" name="gender" [(ngModel)]="customer.gender" required #gender="ngModel">
@@ -132,8 +133,9 @@
           class="mt-px cursor-pointer select-none font-light text-gray-700"
           for="checkagree"
         >
-          Tôi đồng ý với <a href="#" class="text-blue-600 hover:text-blue-700 hover:underline">điều khoản</a> và <a href="#"
-                                                                                                              class="text-blue-600 hover:text-blue-700 hover:underline">dịch vụ</a></label>
+          Tôi đồng ý với <a href="#" class="text-blue-600 hover:text-blue-700 hover:underline">điều khoản</a> và <a
+          href="#"
+          class="text-blue-600 hover:text-blue-700 hover:underline">dịch vụ</a></label>
       </div>
     </div>
     <br>

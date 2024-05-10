@@ -35,11 +35,7 @@ export class CartComponent implements OnInit {
     });
 
     //check status
-    if (sumPriceCardDisplay != 0) {
-      this.isCheckHasItem = false;
-    } else {
-      this.isCheckHasItem = true;
-    }
+    this.isCheckHasItem = sumPriceCardDisplay == 0;
     return sumPriceCardDisplay;
 
   }

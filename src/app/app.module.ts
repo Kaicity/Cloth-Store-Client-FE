@@ -25,7 +25,8 @@ import { ModalWrapperComponent } from './modal-wrapper/modal-wrapper.component';
 import { AlertComponent } from './Share/Component/alert/alert.component';
 import { CartComponent } from './cart/cart.component';
 import { PageErrorComponent } from './page-error/page-error.component';
-import { ContactComponent } from './contact/contact.component'
+import { ContactComponent } from './contact/contact.component';
+import { OrderHistoryComponent } from './order-history/order-history.component'
 
 
 
@@ -51,6 +52,7 @@ import { ContactComponent } from './contact/contact.component'
     CartComponent,
     PageErrorComponent,
     ContactComponent,
+    OrderHistoryComponent,
   ],
   imports: [
     BrowserModule,
