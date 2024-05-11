@@ -5,6 +5,8 @@ import {BaseSearchModel} from "../../bm-api/dtos/base-search.model";
 import {ProductService} from "../../bm-api/Services/warehouse/Product-service";
 import {ResponseModel} from "../../bm-api/dtos/response.model";
 import {SharedService} from 'src/bm-api/Services/Data/ShareService';
+import {AngularFireStorage} from "@angular/fire/compat/storage";
+import {Observable} from "rxjs";
 
 
 @Component({
@@ -18,12 +20,18 @@ export class HomeComponent implements OnInit {
   isLoading: boolean = false;
 
   public search: BaseSearchModel<ProductFullModel[]> = new BaseSearchModel<ProductFullModel[]>();
+  imageUrl!: Observable<any[]>;
 
-  constructor(private router: Router, private foodService: ProductService, private sharedService: SharedService) {
+  constructor(private router: Router, private foodService: ProductService, private sharedService: SharedService,
+              private storageService: AngularFireStorage) {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         window.scrollTo(0, 0);
       }
+    });
+
+    storageService.ref("image data client/product/assets").getDownloadURL().subscribe(url => {
+      this.imageUrl = url;
     })
   }
 
@@ -103,5 +111,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllProduct();
+    console.log(this.imageUrl + " ?????")
   }
 }
