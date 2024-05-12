@@ -6,7 +6,6 @@ import {ProductService} from "../../bm-api/Services/warehouse/Product-service";
 import {ResponseModel} from "../../bm-api/dtos/response.model";
 import {SharedService} from 'src/bm-api/Services/Data/ShareService';
 import {AngularFireStorage} from "@angular/fire/compat/storage";
-import {Observable} from "rxjs";
 
 
 @Component({
@@ -18,23 +17,18 @@ export class HomeComponent implements OnInit {
   productDtos: ProductFullModel[] = []; // Tao danh sach chua cac mon an
   currentPage: number = 1;
   isLoading: boolean = false;
-
   public search: BaseSearchModel<ProductFullModel[]> = new BaseSearchModel<ProductFullModel[]>();
-  imageUrl!: Observable<any[]>;
+  image!: string[];
+  ref: any;
 
   constructor(private router: Router, private foodService: ProductService, private sharedService: SharedService,
-              private storageService: AngularFireStorage) {
+              private fireStorage: AngularFireStorage) {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         window.scrollTo(0, 0);
       }
     });
-
-    storageService.ref("image data client/product/assets").getDownloadURL().subscribe(url => {
-      this.imageUrl = url;
-    })
   }
-
 
   private getAllProduct() {
     this.isLoading = true;
@@ -70,6 +64,15 @@ export class HomeComponent implements OnInit {
       this.productDtos.push(this.search.result[i]);
     }
 
+    //Code bởi NQTiến 12/05/2024 lay path hình ảnh từ firebase gán ngược lại giá trị image của product
+    this.productDtos.forEach(value => {
+      const path = 'image_data_client/product/' + value.image; // Your image path
+      this.ref = this.fireStorage.ref(path)
+      this.ref.getDownloadURL().subscribe((url: any) => {
+        value.image = url
+      });
+    })
+
     setTimeout(() => {
       this.isLoading = false;
     }, 1000);
@@ -79,7 +82,6 @@ export class HomeComponent implements OnInit {
   public getProductToDetail(item: ProductFullModel): void {
     this.sharedService.setData(item);
   }
-
 
   //Giá trị phân trang cho tất cả sản phẩm
   quality: number = 1;
@@ -109,8 +111,25 @@ export class HomeComponent implements OnInit {
     window.scrollTo(0, 0);
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    //this.image = await this.getImagesInDirectory("/image_data_client/product/assets");
+
+
     this.getAllProduct();
-    console.log(this.imageUrl + " ?????")
+  }
+
+  async getImagesInDirectory(directory: string): Promise<string[]> {
+    const ref = this.fireStorage.ref(directory);
+    const listResult = await ref.listAll().toPromise();
+    if (listResult && listResult.items) {
+      const urls: string[] = [];
+      await Promise.all(listResult.items.map(async (item) => {
+        const url = await item.getDownloadURL();
+        urls.push(url);
+      }));
+      return urls;
+    } else {
+      return [];
+    }
   }
 }

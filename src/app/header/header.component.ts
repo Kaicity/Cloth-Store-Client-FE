@@ -1,8 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
-import { CustomerModel } from "../../bm-api/dtos/customer.model";
+import {Component, OnInit} from '@angular/core';
+import {CustomerModel} from "../../bm-api/dtos/customer.model";
 import {NavigationEnd, Router} from "@angular/router";
-import {SharedService} from "../../bm-api/Services/Data/ShareService";
 import {ExportingBillTransactionModel} from "../../bm-api/dtos/exporting-bill-transaction.model";
+import {AngularFireStorage} from "@angular/fire/compat/storage";
+import {Observable} from "rxjs";
 
 interface OptionLanguages {
   value: string;
@@ -24,14 +25,21 @@ export class HeaderComponent implements OnInit {
   isShowMenuMobile: boolean = true;
 
   cartItem: ExportingBillTransactionModel[] = [];
+  imageUrl!: Observable<any[]>;
 
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private storageService: AngularFireStorage) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
       }
     });
     this.customerAccountTitle = new CustomerModel();
+
+    //Firebase storage
+    this.storageService.ref("image data client/icon/").getDownloadURL().subscribe(url => {
+      this.imageUrl = url;
+    });
+
   }
 
   ngOnInit(): void {
@@ -72,7 +80,7 @@ export class HeaderComponent implements OnInit {
   }
 
   openMenuUser() {
-    if(!this.isShowMenuUser){
+    if (!this.isShowMenuUser) {
       this.isShowMenuUser = true;
       return;
     }

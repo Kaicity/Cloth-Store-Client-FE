@@ -1,0 +1,6 @@
+<input type="file" (change)="onFileChange($event)">Chon file
+
+<div *ngFor="let key of getImageKeys()">
+  <input type="text">
+  <img [src]="images_dict[key]" alt="Uploaded Image">
+</div>

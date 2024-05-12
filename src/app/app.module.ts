@@ -30,6 +30,7 @@ import {OrderHistoryComponent} from './order-history/order-history.component'
 import {AngularFireModule} from "@angular/fire/compat";
 import {FirebaseEnvironment} from "../firebase/firebase-environment";
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
+import { TestComponent } from './test/test.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import {AngularFireStorageModule} from "@angular/fire/compat/storage";
     PageErrorComponent,
     ContactComponent,
     OrderHistoryComponent,
+    TestComponent,
   ],
   imports: [
     BrowserModule,
