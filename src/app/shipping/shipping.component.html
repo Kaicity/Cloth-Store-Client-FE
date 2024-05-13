@@ -27,9 +27,9 @@
             </h4>
             <br>
             <!--Item cart-->
-            <div class="w-full flex items-center" *ngFor="let item of oldCardProduct">
+            <div class="w-full flex items-center mb-3" *ngFor="let item of oldCardProduct">
               <div class="overflow-hidden rounded-lg w-16 h-16 bg-gray-50 border border-gray-200">
-                <img src="{{'https://firebase-clothstoreclient.s3.ap-southeast-2.amazonaws.com/image+data+client/product/' +item.product!.image}}" alt="">
+                <img src="{{item.product!.image}}" alt="">
               </div>
               <div class="flex-grow pl-3">
                 <h6 class="font-semibold uppercase text-gray-600">{{ item.product?.name }}</h6>
@@ -53,11 +53,11 @@
                 <div>
                   <input
                     class="w-full px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
-                    placeholder="XXXXXX" type="text"/>
+                    placeholder="XXXXXX" type="text" [(ngModel)]="codeSeller"/>
                 </div>
               </div>
               <div class="px-2">
-                <button
+                <button (click)="btnCheckCodeSeller()"
                   class="block w-full max-w-xs mx-auto border border-transparent bg-gray-400 hover:bg-gray-500 focus:bg-gray-500 text-white rounded-md px-5 py-2 font-semibold">
                   Áp dụng
                 </button>
@@ -297,7 +297,7 @@
 </div>
 
 <!-- BUY ME A BEER AND HELP SUPPORT OPEN-SOURCE RESOURCES -->
-<div class="flex items-end justify-end fixed bottom-0 right-0 mb-4 mr-4 z-10">
+<div class="flex items-end justify-end fixed bottom-0 right-20 mb-4 mr-4 z-10">
   <div>
     <a title="Buy me a beer" href="https://www.buymeacoffee.com/scottwindon" target="_blank"
        class="block w-16 h-16 rounded-full transition-all shadow hover:shadow-lg transform hover:scale-110 hover:rotate-12">

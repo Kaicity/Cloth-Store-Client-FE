@@ -7,6 +7,8 @@ import {ExportingbillService} from "../../bm-api/Services/agency/ExportingbillSe
 import {ExportingBillTransactionModel} from 'src/bm-api/dtos/exporting-bill-transaction.model';
 import {CustomerNotLoginModel} from 'src/bm-api/dtos/customer-notLogin.model';
 import {MatDialog} from "@angular/material/dialog";
+import {AngularFireStorage} from "@angular/fire/compat/storage";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-shipping',
@@ -28,10 +30,15 @@ export class ShippingComponent implements OnInit {
   customerPhone!: string;
   customerEmail!: string;
   customerAddress!: string;
+  private ref: any;
+
+  //code seller
+  codeSeller!: string;
 
 
   constructor(private customerService: CustomerService, private router: Router, private shareService: SharedService,
-    private exportingBillService: ExportingbillService, public dialog: MatDialog) {
+              private exportingBillService: ExportingbillService, public dialog: MatDialog, private fireStorage: AngularFireStorage,
+              private snack: MatSnackBar) {
     window.scrollTo(0, 0);
     this.customer = new CustomerModel();
     this.customerNotLogin = new CustomerNotLoginModel();
@@ -89,12 +96,34 @@ export class ShippingComponent implements OnInit {
     //Su dung shareService de lay ra
     this.oldCardProduct = this.shareService.getDataExportingbillTransaction();
 
+    //Code bởi NQTiến 12/05/2024 lay path hình ảnh từ firebase gán ngược lại giá trị image của product
+    this.oldCardProduct.forEach(value => {
+      const path = 'image_data_client/product/' + value.product?.image; // Your image path
+      this.ref = this.fireStorage.ref(path)
+      this.ref.getDownloadURL().subscribe((url: any) => {
+        if (value.product?.image) {
+          value.product.image = url
+        }
+      });
+    })
+
     this.howProduct = this.oldCardProduct.length;
-    this, this.oldCardProduct.forEach(element => {
+    this.oldCardProduct.forEach(element => {
       if (element.amount) {
         this.calculatorDemo += element.amount;
       }
     });
     this.calcuToTal = this.calcuToTal + this.calculatorDemo + this.feeDelivery;
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snack.open(message, action, {
+      duration: 3000,
+      verticalPosition: 'top',
+    });
+  }
+
+  btnCheckCodeSeller() {
+    this.codeSeller != undefined ? alert("Nhập mã thành công") : this.openSnackBar("Vui lòng nhập mã giảm giá", "Thông báo");
   }
 }
