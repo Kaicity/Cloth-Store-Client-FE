@@ -16,7 +16,8 @@
           <div>
             <a href="#">
               <span class="sr-only">Your Company</span>
-              <img class="h-8 w-auto" src="https://static-00.iconduck.com/assets.00/material-ui-icon-2048x1626-on580ia9.png" alt="">
+              <img class="h-8 w-auto"
+                   src="https://static-00.iconduck.com/assets.00/material-ui-icon-2048x1626-on580ia9.png" alt="">
             </a>
           </div>
           <button type="button" (click)="btnCloseMenuMobile()"
@@ -77,81 +78,24 @@
                 <p aria-hidden="true" class="mt-1">Shop now</p>
               </div>
             </div>
-            <div>
-              <p id="men-clothing-heading-mobile" class="font-medium text-gray-900">Clothing</p>
-              <ul role="list" aria-labelledby="men-clothing-heading-mobile" class="mt-6 flex flex-col space-y-6">
-                <li class="flow-root">
-                  <a href="#" class="-m-2 block p-2 text-gray-500">Tops</a>
-                </li>
-                <li class="flow-root">
-                  <a href="#" class="-m-2 block p-2 text-gray-500">Pants</a>
-                </li>
-                <li class="flow-root">
-                  <a href="#" class="-m-2 block p-2 text-gray-500">Sweaters</a>
-                </li>
-                <li class="flow-root">
-                  <a href="#" class="-m-2 block p-2 text-gray-500">T-Shirts</a>
-                </li>
-                <li class="flow-root">
-                  <a href="#" class="-m-2 block p-2 text-gray-500">Jackets</a>
-                </li>
-                <li class="flow-root">
-                  <a href="#" class="-m-2 block p-2 text-gray-500">Activewear</a>
-                </li>
-                <li class="flow-root">
-                  <a href="#" class="-m-2 block p-2 text-gray-500">Browse All</a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <p id="men-accessories-heading-mobile" class="font-medium text-gray-900">Accessories</p>
-              <ul role="list" aria-labelledby="men-accessories-heading-mobile" class="mt-6 flex flex-col space-y-6">
-                <li class="flow-root">
-                  <a href="#" class="-m-2 block p-2 text-gray-500">Watches</a>
-                </li>
-                <li class="flow-root">
-                  <a href="#" class="-m-2 block p-2 text-gray-500">Wallets</a>
-                </li>
-                <li class="flow-root">
-                  <a href="#" class="-m-2 block p-2 text-gray-500">Bags</a>
-                </li>
-                <li class="flow-root">
-                  <a href="#" class="-m-2 block p-2 text-gray-500">Sunglasses</a>
-                </li>
-                <li class="flow-root">
-                  <a href="#" class="-m-2 block p-2 text-gray-500">Hats</a>
-                </li>
-                <li class="flow-root">
-                  <a href="#" class="-m-2 block p-2 text-gray-500">Belts</a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <p id="men-brands-heading-mobile" class="font-medium text-gray-900">Brands</p>
-              <ul role="list" aria-labelledby="men-brands-heading-mobile" class="mt-6 flex flex-col space-y-6">
-                <li class="flow-root">
-                  <a href="#" class="-m-2 block p-2 text-gray-500">Re-Arranged</a>
-                </li>
-                <li class="flow-root">
-                  <a href="#" class="-m-2 block p-2 text-gray-500">Counterfeit</a>
-                </li>
-                <li class="flow-root">
-                  <a href="#" class="-m-2 block p-2 text-gray-500">Full Nelson</a>
-                </li>
-                <li class="flow-root">
-                  <a href="#" class="-m-2 block p-2 text-gray-500">My Way</a>
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
 
         <div class="space-y-6 border-t border-gray-200 px-4 py-6">
           <div class="flow-root">
-            <a href="#" class="-m-2 block p-2 font-medium text-gray-900">Company</a>
+            <a routerLink="/homepage" class="-m-2 block p-2 font-medium text-gray-900">Trang chủ</a>
           </div>
           <div class="flow-root">
-            <a href="#" class="-m-2 block p-2 font-medium text-gray-900">Stores</a>
+            <a routerLink="/product" class="-m-2 block p-2 font-medium text-gray-900">Sản phẩm</a>
+          </div>
+          <div class="flow-root">
+            <a routerLink="/about-us" class="-m-2 block p-2 font-medium text-gray-900">Giới thiệu</a>
+          </div>
+          <div class="flow-root">
+            <a routerLink="/contact" class="-m-2 block p-2 font-medium text-gray-900">Liên hệ</a>
+          </div>
+          <div class="flow-root">
+            <a routerLink="/store-service" class="-m-2 block p-2 font-medium text-gray-900">Ưu đãi</a>
           </div>
         </div>
 
@@ -161,7 +105,8 @@
                [hidden]="!isCheckHasAccount">Đăng nhập</a>
           </div>
           <div class="flow-root">
-            <a class="-m-2 block p-2 font-medium text-gray-900 cursor-pointer" [routerLink]="'/form-signin'" [hidden]="!isCheckHasAccount">Tạo tài khoản</a>
+            <a class="-m-2 block p-2 font-medium text-gray-900 cursor-pointer" [routerLink]="'/form-signin'"
+               [hidden]="!isCheckHasAccount">Tạo tài khoản</a>
           </div>
           <div class="flow-root">
             <a class="-m-2 block p-2 font-medium text-gray-900 cursor-pointer" (click)="btnLogout()">Đăng xuất</a>
@@ -187,7 +132,8 @@
       <div class="border-b border-gray-200">
         <div class="flex h-16 items-center">
           <!-- Mobile menu toggle, controls the 'mobileMenuOpen' state. -->
-          <button type="button" class="relative rounded-md bg-white p-2 text-gray-400 lg:hidden" (click)="btnShowMenuMobile()">
+          <button type="button" class="relative rounded-md bg-white p-2 text-gray-400 lg:hidden"
+                  (click)="btnShowMenuMobile()">
             <span class="absolute -inset-0.5"></span>
             <span class="sr-only">Open menu</span>
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -199,19 +145,25 @@
           <!-- Logo -->
           <div class="ml-4 flex lg:ml-0">
             <a href="#">
-              <span class="sr-only">Your Company</span>
-              <img class="h-8 w-auto" src="https://static-00.iconduck.com/assets.00/material-ui-icon-2048x1626-on580ia9.png" alt="">
+              <span class="sr-only">Cửa Hàng</span>
+              <img class="h-8 w-auto"
+                   src="https://static-00.iconduck.com/assets.00/material-ui-icon-2048x1626-on580ia9.png" alt="">
             </a>
           </div>
 
           <!-- Flyout menus -->
           <div class="hidden lg:ml-8 lg:block lg:self-stretch">
             <div class="flex h-full space-x-8">
-              <a routerLink="/homepage" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Trang chủ</a>
-              <a routerLink="/product" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Sản phẩm</a>
-              <a routerLink="/about-us" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Giới thiệu</a>
-              <a routerLink="/contact" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Liên hệ</a>
-              <a routerLink="/store-service" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Ưu đãi</a>
+              <a routerLink="/homepage" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Trang
+                chủ</a>
+              <a routerLink="/product" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Sản
+                phẩm</a>
+              <a routerLink="/about-us" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Giới
+                thiệu</a>
+              <a routerLink="/contact" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Liên
+                hệ</a>
+              <a routerLink="/store-service"
+                 class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Ưu đãi</a>
             </div>
           </div>
 
@@ -220,7 +172,8 @@
               <a class="text-sm font-medium text-gray-700 hover:text-gray-800 cursor-pointer" (click)="btnToPageLogin()"
                  [hidden]="!isCheckHasAccount">Đăng nhập</a>
               <span class="h-6 w-px bg-gray-200" aria-hidden="true"></span>
-              <a class="text-sm font-medium text-gray-700 hover:text-gray-800 cursor-pointer" [routerLink]="'/form-signin'" [hidden]="!isCheckHasAccount">Tạo
+              <a class="text-sm font-medium text-gray-700 hover:text-gray-800 cursor-pointer"
+                 [routerLink]="'/form-signin'" [hidden]="!isCheckHasAccount">Tạo
                 tài khoản</a>
             </div>
 
@@ -253,7 +206,8 @@
                   <path stroke-linecap="round" stroke-linejoin="round"
                         d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/>
                 </svg>
-                <span class="ml-2 text-sm font-medium text-red-500 group-hover:text-red-500">{{cartItem.length}}</span>
+                <span
+                  class="ml-2 text-sm font-medium text-red-500 group-hover:text-red-500">{{ cartItem.length }}</span>
                 <span class="sr-only">items in cart, view bag</span>
               </a>
             </div>
@@ -267,21 +221,24 @@
                   <span class="absolute -inset-1.5"></span>
                   <span class="sr-only">Open user menu</span>
                   <img class="h-10 w-10 rounded-full"
-                       src="https://scontent.fsgn8-4.fna.fbcdn.net/v/t1.6435-9/129463228_1044323955974046_7436598048619044227_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=RJbJlNqDSeMAX_I-L6H&_nc_ht=scontent.fsgn8-4.fna&oh=00_AfAZ1Tx006dpCJegQ-rh1hKFs_vMHErDHJE3P1yymqbzgA&oe=6628ADF5"
+                       src="https://firebasestorage.googleapis.com/v0/b/cloth-store-e1e8c.appspot.com/o/image%20data%20client%2Ficon%2F129463228_1044323955974046_7436598048619044227_n.jpg?alt=media&token=253e0ac3-2ecf-4d23-b8bb-e1ab739c2a0e"
                        alt="">
                 </button>
               </div>
 
               <div [hidden]="isShowMenuUser"
-                class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                   class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                   role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                 <!-- Active: "bg-gray-100", Not Active: "" -->
+                <a class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+                   id="user-menu-item-0">Người dùng, <span>{{ titleName }}</span></a>
                 <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                   id="user-menu-item-0">User, <span>{{ titleName }}</span></a>
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                   id="user-menu-item-1">Settings</a>
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                   id="user-menu-item-2" (click)="btnLogout()">Sign out</a>
+                   id="user-menu-item-1">Cài đặt</a>
+                <a routerLink="/order-history" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                   tabindex="-1"
+                   id="user-menu-item-3">Xem lịch sử mua hàng</a>
+                <a class="block px-4 py-2 text-sm text-gray-700 cursor-pointer" role="menuitem" tabindex="-1"
+                   id="user-menu-item-2" (click)="btnLogout()">Đăng xuất</a>
               </div>
             </div>
 

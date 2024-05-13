@@ -9,14 +9,14 @@
   }
 </style>
 
-<div class="h-screen bg-gray-100 pt-20 overflow-scroll">
-  <h1 class="mb-10 text-center text-2xl font-bold">Giỏ hàng</h1>
+<div class="h-screen bg-gray-100 pt-20 overflow-scroll mb-3">
+  <h1 class="mb-10 text-center text-3xl font-bold">Giỏ hàng</h1>
   <div class="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
     <div class="rounded-lg md:w-2/3">
       <div class="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start"
            *ngFor="let c of cartItem; let i = index">
         <img
-          src="{{'https://firebase-clothstoreclient.s3.ap-southeast-2.amazonaws.com/image+data+client/product/' + c.product?.image}}"
+          src="{{c.product?.image}}"
           alt="product-image" class="w-full rounded-lg sm:w-40"/>
         <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
           <div class="mt-5 sm:mt-0">
@@ -46,10 +46,21 @@
         </div>
       </div>
 
+      <div class="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start"
+           *ngIf="cartItem.length <= 0">
+        <div class="sm:ml-4 sm:flex sm:w-full sm:justify-center">
+          <svg class="w-6 h-6 text-gray-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+               xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M7 4h10a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM3 6v11a4 4 0 0 0 4 4h10a4 4 0 0 0 4-4V6"></path>
+          </svg>
+          <h2 class="text-lg font-bold text-gray-900">Bạn chưa có gì trong giỏ hàng</h2>
+        </div>
+      </div>
     </div>
 
     <!-- Sub total -->
-    <div class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
+    <div class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3" *ngIf="cartItem.length >= 1">
       <div class="mb-2 flex justify-between">
         <p class="text-gray-700">Tiền hàng</p>
         <p class="text-gray-700">{{ totalCart() | currency: 'VND' | slice:1 }} <span class="symbol"
@@ -73,10 +84,8 @@
           <p class="text-sm text-gray-700">Thuế VAT(--%)</p>
         </div>
       </div>
-      <button class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600"
-              [disabled]="isCheckHasItem" (click)="setDataExportingbillTransaction()">Thanh toán
+      <button class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600" (click)="setDataExportingbillTransaction()">Thanh toán
       </button>
     </div>
   </div>
 </div>
-<br>

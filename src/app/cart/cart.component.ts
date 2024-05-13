@@ -3,6 +3,7 @@ import {ExportingBillTransactionModel} from "../../bm-api/dtos/exporting-bill-tr
 import {SharedService} from "../../bm-api/Services/Data/ShareService";
 import {Router} from "@angular/router";
 import {ExportingBillModel} from "../../bm-api/dtos/exporting-bill.model";
+import {AngularFireStorage} from "@angular/fire/compat/storage";
 
 @Component({
   selector: 'app-cart',
@@ -12,8 +13,9 @@ import {ExportingBillModel} from "../../bm-api/dtos/exporting-bill.model";
 export class CartComponent implements OnInit {
   cartItem: ExportingBillTransactionModel[] = [];
   isCheckHasItem: boolean = false;
+  private ref: any;
 
-  constructor(private sharedService: SharedService, private router: Router) {
+  constructor(private sharedService: SharedService, private router: Router, private fireStorage: AngularFireStorage) {
   }
 
   ngOnInit(): void {
@@ -22,6 +24,17 @@ export class CartComponent implements OnInit {
     if (getCardItemSaving) {
       this.cartItem = [];
       this.cartItem = JSON.parse(getCardItemSaving);
+
+      //Code bởi NQTiến 12/05/2024 lay path hình ảnh từ firebase gán ngược lại giá trị image của product
+      this.cartItem.forEach(value => {
+        const path = 'image_data_client/product/' + value.product?.image; // Your image path
+        this.ref = this.fireStorage.ref(path)
+        this.ref.getDownloadURL().subscribe((url: any) => {
+          if (value.product?.image) {
+            value.product.image = url;
+          }
+        });
+      })
     }
   }
 
@@ -35,11 +48,7 @@ export class CartComponent implements OnInit {
     });
 
     //check status
-    if (sumPriceCardDisplay != 0) {
-      this.isCheckHasItem = false;
-    } else {
-      this.isCheckHasItem = true;
-    }
+    this.isCheckHasItem = sumPriceCardDisplay == 0;
     return sumPriceCardDisplay;
 
   }
@@ -95,5 +104,4 @@ export class CartComponent implements OnInit {
     localStorage.setItem('card', JSON.stringify(this.cartItem));
     location.reload();
   }
-
 }
