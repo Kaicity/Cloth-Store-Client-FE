@@ -11,6 +11,7 @@ import {SizesModel} from "../../bm-api/dtos/sizes.model";
 import {ColorsModel} from "../../bm-api/dtos/colors.model";
 import {ProductModel} from "../../bm-api/dtos/product.model";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {AngularFireStorage} from "@angular/fire/compat/storage";
 
 
 @Component({
@@ -46,11 +47,12 @@ export class ProductDetailComponent implements OnInit {
 
   selectedOptionColor!: number;
   selectedOptionSize!: number;
+  ref: any;
 
   @ViewChild('scrollTarget') scrollTarget!: ElementRef;
 
   constructor(private productService: ProductService, private router: Router, private route: ActivatedRoute,
-              private sharedService: SharedService, private snackBar: MatSnackBar) {
+              private sharedService: SharedService, private snackBar: MatSnackBar, private fireStorage: AngularFireStorage) {
     if (this.isCardVibsible) {
       this.router.events.subscribe((event: Event) => {
         if (event instanceof NavigationEnd) {
@@ -127,8 +129,16 @@ export class ProductDetailComponent implements OnInit {
       let color = new ColorsModel(this.productDetail.colors[index]);
       this.detailBill!.color = color;
       this.detailBill!.product!.image = color.image;
-      this.productDetail.image = color.image;
+
+      //set image firebase when choose size
+      let myPath: string;
+      const path = 'image_data_client/product/' + color.image; // Your image path
+      this.ref = this.fireStorage.ref(path)
+      this.ref.getDownloadURL().subscribe((url: any) => {
+        this.productDetail.image = url;
+      });
     }
+    this.scrollToTop();
   }
 
   public onChangeSizeOption(option: number) {
@@ -158,7 +168,6 @@ export class ProductDetailComponent implements OnInit {
     )
   }
 
-  //Ham kiem tra ket qua tra ve danh sach cac mon an
   public getAllProductComplete(res: ResponseModel<BaseSearchModel<ProductFullModel[]>>): void {
     if (res.status !== 200) {
       if (res.message) {
@@ -170,15 +179,6 @@ export class ProductDetailComponent implements OnInit {
         )
       }
     }
-    // this.seach = res.result;
-    //
-    //
-    // //this.search.recordOfPage = 8;
-    // this.seach.recordOfPage = 4;
-    // for (let i = 0; i < this.seach.recordOfPage; i++) {
-    //   // Your code here
-    //   this.productDtos.push(this.seach.result[i]);
-    // }
 
     // Lấy danh sách đối tượng từ API
     this.search = res.result;
@@ -193,10 +193,23 @@ export class ProductDetailComponent implements OnInit {
     for (let i = 0; i < this.search.recordOfPage; i++) {
       this.productDtos.push(this.search.result[i]);
     }
+
+    //Image url firebase
+    this.getImagePathFirebase();
+  }
+
+  getImagePathFirebase(): void {
+    //Code bởi NQTiến 12/05/2024 lay path hình ảnh từ firebase gán ngược lại giá trị image của product
+    this.productDtos.forEach(value => {
+      const path = 'image_data_client/product/' + value.image; // Your image path
+      this.ref = this.fireStorage.ref(path)
+      this.ref.getDownloadURL().subscribe((url: any) => {
+        value.image = url
+      });
+    })
   }
 
   public updateDataOfPageWhenChoseNext(event: any) {
-
     this.search.recordOfPage = +event.pageSize;
     this.currentPage = +event.pageIndex + 1;
     if (this.currentPage > 0) {
@@ -205,14 +218,12 @@ export class ProductDetailComponent implements OnInit {
       var start: number = end - this.search.recordOfPage;
       for (let i = start; i < end; i++) {
         // Your code here
-        if (i < this.search.result.length) this.productDtos.push(this.search.result[i]);
+        if (i < this.search.result.length) {
+          this.productDtos.push(this.search.result[i]);
+          this.getImagePathFirebase();
+        }
       }
     }
-
-  }
-
-  public toogleCard(): void {
-    this.isCardVisible = !this.isCardVisible;
   }
 
 
@@ -254,6 +265,8 @@ export class ProductDetailComponent implements OnInit {
 
       //Lưu giỏ hàng vào localstore toàn cục
       localStorage.setItem('card', JSON.stringify(this.cardItem));
+
+
       //Amount to card display
       this.totalCard();
 
@@ -294,7 +307,6 @@ export class ProductDetailComponent implements OnInit {
       this.isCheckHasItem = true;
     }
     return sumPriceCardDisplay;
-
   }
 
 
@@ -340,4 +352,7 @@ export class ProductDetailComponent implements OnInit {
     return a;
   }
 
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }

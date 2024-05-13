@@ -17,6 +17,7 @@
         <span class="mx-2" onclick="window.location.href='/'"></span>
       </li>
     </ol>
+
     <div class="bg-cover bg-center  h-auto text-white py-24 px-10 object-fill"
          style="background-image: url(https://png.pngtree.com/background/20230519/original/pngtree-store-with-hanging-clothing-in-a-high-end-environment-picture-image_2654941.jpg)">
       <div class="md:w-1/2">
@@ -28,19 +29,27 @@
           hệ tư vấn</a>
       </div>
     </div>
-    <br>
-    <div class="d-flex justify-content-end">
-      <button class="btn bg-gray-100 p-3 d-flex align-items-center fs-7 lh-1 w-20 w-md-auto mx-3" type="button">
-        Filters
-      </button>
-      <select class="form-select form-select-sm border-0 p-3 pe-5 lh-1 fs-7 bg-gray-100">
+    <div class="d-flex justify-content-end mt-4">
+      <input type="text" class="p-3 bg-gray-100 w-80 w-md-auto mx-3 h-13" placeholder="Tìm kiếm">
+      <select class="form-select form-select-sm border-0 p-3 pe-5 lh-1 fs-7 bg-gray-100 h-13">
         <option selected="">Sắp xếp</option>
         <option value="1">Giá cao nhất</option>
         <option value="2">Giá thấp nhất</option>
         <option value="3">Tên A-Z</option>
       </select>
+      <select class="form-select form-select-sm border-0 p-3 pe-5 lh-1 fs-7 bg-gray-100 mx-3 h-13">
+        <option selected="">Loại sản phẩm</option>
+        <option value="1">Giá cao nhất</option>
+        <option value="2">Giá thấp nhất</option>
+        <option value="3">Tên A-Z</option>
+      </select>
+      <button class="btn bg-black text-white p-3 align-items-center fs-7 lh-1 w-16 w-md-auto mx-3 h-13" type="button">
+        <svg class="h-6 w-6 stroke-2" viewBox="0 0 32 32" fill="none">
+          <circle cx="15" cy="14" r="8" stroke="currentColor" fill="transparent"></circle>
+          <line x1="21.1514" y1="19.7929" x2="26.707" y2="25.3484" stroke="currentColor" fill="transparent"></line>
+        </svg>
+      </button>
     </div>
-
     <br>
     <h2 class="text-3xl tracking-tight text-gray-900 text-center">Tất cả sản phẩm</h2><br>
     <app-spinner [show]="isLoading"></app-spinner>
@@ -50,7 +59,7 @@
         <div
           class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none lg:h-80 group-hover:outline-dashed group-hover:outline-black outline-2">
           <img
-            src="{{'https://firebase-clothstoreclient.s3.ap-southeast-2.amazonaws.com/image+data+client/product/' + product.image}}"
+            [src]="product.image"
             alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
             class="h-full w-full object-cover object-center">
           <div
@@ -73,7 +82,7 @@
     <div class="mt-5">
       <mat-paginator [length]="search.result.length" [pageSize]="search.recordOfPage" [pageSizeOptions]="itemInPageList"
                      (page)="updateDataOfPageWhenChoseNext($event)"
-                     aria-label="Select page"></mat-paginator>
+                     aria-label="Select page" color="primary"></mat-paginator>
     </div>
   </div>
 </div>
