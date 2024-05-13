@@ -29,11 +29,9 @@
     </nav>
 
     <!-- Image gallery -->
-    <div class="mx-auto mt-6   max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
+    <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
       <div class="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
-        <img
-          src="{{productDetail.image}}"
-          alt="Model wearing plain white basic tee." class="h-full w-full object-cover object-center">
+        <img src="{{productDetail.image}}" alt="Model wearing plain white basic tee." class="h-full w-full object-cover object-center">
       </div>
     </div>
 
@@ -210,7 +208,7 @@
 
 <div class="bg-white">
   <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-    <h2 class="text-2xl tracking-tight text-center text-gray-900">NHỮNG SẢN PHẨM KHÁC</h2>
+    <h2 class="text-2xl tracking-tight text-center text-gray-900">CÓ THỂ BẠN SẼ THÍCH</h2>
     <br>
     <div class="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
       <a class="group" *ngFor="let product of this.productDtos">

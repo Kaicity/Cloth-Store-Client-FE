@@ -129,8 +129,16 @@ export class ProductDetailComponent implements OnInit {
       let color = new ColorsModel(this.productDetail.colors[index]);
       this.detailBill!.color = color;
       this.detailBill!.product!.image = color.image;
-      this.productDetail.image = color.image;
+
+      //set image firebase when choose size
+      let myPath: string;
+      const path = 'image_data_client/product/' + color.image; // Your image path
+      this.ref = this.fireStorage.ref(path)
+      this.ref.getDownloadURL().subscribe((url: any) => {
+        this.productDetail.image = url;
+      });
     }
+    this.scrollToTop();
   }
 
   public onChangeSizeOption(option: number) {
@@ -160,7 +168,6 @@ export class ProductDetailComponent implements OnInit {
     )
   }
 
-  //Ham kiem tra ket qua tra ve danh sach cac mon an
   public getAllProductComplete(res: ResponseModel<BaseSearchModel<ProductFullModel[]>>): void {
     if (res.status !== 200) {
       if (res.message) {
@@ -187,6 +194,11 @@ export class ProductDetailComponent implements OnInit {
       this.productDtos.push(this.search.result[i]);
     }
 
+    //Image url firebase
+    this.getImagePathFirebase();
+  }
+
+  getImagePathFirebase(): void {
     //Code bởi NQTiến 12/05/2024 lay path hình ảnh từ firebase gán ngược lại giá trị image của product
     this.productDtos.forEach(value => {
       const path = 'image_data_client/product/' + value.image; // Your image path
@@ -198,7 +210,6 @@ export class ProductDetailComponent implements OnInit {
   }
 
   public updateDataOfPageWhenChoseNext(event: any) {
-
     this.search.recordOfPage = +event.pageSize;
     this.currentPage = +event.pageIndex + 1;
     if (this.currentPage > 0) {
@@ -207,14 +218,12 @@ export class ProductDetailComponent implements OnInit {
       var start: number = end - this.search.recordOfPage;
       for (let i = start; i < end; i++) {
         // Your code here
-        if (i < this.search.result.length) this.productDtos.push(this.search.result[i]);
+        if (i < this.search.result.length) {
+          this.productDtos.push(this.search.result[i]);
+          this.getImagePathFirebase();
+        }
       }
     }
-
-  }
-
-  public toogleCard(): void {
-    this.isCardVisible = !this.isCardVisible;
   }
 
 
@@ -298,7 +307,6 @@ export class ProductDetailComponent implements OnInit {
       this.isCheckHasItem = true;
     }
     return sumPriceCardDisplay;
-
   }
 
 
@@ -344,4 +352,7 @@ export class ProductDetailComponent implements OnInit {
     return a;
   }
 
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }

@@ -60,10 +60,19 @@ export class HomeComponent implements OnInit {
     //Giá trị khi hiển thị mặc định là 8 sản phẩm
     this.search.recordOfPage = 12;
     for (let i = 0; i < this.search.recordOfPage; i++) {
-      // Your code here
       this.productDtos.push(this.search.result[i]);
     }
 
+    //Link hinh anh den firebase
+    this.getImagePathFirebase();
+
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 1000);
+  }
+
+
+  getImagePathFirebase() {
     //Code bởi NQTiến 12/05/2024 lay path hình ảnh từ firebase gán ngược lại giá trị image của product
     this.productDtos.forEach(value => {
       const path = 'image_data_client/product/' + value.image; // Your image path
@@ -72,10 +81,6 @@ export class HomeComponent implements OnInit {
         value.image = url
       });
     })
-
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 1000);
   }
 
   //Lay food trong menu chinh den food detail
@@ -100,6 +105,9 @@ export class HomeComponent implements OnInit {
         if (i < this.search.result.length) this.productDtos.push(this.search.result[i]);
       }
       this.actionScrollChange();
+
+      //Link hinh anh den firebase
+      this.getImagePathFirebase();
     }
   }
 
@@ -108,28 +116,10 @@ export class HomeComponent implements OnInit {
     setTimeout(() => {
       this.isLoading = false;
     }, 1000)
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 600);
   }
 
-  async ngOnInit() {
-    //this.image = await this.getImagesInDirectory("/image_data_client/product/assets");
-
-
+  ngOnInit() {
     this.getAllProduct();
-  }
-
-  async getImagesInDirectory(directory: string): Promise<string[]> {
-    const ref = this.fireStorage.ref(directory);
-    const listResult = await ref.listAll().toPromise();
-    if (listResult && listResult.items) {
-      const urls: string[] = [];
-      await Promise.all(listResult.items.map(async (item) => {
-        const url = await item.getDownloadURL();
-        urls.push(url);
-      }));
-      return urls;
-    } else {
-      return [];
-    }
   }
 }
