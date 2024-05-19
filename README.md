@@ -1,14 +1,20 @@
-# FoodOrder
+# Cloth Store Client
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.5.
 
+## Install Nodejs npm to run Angular:
+Link download: https://nodejs.org/en/download/package-manager/current
+
+## Install Angular Framework
+Run `npm install -g @angular/cli`
+
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4201/`. The application will run project from your local.
 
-## Code scaffolding
+## Code config if folder path capital letters, lower case letters not correct is change path name in class import paths
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Example: `import {environment} from "../../../Environment/Environment";` if path error you can edit it `import {environment} from "../../../environment/environment`
 
 ## Build
 
