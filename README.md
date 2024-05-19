@@ -8,6 +8,9 @@ Link download: https://nodejs.org/en/download/package-manager/current
 ## Install Angular Framework
 Run `npm install -g @angular/cli`
 
+## Install Tailwind CSS 
+Run `npm install -D tailwindcss postcss autoprefixer`
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4201/`. The application will run project from your local.
