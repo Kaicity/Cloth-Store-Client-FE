@@ -12,9 +12,11 @@ Run `npm install -g @angular/cli`
 Run `npm install -D tailwindcss postcss autoprefixer`
 
 ## Deloyment Docker
-...
-...
-...
+This is an instructional clip: https://youtu.be/GE7tn2l9B1E
+
+Build image for this : " docker build -t clientfe . "
+
+Create Container from image : " docker run -p 4201:4201 --name client clientfe "
 
 ## Start run project
 
